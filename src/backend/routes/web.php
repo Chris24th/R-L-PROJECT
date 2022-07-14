@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Models\Listing;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,15 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//All Listings
 Route::get('/', function () {
-    return view('welcome');
+    return view(
+        'listings'
+        // , [
+        //     'heading' => 'Latest Listings'
+        //     // 'listings' => Listing::all()
+        // ]
+    );
 });
 
-Route::get('/hello', function () {
-    return response('hello world');
-});
-
-Route::get('/posts/{id}', function ($id) {
-    ddd($id);
-    return response('Post ' . $id);
-})->where('id', '[0-9]+');
+// Single Listing
+// Route::get('/listings/{id}', function ($id) {
+//     return view('listing', [
+//         'listing' => Listing::find($id)
+//     ]);
+// });
