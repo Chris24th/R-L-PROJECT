@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Models\Listing;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,3 +31,8 @@ Route::get('/listings/{id}', function ($id) {
         'listing' => Listing::find($id)
     ]);
 });
+
+Route::get('/register', [UserController::class, 'create']);
+
+Route::post('/users', [UserController::class, 'store']);
+
