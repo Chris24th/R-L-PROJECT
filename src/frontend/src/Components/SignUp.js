@@ -32,7 +32,7 @@ const SignUp = () => {
     return (
         <div className="container-md">
             <div className="row m-3 justify-content-center">
-                <h1 className="text-center my-5">Welcome to PostIT</h1>
+                <h1 className="text-center my-5"><strong>Welcome to PostIT</strong></h1>
             </div>
             <div className="row m-3 justify-content-center">
                 <div className="col-sm-6">
@@ -116,11 +116,11 @@ const SignUp = () => {
                             Female
                         </label>
                     </div>
-                    <div className="row mb-3 px-3">
+                    <div className="d-grid gap-2 col-6 mb-3 mx-auto">
                         <input
                             type="submit"
                             onClick={onCreate}
-                            className="btn btn-primary"
+                            className="btn btn-dark btn-outline-light"
                             value="Create Account"
                             id="female"
                         />

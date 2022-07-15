@@ -14,9 +14,9 @@ const SignIn = () => {
     };
 
     return (
-        <div className="container-md">
+        <div className="container-md" >
             <div className="row m-3 justify-content-center">
-                <h1 className="text-center my-5">Welcome to PostIT</h1>
+                <h1 className="text-center my-5"><strong>Welcome to PostIT</strong></h1>
             </div>
             <div className="row m-3 justify-content-center">
                 <div className="col-sm-6">
@@ -38,16 +38,17 @@ const SignIn = () => {
                         />
                         <label for="floatingPassword">Password</label>
                     </div>
-                    <div className="row mb-3 px-3">
+                    <div className="d-grid gap-2 col-6 mb-3 mx-auto">
                         <input
                             type="submit"
                             onClick={onSignIn}
-                            className="btn btn-primary"
+                            className="btn btn-dark btn-outline-light"
+                        
                             value="Login"
                         />
                     </div>
                     <div>
-                        <label>Don't have Account?</label>{" "}
+                        <label>Don't have an Account?</label>{" "}
                         <label
                             type="button"
                             className="text-decoration-underline"
