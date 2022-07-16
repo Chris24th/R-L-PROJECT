@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import bootstrap from "bootstrap";
+import axios from "axios";
 
+const api = axios.create({
+    baseURL: "http://localhost:3000/sign-in",
+});
 const SignIn = () => {
     const navigate = useNavigate();
     const [email, setemail] = useState();
