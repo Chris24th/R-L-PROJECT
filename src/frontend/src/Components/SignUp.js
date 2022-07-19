@@ -18,24 +18,24 @@ const SignUp = () => {
     }, []);
 
     const onCreate = async (e) => {
-        let item = { email, username, password, fname, lname };
-        console.warn(item);
-        // try {
-        let result = await fetch("http://localhost/api/v1/signup", {
-            method: "POST",
-            body: JSON.stringify(item),
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application.json",
-            },
-        });
-        result = await result.json();
-        console.log(result);
-        localStorage.setItem("user-info", JSON.stringify(result));
-        navigate("/signin");
-        // } catch (err) {
-        //     console.log(err);
-        // }
+        try {
+            let item = { email, username, password, fname, lname };
+            console.warn(item);
+            let result = await fetch("http://localhost/api/v1/signup", {
+                method: "POST",
+                body: JSON.stringify(item),
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application.json",
+                },
+            });
+            result = await result.json();
+            console.warn(result);
+            localStorage.setItem("user-info", JSON.stringify(result));
+            navigate("/signin");
+        } catch (err) {
+            console.log(err);
+        }
     };
     const handleChange = async (e) => {};
     const onSignIn = () => {
@@ -57,10 +57,7 @@ const SignUp = () => {
                 </h1>
             </div>
             <div className="row m-3 justify-content-center">
-                <form
-                    className="col-sm-6"
-                    // onSubmit={onCreate}
-                >
+                <form className="col-sm-6">
                     <div className=" mb-3">
                         <label>Email address</label>
                         <input
@@ -160,7 +157,7 @@ const SignUp = () => {
                     </div>
                     <div className="d-grid gap-2 col-6 mb-3 mx-auto">
                         <input
-                            type="submit"
+                            type="button"
                             className="btn btn-dark btn-outline-light"
                             value="Create Account"
                             id="female"

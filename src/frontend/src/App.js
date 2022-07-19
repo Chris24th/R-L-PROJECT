@@ -25,7 +25,6 @@ function App() {
                     </p>
                 )}
             </header>
-            <p>Signed in As:</p>
             <Router>
                 <Routes>
                     <Route exact path="/" element={<Protected Cmp={Home} />} />
