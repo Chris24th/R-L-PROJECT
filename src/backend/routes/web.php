@@ -13,15 +13,8 @@ use App\Http\Controllers\UserController;
 |
 */
 
-//All Listings
 Route::get('/', function () {
-    // return view(
-    //     'listings',
-    //     [
-    //         'heading' => 'Latest Listings',
-    //         'listings' => Listing::all(),
-    //     ]
-    // );
+    
     return 'hello world';
 });
 

@@ -8,10 +8,10 @@ const SignIn = () => {
     const [password, setPassword] = useState("");
 
     const onSignIn = async (e) => {
-        let item = { email, password };
-        if (email === "" || !password === "") {
-            alert("Please fillout.");
-        } else {
+        e.preventDefault();
+        try {
+            let item = { email, password };
+            console.warn(item);
             let result = await fetch("http://localhost/api/v1/signin", {
                 method: "POST",
                 body: JSON.stringify(item),
@@ -23,7 +23,15 @@ const SignIn = () => {
             result = await result.json();
             console.warn(result);
             localStorage.setItem("user-info", JSON.stringify(result));
-            navigate("/");
+            window.location.reload();
+
+            let user = JSON.parse(localStorage.getItem("user-info"));
+            if (user && user.error) {
+                alert("Invalid credentials. Try again.");
+                localStorage.clear();
+            }
+        } catch (e) {
+            alert(e);
         }
     };
 
@@ -41,11 +49,11 @@ const SignIn = () => {
         <div className="container-md">
             <div className="row m-3 justify-content-center">
                 <h1 className="text-center my-5">
-                    <strong>Welcome to PostIT</strong>
+                    <strong>Welcome to Postello</strong>
                 </h1>
             </div>
             <div className="row m-3 justify-content-center">
-                <div className="col-sm-6">
+                <form className="col-sm-6" onSubmit={onSignIn}>
                     <div className="form-floating mb-3">
                         <input
                             type="email"
@@ -70,10 +78,9 @@ const SignIn = () => {
                     </div>
                     <div className="d-grid gap-2 col-6 mb-3 mx-auto">
                         <input
-                            type="button"
+                            type="submit"
                             className="btn btn-dark btn-outline-light"
                             value="Login"
-                            onClick={onSignIn}
                         />
                     </div>
                     <div>
@@ -86,7 +93,7 @@ const SignIn = () => {
                             Sign Up
                         </label>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     );

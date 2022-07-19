@@ -3,13 +3,14 @@ import SignIn from "./Components/SignIn";
 import SignUp from "./Components/SignUp";
 import ForgotPassword from "./Components/ForgotPassword";
 import Home from "./Components/Home";
-<<<<<<< HEAD
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Link,
+    renderMatches,
+} from "react-router-dom";
 import Protected from "./Components/Protected";
-=======
-import { BrowserRouter as Router, Routes, Route, Link, renderMatches } from "react-router-dom";
-
->>>>>>> 953e0c02b836a52688a305762cf3da76f77e3c6b
 
 function App() {
     const [apiDetails, setApiDetails] = useState(null);

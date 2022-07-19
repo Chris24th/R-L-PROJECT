@@ -9,6 +9,7 @@ const SignUp = () => {
     const [confirmPass, setConfirmPass] = useState("");
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
+    const [sex, setSex] = useState("");
     const [error, setError] = useState("");
 
     useEffect(() => {
@@ -18,13 +19,11 @@ const SignUp = () => {
     }, []);
 
     const onCreate = async (e) => {
+        e.preventDefault();
         try {
-<<<<<<< HEAD
-            let item = { email, username, password, fname, lname };
-            if (item) {
-                alert("Please fillout.");
-            }
-            let result = await fetch("http://localhost/api/v1/signup", {
+            let item = { email, username, password, fname, lname, sex };
+            console.warn(item);
+            let result = await fetch("http://localhost/api/v1/signup/", {
                 method: "POST",
                 body: JSON.stringify(item),
                 headers: {
@@ -34,28 +33,12 @@ const SignUp = () => {
             });
             result = await result.json();
             console.warn(result);
-            localStorage.setItem("user-info", JSON.stringify(result));
+            alert("Account Created Successfully.");
             navigate("/signin");
-=======
-            if (
-                email !== "" &&
-                userID !== "" &&
-                password !== "" &&
-                confirmPass !== "" &&
-                fname !== "" &&
-                lname !== ""
-            ) {
-                navigate("/sign-in");
-                alert("success");
-            } else {
-                alert("Please fillout.");
-            }
->>>>>>> 953e0c02b836a52688a305762cf3da76f77e3c6b
-        } catch (err) {
-            console.log(err);
+        } catch (e) {
+            alert("Email address is already registered.");
         }
     };
-    const handleChange = async (e) => {};
     const onSignIn = () => {
         navigate("/signin");
     };
@@ -71,15 +54,11 @@ const SignUp = () => {
         <div className="container-md">
             <div className="row m-3 justify-content-center">
                 <h1 className="text-center my-5">
-                    <strong>Welcome to PostIT</strong>
+                    <strong>Welcome to Postello</strong>
                 </h1>
             </div>
             <div className="row m-3 justify-content-center">
-<<<<<<< HEAD
-                <form className="col-sm-6">
-=======
                 <form className="col-sm-6" onSubmit={onCreate}>
->>>>>>> 953e0c02b836a52688a305762cf3da76f77e3c6b
                     <div className=" mb-3">
                         <label>Email address</label>
                         <input
@@ -151,14 +130,13 @@ const SignUp = () => {
                         <input
                             className="form-check-input"
                             type="radio"
-                            name="exampleRadios"
-                            id="exampleRadios1"
-                            value="option1"
+                            name="radios"
+                            id="radio1"
+                            value="Male"
+                            onClick={() => setSex("Male")}
+                            required
                         />
-                        <label
-                            className="form-check-label"
-                            htmlFor="exampleRadios1"
-                        >
+                        <label className="form-check-label" htmlFor="radio1">
                             Male
                         </label>
                     </div>
@@ -166,28 +144,21 @@ const SignUp = () => {
                         <input
                             className="form-check-input"
                             type="radio"
-                            name="exampleRadios"
-                            id="exampleRadios2"
-                            value="option2"
+                            name="radios"
+                            id="radio2"
+                            value="Female"
+                            onClick={() => setSex("Female")}
+                            required
                         />
-                        <label
-                            className="form-check-label"
-                            htmlFor="exampleRadios2"
-                        >
+                        <label className="form-check-label" htmlFor="radio2">
                             Female
                         </label>
                     </div>
                     <div className="d-grid gap-2 col-6 mb-3 mx-auto">
                         <input
-<<<<<<< HEAD
-                            type="button"
-=======
                             type="submit"
->>>>>>> 953e0c02b836a52688a305762cf3da76f77e3c6b
                             className="btn btn-dark btn-outline-light"
                             value="Create Account"
-                            id="female"
-                            onClick={onCreate}
                         />
                     </div>
                     <div>
