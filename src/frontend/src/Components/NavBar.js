@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -52,7 +53,7 @@ function NavScroll() {
                             className="me-2"
                             aria-label="Search"
                         />
-                        <Button variant="outline-success">Search</Button>
+                        <Button variant="outline-light">Search</Button>
                     </Form>
                 </Navbar.Collapse>
             </Container>
