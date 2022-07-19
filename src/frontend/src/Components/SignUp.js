@@ -11,18 +11,22 @@ const SignUp = () => {
     const [lname, setLname] = useState("");
 
     const onCreate = async (e) => {
-        if (
-            email != "" &&
-            userID != "" &&
-            password != "" &&
-            confirmPass != "" &&
-            fname != "" &&
-            lname != ""
-        ) {
-            // navigate("/sign-in");
-            alert("success");
-        } else {
-            alert("Please fillout.");
+        try {
+            if (
+                email !== "" &&
+                userID !== "" &&
+                password !== "" &&
+                confirmPass !== "" &&
+                fname !== "" &&
+                lname !== ""
+            ) {
+                navigate("/sign-in");
+                alert("success");
+            } else {
+                alert("Please fillout.");
+            }
+        } catch (err) {
+            console.log(err);
         }
     };
     const handleChange = async (e) => {};
@@ -32,10 +36,12 @@ const SignUp = () => {
     return (
         <div className="container-md">
             <div className="row m-3 justify-content-center">
-                <h1 className="text-center my-5"><strong>Welcome to PostIT</strong></h1>
+                <h1 className="text-center my-5">
+                    <strong>Welcome to PostIT</strong>
+                </h1>
             </div>
             <div className="row m-3 justify-content-center">
-                <div className="col-sm-6">
+                <form className="col-sm-6" onSubmit={onCreate}>
                     <div className=" mb-3">
                         <label>Email address</label>
                         <input
@@ -119,7 +125,6 @@ const SignUp = () => {
                     <div className="d-grid gap-2 col-6 mb-3 mx-auto">
                         <input
                             type="submit"
-                            onClick={onCreate}
                             className="btn btn-dark btn-outline-light"
                             value="Create Account"
                             id="female"
@@ -135,7 +140,7 @@ const SignUp = () => {
                             Sign In
                         </label>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     );
