@@ -1,11 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 // import bootstrap from "bootstrap";
-import axios from "axios";
 
-const api = axios.create({
-    baseURL: "http://localhost:3000/sign-in",
-});
 const SignIn = () => {
     const navigate = useNavigate();
     const [email, setemail] = useState();
@@ -17,6 +13,11 @@ const SignIn = () => {
         navigate("/signup");
     };
 
+    useEffect(() => {
+        if (localStorage.getItem("user-info")) {
+            navigate("/");
+        }
+    }, []);
     return (
         <div className="container-md">
             <div className="row m-3 justify-content-center">
@@ -34,7 +35,7 @@ const SignIn = () => {
                             placeholder="Email address"
                             required
                         />
-                        <label for="floatingInput">Email address</label>
+                        <label htmlFor="floatingInput">Email address</label>
                     </div>
                     <div className="form-floating mb-3">
                         <input
@@ -44,7 +45,7 @@ const SignIn = () => {
                             placeholder="Password"
                             required
                         />
-                        <label for="floatingPassword">Password</label>
+                        <label htmlFor="floatingPassword">Password</label>
                     </div>
                     <div className="d-grid gap-2 col-6 mb-3 mx-auto">
                         <input

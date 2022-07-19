@@ -4,6 +4,7 @@ import SignUp from "./Components/SignUp";
 import ForgotPassword from "./Components/ForgotPassword";
 import Home from "./Components/Home";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Protected from "./Components/Protected";
 
 function App() {
     const [apiDetails, setApiDetails] = useState(null);
@@ -24,9 +25,10 @@ function App() {
                     </p>
                 )}
             </header>
+            <p>Signed in As:</p>
             <Router>
                 <Routes>
-                    <Route exact path="/" element={<Home />} />
+                    <Route exact path="/" element={<Protected Cmp={Home} />} />
                     <Route path="/signin" element={<SignIn />} />
                     {/* <Route path="/about" element={<AboutUs />} /> */}
                     <Route path="/signup" element={<SignUp />} />

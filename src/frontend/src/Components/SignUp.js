@@ -1,22 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
-    const [userID, setUserID] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPass, setConfirmPass] = useState("");
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
     const [error, setError] = useState("");
 
-    const onCreate = async (e) => {
-        try {
-            navigate("/signin");
-        } catch (err) {
-            console.log(err);
+    useEffect(() => {
+        if (localStorage.getItem("user-info")) {
+            navigate("/");
         }
+    }, []);
+
+    const onCreate = async (e) => {
+        let item = { email, username, password, fname, lname };
+        console.warn(item);
+        // try {
+        let result = await fetch("http://localhost/api/v1/signup", {
+            method: "POST",
+            body: JSON.stringify(item),
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application.json",
+            },
+        });
+        result = await result.json();
+        console.log(result);
+        localStorage.setItem("user-info", JSON.stringify(result));
+        navigate("/signin");
+        // } catch (err) {
+        //     console.log(err);
+        // }
     };
     const handleChange = async (e) => {};
     const onSignIn = () => {
@@ -38,7 +57,10 @@ const SignUp = () => {
                 </h1>
             </div>
             <div className="row m-3 justify-content-center">
-                <form className="col-sm-6" onSubmit={onCreate}>
+                <form
+                    className="col-sm-6"
+                    // onSubmit={onCreate}
+                >
                     <div className=" mb-3">
                         <label>Email address</label>
                         <input
@@ -55,8 +77,8 @@ const SignUp = () => {
                         <input
                             type="text"
                             className="form-control"
-                            value={userID}
-                            onChange={(e) => setUserID(e.target.value)}
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
                             required
                         />
                     </div>
@@ -106,27 +128,33 @@ const SignUp = () => {
                             required
                         />
                     </div>
-                    <div class="form-check form-check-inline">
+                    <div className="form-check form-check-inline">
                         <input
-                            class="form-check-input"
+                            className="form-check-input"
                             type="radio"
                             name="exampleRadios"
                             id="exampleRadios1"
                             value="option1"
                         />
-                        <label class="form-check-label" for="exampleRadios1">
+                        <label
+                            className="form-check-label"
+                            htmlFor="exampleRadios1"
+                        >
                             Male
                         </label>
                     </div>
-                    <div class="form-check form-check-inline mb-3">
+                    <div className="form-check form-check-inline mb-3">
                         <input
-                            class="form-check-input"
+                            className="form-check-input"
                             type="radio"
                             name="exampleRadios"
-                            id="male"
-                            value="option1"
+                            id="exampleRadios2"
+                            value="option2"
                         />
-                        <label class="form-check-label" for="exampleRadios1">
+                        <label
+                            className="form-check-label"
+                            htmlFor="exampleRadios2"
+                        >
                             Female
                         </label>
                     </div>
@@ -136,6 +164,7 @@ const SignUp = () => {
                             className="btn btn-dark btn-outline-light"
                             value="Create Account"
                             id="female"
+                            onClick={onCreate}
                         />
                     </div>
                     <div>
