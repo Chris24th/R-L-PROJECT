@@ -25,12 +25,6 @@ Route::get('/', function () {
     // );
     return 'hello world';
 });
-// Single Listing
-Route::get('/listings/{id}', function ($id) {
-    return view('listing', [
-        'listing' => Listing::find($id)
-    ]);
-});
 
 Route::get('/register', [UserController::class, 'create']);
 
