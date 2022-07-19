@@ -19,6 +19,7 @@ const SignUp = () => {
 
     const onCreate = async (e) => {
         try {
+<<<<<<< HEAD
             let item = { email, username, password, fname, lname };
             if (item) {
                 alert("Please fillout.");
@@ -35,6 +36,21 @@ const SignUp = () => {
             console.warn(result);
             localStorage.setItem("user-info", JSON.stringify(result));
             navigate("/signin");
+=======
+            if (
+                email !== "" &&
+                userID !== "" &&
+                password !== "" &&
+                confirmPass !== "" &&
+                fname !== "" &&
+                lname !== ""
+            ) {
+                navigate("/sign-in");
+                alert("success");
+            } else {
+                alert("Please fillout.");
+            }
+>>>>>>> 953e0c02b836a52688a305762cf3da76f77e3c6b
         } catch (err) {
             console.log(err);
         }
@@ -59,7 +75,11 @@ const SignUp = () => {
                 </h1>
             </div>
             <div className="row m-3 justify-content-center">
+<<<<<<< HEAD
                 <form className="col-sm-6">
+=======
+                <form className="col-sm-6" onSubmit={onCreate}>
+>>>>>>> 953e0c02b836a52688a305762cf3da76f77e3c6b
                     <div className=" mb-3">
                         <label>Email address</label>
                         <input
@@ -159,7 +179,11 @@ const SignUp = () => {
                     </div>
                     <div className="d-grid gap-2 col-6 mb-3 mx-auto">
                         <input
+<<<<<<< HEAD
                             type="button"
+=======
+                            type="submit"
+>>>>>>> 953e0c02b836a52688a305762cf3da76f77e3c6b
                             className="btn btn-dark btn-outline-light"
                             value="Create Account"
                             id="female"
