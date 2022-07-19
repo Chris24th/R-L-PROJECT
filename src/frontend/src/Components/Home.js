@@ -12,9 +12,6 @@ function Home() {
     return (
         <div>
             <NavBar/>
-            <label type="button" onClick={onSignOut}>
-                Sign Out
-            </label>
         </div>
     );
 }

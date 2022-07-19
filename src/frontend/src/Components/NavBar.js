@@ -4,8 +4,13 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useNavigate } from "react-router-dom";
 
 function NavScroll() {
+  const navigate = useNavigate();
+    const onSignOut = async (e) => {
+        navigate("/sign-in");
+    };
   return (
     <Navbar bg="dark" variant={"dark"} expand="lg">
       <Container fluid>
@@ -20,7 +25,11 @@ function NavScroll() {
             <Nav.Link href="#action1">Home</Nav.Link>
             <NavDropdown title="Profile" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3">Timeline</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">Log Out</NavDropdown.Item>
+              <NavDropdown.Item href="#action4">
+                <label type="button" onClick={onSignOut}>
+                  Sign Out
+                </label>
+              </NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <Form className="d-flex">
@@ -30,7 +39,7 @@ function NavScroll() {
               className="me-2"
               aria-label="Search"
             />
-            <Button variant="outline-success">Search</Button>
+            <Button variant="outline-light">Search</Button>
           </Form>
         </Navbar.Collapse>
       </Container>
@@ -39,3 +48,5 @@ function NavScroll() {
 }
 
 export default NavScroll;
+
+//ibalhin ari 

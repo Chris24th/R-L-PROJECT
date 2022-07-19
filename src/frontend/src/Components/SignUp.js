@@ -37,7 +37,7 @@ const SignUp = () => {
         <div className="container-md">
             <div className="row m-3 justify-content-center">
                 <h1 className="text-center my-5">
-                    <strong>Welcome to PostIT</strong>
+                    <strong>Welcome to Postello</strong>
                 </h1>
             </div>
             <div className="row m-3 justify-content-center">
