@@ -8,9 +8,10 @@ const SignIn = () => {
     const [password, setPassword] = useState("");
 
     const onSignIn = async (e) => {
-        try {
-            let item = { email, password };
-            console.warn(item);
+        let item = { email, password };
+        if (email === "" || !password === "") {
+            alert("Please fillout.");
+        } else {
             let result = await fetch("http://localhost/api/v1/signin", {
                 method: "POST",
                 body: JSON.stringify(item),
@@ -23,8 +24,6 @@ const SignIn = () => {
             console.warn(result);
             localStorage.setItem("user-info", JSON.stringify(result));
             navigate("/");
-        } catch (err) {
-            console.log(err);
         }
     };
 
@@ -46,7 +45,7 @@ const SignIn = () => {
                 </h1>
             </div>
             <div className="row m-3 justify-content-center">
-                <form className="col-sm-6">
+                <div className="col-sm-6">
                     <div className="form-floating mb-3">
                         <input
                             type="email"
@@ -87,7 +86,7 @@ const SignIn = () => {
                             Sign Up
                         </label>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     );

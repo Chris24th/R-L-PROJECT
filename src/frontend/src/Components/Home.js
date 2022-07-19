@@ -12,7 +12,7 @@ function Home() {
     };
     return (
         <div>
-            <p>Signed in As: {user && user.username}</p>;
+            <p>Signed in As: {user && user.email}</p>;
             <label type="button" onClick={onSignOut}>
                 Sign Out
             </label>

@@ -20,7 +20,9 @@ const SignUp = () => {
     const onCreate = async (e) => {
         try {
             let item = { email, username, password, fname, lname };
-            console.warn(item);
+            if (item) {
+                alert("Please fillout.");
+            }
             let result = await fetch("http://localhost/api/v1/signup", {
                 method: "POST",
                 body: JSON.stringify(item),
