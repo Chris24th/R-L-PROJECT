@@ -9,20 +9,11 @@ const SignUp = () => {
     const [confirmPass, setConfirmPass] = useState("");
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
+    const [error, setError] = useState("");
 
     const onCreate = async (e) => {
         try {
-            if (
-                email !== "" &&
-                userID !== "" &&
-                password !== "" &&
-                confirmPass !== "" &&
-                fname !== "" &&
-                lname !== ""
-            ) {
-                // navigate("/sign-in");
-                alert("success");
-            }
+            navigate("/sign-in");
         } catch (err) {
             console.log(err);
         }
@@ -30,6 +21,14 @@ const SignUp = () => {
     const handleChange = async (e) => {};
     const onSignIn = () => {
         navigate("/sign-in");
+    };
+    const validateInput = (e) => {
+        let { name, value } = e.target;
+        if (confirmPass && value !== password) {
+            setError("Password and Confirm Password does not match.");
+        } else {
+            setError("");
+        }
     };
     return (
         <div className="container-md">
@@ -75,11 +74,16 @@ const SignUp = () => {
                         <label>Confirm Password</label>
                         <input
                             type="password"
+                            name="confirmPass"
                             className="form-control"
                             value={confirmPass}
                             onChange={(e) => setConfirmPass(e.target.value)}
                             required
+                            onBlur={validateInput}
                         />
+                        {error && (
+                            <span className="err text-danger">{error}</span>
+                        )}
                     </div>
                     <div className="mb-3">
                         <label>First Name</label>
