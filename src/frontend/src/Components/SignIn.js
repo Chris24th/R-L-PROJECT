@@ -14,7 +14,7 @@ const SignIn = () => {
     };
     const handleChange = async (e) => {};
     const onSignUp = () => {
-        navigate("/sign-up");
+        navigate("/signup");
     };
 
     return (

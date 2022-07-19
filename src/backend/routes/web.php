@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Listing;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 /*
@@ -26,7 +25,5 @@ Route::get('/', function () {
     return 'hello world';
 });
 
-Route::get('/register', [UserController::class, 'create']);
 
-Route::post('/users', [UserController::class, 'store']);
 

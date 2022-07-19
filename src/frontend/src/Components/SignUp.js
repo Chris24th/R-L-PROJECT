@@ -13,14 +13,14 @@ const SignUp = () => {
 
     const onCreate = async (e) => {
         try {
-            navigate("/sign-in");
+            navigate("/signin");
         } catch (err) {
             console.log(err);
         }
     };
     const handleChange = async (e) => {};
     const onSignIn = () => {
-        navigate("/sign-in");
+        navigate("/signin");
     };
     const validateInput = (e) => {
         let { name, value } = e.target;

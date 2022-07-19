@@ -15,7 +15,7 @@ function App() {
     }, []);
 
     return (
-        <div className="App" >
+        <div className="App">
             <header className="App-header">
                 {apiDetails && (
                     <p>
@@ -27,11 +27,11 @@ function App() {
             <Router>
                 <Routes>
                     <Route exact path="/" element={<Home />} />
-                    <Route path="/sign-in" element={<SignIn />} />
+                    <Route path="/signin" element={<SignIn />} />
                     {/* <Route path="/about" element={<AboutUs />} /> */}
-                    <Route path="/sign-up" element={<SignUp />} />
+                    <Route path="/signup" element={<SignUp />} />
                     <Route
-                        path="/forgot-password"
+                        path="/forgotpassword"
                         element={<ForgotPassword />}
                     />
                 </Routes>
