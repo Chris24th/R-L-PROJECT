@@ -141,7 +141,7 @@ const SignUp = () => {
                             Male
                         </label>
                     </div>
-                    <div className="form-check form-check-inline mb-3">
+                    <div className="form-check form-check-inline mb-4">
                         <input
                             className="form-check-input"
                             type="radio"
@@ -155,11 +155,11 @@ const SignUp = () => {
                             Female
                         </label>
                     </div>
-                    <div className="d-grid d-md-flex justify-content-md-end my-3">
+                    <div className="d-grid mx-auto mb-4">
                         <input
                             type="submit"
                             className="btn-lg btn-dark btn-outline-light"
-                            value="  Create Account  "
+                            value="Create Account"
                         />
                     </div>
                     <div>

@@ -20,18 +20,16 @@ const ForgotPassword = () => {
     }, []);
     return (
         <div className="container-md">
-            <div className="row justify-content-center">
-                <h1 className="text-center my-5">
-                    <strong>Postello</strong>
-                </h1>
-            </div>
             <div className="row m-3 justify-content-center p-2">
                 <form
-                    className="col-md-8 bg-light p-5 shadow"
+                    className="col-md-8 bg-light shadow p-5 mt-5"
                     onSubmit={onSubmit}
                 >
-                    <h4 className="mb-4"> Reset Password </h4>
-                    <div className="form-floating mb-5">
+                    <h1 className="mb-5">
+                        <strong>Postello</strong>
+                    </h1>
+                    <h4 className="mb-4"> Password Reset </h4>
+                    <div className="form-floating mb-4">
                         <input
                             type="email"
                             className="form-control"
@@ -42,20 +40,20 @@ const ForgotPassword = () => {
                         />
                         <label htmlFor="floatingInput">Email address</label>
                     </div>
-                    <div className="d-grid col-6 mx-auto">
+                    <div className="d-grid mx-auto my-3">
                         <input
                             type="submit"
-                            className="btn-lg btn-dark btn-outline-light"
+                            className="btn-lg btn-dark btn-outline-light px-5"
                             value="Submit"
                         />
-                        <label
-                            type="button"
-                            className="text-decoration-underline text-center mt-2"
-                            onClick={onBack}
-                        >
-                            Back >
-                        </label>
                     </div>
+                    <label
+                        type="button"
+                        className="text-decoration-underline text-center"
+                        onClick={onBack}
+                    >
+                        Back >
+                    </label>
                 </form>
             </div>
         </div>

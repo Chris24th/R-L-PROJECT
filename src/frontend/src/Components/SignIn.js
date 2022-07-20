@@ -85,16 +85,16 @@ const SignIn = () => {
                         <label
                             type="button"
                             onClick={onForgotPass}
-                            className="text-decoration-underline mb-3"
+                            className="text-decoration-underline mb-4"
                         >
                             Forgot Password
                         </label>{" "}
                     </div>
-                    <div className="d-grid d-md-flex justify-content-md-end mb-5">
+                    <div className="d-grid mx-auto mb-4">
                         <input
                             type="submit"
                             className="btn-lg btn-dark btn-outline-light"
-                            value="    Login    "
+                            value="Login"
                         />
                     </div>
                     <div>
