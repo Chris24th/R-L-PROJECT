@@ -53,7 +53,7 @@ const SignIn = () => {
         <div className="container-md">
             <div className="row m-3 justify-content-center">
                 <form
-                    className="col-md-8 bg-light shadow p-5 mt-5"
+                    className="col-md-8 bg-light shadow p-5 mt-5 border-form"
                     onSubmit={onSignIn}
                 >
                     <h1 className="mb-5">

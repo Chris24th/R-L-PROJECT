@@ -54,7 +54,7 @@ const SignUp = () => {
         <div className="container-md">
             <div className="row m-3 justify-content-center">
                 <form
-                    className="col-md-8 bg-light shadow p-5 my-5"
+                    className="col-md-6 bg-light shadow p-5 my-5 border-form"
                     onSubmit={onCreate}
                 >
                     <h1 className="mb-5">
