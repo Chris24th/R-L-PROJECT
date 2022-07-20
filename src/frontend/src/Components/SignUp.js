@@ -53,12 +53,13 @@ const SignUp = () => {
     return (
         <div className="container-md">
             <div className="row m-3 justify-content-center">
-                <h1 className="text-center my-5">
-                    <strong>Welcome to Postello</strong>
-                </h1>
-            </div>
-            <div className="row m-3 justify-content-center">
-                <form className="col-sm-6" onSubmit={onCreate}>
+                <form
+                    className="col-md-8 bg-light shadow p-5 my-5"
+                    onSubmit={onCreate}
+                >
+                    <h1 className="mb-5">
+                        <strong>Postello Logo</strong>
+                    </h1>
                     <div className=" mb-3">
                         <label>Email address</label>
                         <input
@@ -116,7 +117,7 @@ const SignUp = () => {
                         />
                     </div>
 
-                    <div className="mb-3">
+                    <div className="mb-4">
                         <label>Last Name</label>
                         <input
                             type="text"
@@ -154,11 +155,11 @@ const SignUp = () => {
                             Female
                         </label>
                     </div>
-                    <div className="d-grid gap-2 col-6 mb-3 mx-auto">
+                    <div className="d-grid d-md-flex justify-content-md-end my-3">
                         <input
                             type="submit"
-                            className="btn btn-dark btn-outline-light"
-                            value="Create Account"
+                            className="btn-lg btn-dark btn-outline-light"
+                            value="  Create Account  "
                         />
                     </div>
                     <div>

@@ -39,6 +39,10 @@ const SignIn = () => {
         navigate("/signup");
     };
 
+    const onForgotPass = () => {
+        navigate("/forgotpassword");
+    };
+
     useEffect(() => {
         if (localStorage.getItem("user-info")) {
             navigate("/");
@@ -48,12 +52,13 @@ const SignIn = () => {
     return (
         <div className="container-md">
             <div className="row m-3 justify-content-center">
-                <h1 className="text-center my-5">
-                    <strong>Welcome to Postello</strong>
-                </h1>
-            </div>
-            <div className="row m-3 justify-content-center">
-                <form className="col-sm-6" onSubmit={onSignIn}>
+                <form
+                    className="col-md-8 bg-light shadow p-5 mt-5"
+                    onSubmit={onSignIn}
+                >
+                    <h1 className="mb-5">
+                        <strong>Postello Logo</strong>
+                    </h1>
                     <div className="form-floating mb-3">
                         <input
                             type="email"
@@ -76,11 +81,20 @@ const SignIn = () => {
                         />
                         <label htmlFor="floatingPassword">Password</label>
                     </div>
-                    <div className="d-grid gap-2 col-6 mb-3 mx-auto">
+                    <div>
+                        <label
+                            type="button"
+                            onClick={onForgotPass}
+                            className="text-decoration-underline mb-3"
+                        >
+                            Forgot Password
+                        </label>{" "}
+                    </div>
+                    <div className="d-grid d-md-flex justify-content-md-end mb-5">
                         <input
                             type="submit"
-                            className="btn btn-dark btn-outline-light"
-                            value="Login"
+                            className="btn-lg btn-dark btn-outline-light"
+                            value="    Login    "
                         />
                     </div>
                     <div>

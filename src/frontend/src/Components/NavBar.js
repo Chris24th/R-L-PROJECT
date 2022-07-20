@@ -16,7 +16,7 @@ function NavScroll() {
     };
 
     return (
-        <Navbar bg="dark" variant={"dark"} expand="lg">
+        <Navbar bg="dark" variant={"dark"} expand="sm">
             <Container fluid>
                 <Navbar.Brand href="#">Postello</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
@@ -31,14 +31,11 @@ function NavScroll() {
                             title={user && user.username}
                             id="navbarScrollingDropdown"
                         >
-                            <NavDropdown.Item href="#action3">
+                            <NavDropdown.Item href="#action2">
                                 Account
                             </NavDropdown.Item>
-                            <NavDropdown.Item href="#action3">
-                                Timeline
-                            </NavDropdown.Item>
                             <NavDropdown.Item
-                                href="#action4"
+                                href="#action3"
                                 onClick={onSignOut}
                             >
                                 Logout
