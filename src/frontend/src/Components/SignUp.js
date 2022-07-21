@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import LogoName from '../Postello.png'
 
 const SignUp = () => {
     const navigate = useNavigate();
@@ -52,13 +53,14 @@ const SignUp = () => {
     };
     return (
         <div className="container-md">
-            <div className="row m-3 justify-content-center">
+            <div className="row m-3 justify-content-center ">
                 <form
-                    className="col-md-6 bg-light shadow p-5 my-5 border-form"
+                    className="col-md-6 shadow p-5 my-5 border-form bg-light"
                     onSubmit={onCreate}
                 >
                     <h1 className="mb-5">
-                        <strong>Postello Logo</strong>
+                        {/* <strong>Postello Logo</strong> */}
+                        <img src={LogoName} width="300px" alt="postello logo"/>
                     </h1>
                     <div className=" mb-3">
                         <label>Email address</label>

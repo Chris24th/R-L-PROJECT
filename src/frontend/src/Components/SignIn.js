@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 // import bootstrap from "bootstrap";
+import LogoName from '../Postello.png'
 
 const SignIn = () => {
     const navigate = useNavigate();
@@ -53,12 +54,14 @@ const SignIn = () => {
         <div className="container-md">
             <div className="row m-3 justify-content-center">
                 <form
-                    className="col-md-8 bg-light shadow p-5 mt-5 border-form"
+                    className="col-md-6 bg-light shadow p-5 mt-5 border-form"
                     onSubmit={onSignIn}
                 >
                     <h1 className="mb-5">
-                        <strong>Postello Logo</strong>
+                        {/* <strong>Postello Logo</strong> */}
+                        <img src={LogoName} width="400px" alt="postello logo"/>
                     </h1>
+                    <h5 className="mb-5">Be vocal. Share your thoughts and feelings freely on Postello.</h5>
                     <div className="form-floating mb-3">
                         <input
                             type="email"

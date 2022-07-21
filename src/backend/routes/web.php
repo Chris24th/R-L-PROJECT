@@ -14,7 +14,6 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', function () {
-    
     return 'hello world';
 });
 
