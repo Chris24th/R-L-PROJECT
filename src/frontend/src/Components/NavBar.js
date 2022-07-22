@@ -6,6 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useNavigate } from "react-router-dom";
 
+
 function NavScroll() {
     let user = JSON.parse(localStorage.getItem("user-info"));
     const navigate = useNavigate();

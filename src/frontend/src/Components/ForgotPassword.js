@@ -47,7 +47,7 @@ const ForgotPassword = () => {
         <div className="container-md">
             <div className="row m-3 justify-content-center p-2">
                 <form
-                    className="col-md-8 bg-light shadow p-5 mt-5"
+                    className="col-md-8 bg-light shadow p-5 mt-5 border-form"
                     onSubmit={onSubmit}
                 >
                     <h1 className="mb-5">
@@ -77,7 +77,7 @@ const ForgotPassword = () => {
                         className="text-decoration-underline text-center"
                         onClick={onBack}
                     >
-                        Back >
+                        Back
                     </label>
                 </form>
             </div>

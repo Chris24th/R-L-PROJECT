@@ -5,4 +5,4 @@ src/backend/public/js
 src/backend/public/report/*
 src/backend/packages/*
 .env
-node_modules
+src/frontend/node_modules
