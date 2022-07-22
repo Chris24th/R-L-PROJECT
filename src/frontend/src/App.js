@@ -22,15 +22,7 @@ function App() {
     }, []);
 
     return (
-        <div className="App">
-            <header className="App-header">
-                {apiDetails && (
-                    <p>
-                        Connected to {apiDetails.description} v
-                        {apiDetails.version}
-                    </p>
-                )}
-            </header>
+        <div>
             <Router>
                 <Routes>
                     <Route exact path="/" element={<Protected Cmp={Home} />} />

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import LogoName from '../Postello.png'
+import LogoName from "../Postello.png";
 
 const SignUp = () => {
     const navigate = useNavigate();
@@ -14,7 +14,8 @@ const SignUp = () => {
     const [error, setError] = useState("");
 
     useEffect(() => {
-        if (localStorage.getItem("user-info")) {
+        let user = JSON.parse(localStorage.getItem("user-info"));
+        if (user && user.email && user.username) {
             navigate("/");
         }
     }, []);
@@ -29,7 +30,7 @@ const SignUp = () => {
                 body: JSON.stringify(item),
                 headers: {
                     "Content-Type": "application/json",
-                    Accept: "application.json",
+                    Accept: "application/json",
                 },
             });
             result = await result.json();
@@ -60,7 +61,7 @@ const SignUp = () => {
                 >
                     <h1 className="mb-5">
                         {/* <strong>Postello Logo</strong> */}
-                        <img src={LogoName} width="300px" alt="postello logo"/>
+                        <img src={LogoName} width="300px" alt="postello logo" />
                     </h1>
                     <div className=" mb-3">
                         <label>Email address</label>

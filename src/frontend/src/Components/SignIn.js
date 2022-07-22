@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 // import bootstrap from "bootstrap";
-import LogoName from '../Postello.png'
+import LogoName from "../Postello.png";
 
 const SignIn = () => {
     const navigate = useNavigate();
@@ -18,7 +18,7 @@ const SignIn = () => {
                 body: JSON.stringify(item),
                 headers: {
                     "Content-Type": "application/json",
-                    Accept: "application.json",
+                    Accept: "application/json",
                 },
             });
             result = await result.json();
@@ -45,7 +45,8 @@ const SignIn = () => {
     };
 
     useEffect(() => {
-        if (localStorage.getItem("user-info")) {
+        let user = JSON.parse(localStorage.getItem("user-info"));
+        if (user && user.email && user.username) {
             navigate("/");
         }
     }, []);
@@ -59,9 +60,12 @@ const SignIn = () => {
                 >
                     <h1 className="mb-5">
                         {/* <strong>Postello Logo</strong> */}
-                        <img src={LogoName} width="400px" alt="postello logo"/>
+                        <img src={LogoName} width="400px" alt="postello logo" />
                     </h1>
-                    <h5 className="mb-5">Be vocal. Share your thoughts and feelings freely on Postello.</h5>
+                    <h5 className="mb-5">
+                        Be vocal. Share your thoughts and feelings freely on
+                        Postello.
+                    </h5>
                     <div className="form-floating mb-3">
                         <input
                             type="email"

@@ -11,25 +11,25 @@ const ForgotPassword = () => {
         try {
             let item = { email };
             console.warn(item);
-            let result = await fetch("http://localhost/api/v1/forgotpassword", {
-                method: "POST",
-                body: JSON.stringify(item),
-                headers: {
-                    "Content-Type": "application/json",
-                    Accept: "application.json",
-                },
+            axios({
+                method: "post",
+                url: "http://localhost/api/v1/forgotpassword",
+                data: { email },
+            }).then((response) => {
+                localStorage.setItem("user-info", JSON.stringify(response));
+                let user = JSON.parse(localStorage.getItem("user-info"));
+                console.log(user.data);
+                if (user.data && user.data.error) {
+                    alert("Email does not exists.");
+                    localStorage.clear();
+                } else {
+                    alert(
+                        "Password reset link successfully sent to your email."
+                    );
+                    navigate("/signin");
+                    window.location.reload(false);
+                }
             });
-            result = await result.json();
-            console.warn(result);
-            localStorage.setItem("user-info", JSON.stringify(result));
-            // alert("Password reset link successfully sent to your email.");
-            let user = JSON.parse(localStorage.getItem("user-info"));
-            navigate("/api/forgotpassword");
-            window.location.reload(false);
-            if (user && user.error) {
-                alert("Email does not exists.");
-                localStorage.clear();
-            }
         } catch (e) {
             console.warn(e);
         }
@@ -38,11 +38,14 @@ const ForgotPassword = () => {
     const onBack = () => {
         navigate("/signin");
     };
+
     useEffect(() => {
-        if (localStorage.getItem("user-info")) {
+        let user = JSON.parse(localStorage.getItem("user-info"));
+        if (user && user.email && user.username) {
             navigate("/");
         }
     }, []);
+
     return (
         <div className="container-md">
             <div className="row m-3 justify-content-center p-2">
@@ -77,7 +80,7 @@ const ForgotPassword = () => {
                         className="text-decoration-underline text-center"
                         onClick={onBack}
                     >
-                        Back
+                        Back >
                     </label>
                 </form>
             </div>

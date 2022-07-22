@@ -1,9 +1,13 @@
 <?php
 
-use App\Http\Controllers\EmailController;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Password;
+use App\Http\Controllers\EmailController;
+use Illuminate\Auth\Events\PasswordReset;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,9 +28,10 @@ Route::get('/', function () {
     ]);
 });
 
-Route::post('signup', [UserController::class,'signup']);
-Route::post('signin', [UserController::class,'signin']);
-Route::post('forgotpassword', [UserController::class,'forgotpassword']);
+Route::post('signup', [UserController::class, 'signup']);
+Route::post('signin', [UserController::class, 'signin']);
+Route::post('forgotpassword', [UserController::class, 'forgotpassword']);
+Route::post('resetpassword', [UserController::class, 'resetpassword']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

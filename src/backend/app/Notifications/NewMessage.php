@@ -7,19 +7,18 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class TestEnrollment extends Notification
+class NewMessage extends Notification
 {
     use Queueable;
-    private $enrollmentData;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($enrollmentData)
+    public function __construct()
     {
-        $this->enrollmentData = $enrollmentData;
+        //
     }
 
     /**
@@ -42,9 +41,11 @@ class TestEnrollment extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line($this->enrollmentData['body'])
-                    ->action($this->enrollmentData['enrollmentText'], 'Notification Action', url('/'))
-                    ->line($this->enrollmentData['thankyou']);
+            ->greeting('Postello password reset')
+            ->line('We heard that you lost your Postello password. Sorry about that! 
+                    But don’t worry! You can use the following button to reset your password:')
+            ->action('Reset your Password', url('/resetpassword'))
+            ->line('Thank you for using our application!');
     }
 
     /**

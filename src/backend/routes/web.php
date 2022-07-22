@@ -19,13 +19,10 @@ Route::get('/', function () {
     return 'hello world';
 });
 
-//Route for mailing
-Route::get('/email', function() {
-    Mail::to('espenida.c@sprobe.com')->send(new WelcomeMail());
-    return new WelcomeMail();
+Route::get('/resetpassword', function () {
+    return view('forgotpass');
 });
 
-// Route::get('/email', [EmailController::class, 'email']);
-
-// Route::get('/forgotpassword', [EmailController::class, 'forgotpassword']);
-
+// Route::get('/resetpassword/{token}', function ($token) {
+//     return view('auth.reset-password', ['token' => $token]);
+// })->middleware('guest')->name('password.reset');
