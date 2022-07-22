@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const ForgotPassword = () => {
     const navigate = useNavigate();
@@ -7,7 +8,31 @@ const ForgotPassword = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        alert("Password reset link successfully sent to your email.");
+        try {
+            let item = { email };
+            console.warn(item);
+            let result = await fetch("http://localhost/api/v1/forgotpassword", {
+                method: "POST",
+                body: JSON.stringify(item),
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application.json",
+                },
+            });
+            result = await result.json();
+            console.warn(result);
+            localStorage.setItem("user-info", JSON.stringify(result));
+            // alert("Password reset link successfully sent to your email.");
+            let user = JSON.parse(localStorage.getItem("user-info"));
+            navigate("/api/forgotpassword");
+            window.location.reload(false);
+            if (user && user.error) {
+                alert("Email does not exists.");
+                localStorage.clear();
+            }
+        } catch (e) {
+            console.warn(e);
+        }
     };
 
     const onBack = () => {
@@ -26,7 +51,7 @@ const ForgotPassword = () => {
                     onSubmit={onSubmit}
                 >
                     <h1 className="mb-5">
-                        <strong>Postello</strong>
+                        <strong>Postello Logo</strong>
                     </h1>
                     <h4 className="mb-4"> Password Reset </h4>
                     <div className="form-floating mb-4">

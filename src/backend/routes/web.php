@@ -1,7 +1,9 @@
 <?php
 
+use App\Mail\WelcomeMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,5 +20,13 @@ Route::get('/', function () {
     return 'hello world';
 });
 
+//Route for mailing
+Route::get('/email', function() {
+    Mail::to('espenida.c@sprobe.com')->send(new WelcomeMail());
+    return new WelcomeMail();
+});
 
+// Route::get('/email', [EmailController::class, 'email']);
+
+// Route::get('/forgotpassword', [EmailController::class, 'forgotpassword']);
 

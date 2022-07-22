@@ -16,7 +16,7 @@ function NavScroll() {
     };
 
     return (
-        <Navbar bg="dark" variant={"dark"} expand="sm">
+        <Navbar bg="dark" variant={"dark"} expand="md" className="px-5">
             <Container fluid>
                 <Navbar.Brand href="#">Postello</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
@@ -26,7 +26,13 @@ function NavScroll() {
                         style={{ maxHeight: "100px" }}
                         navbarScroll
                     >
-                        <Nav.Link href="#action1">Home</Nav.Link>
+                        <Nav.Link
+                            onClick={() => {
+                                navigate("/");
+                            }}
+                        >
+                            Home
+                        </Nav.Link>
                         <NavDropdown
                             title={user && user.username}
                             id="navbarScrollingDropdown"
