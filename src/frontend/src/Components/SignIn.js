@@ -58,6 +58,7 @@ const SignIn = () => {
                     className="col-md-6 bg-light shadow p-5 mt-5 border-form"
                     onSubmit={onSignIn}
                 >
+<<<<<<< HEAD
                     <h1 className="mb-5">
                         {/* <strong>Postello Logo</strong> */}
                         <img src={LogoName} width="400px" alt="postello logo" />
@@ -66,6 +67,12 @@ const SignIn = () => {
                         Be vocal. Share your thoughts and feelings freely on
                         Postello.
                     </h5>
+=======
+                    <div className=" mb-4 text-center">
+                        <img src={LogoName} width="250px" alt="postello logo"/>
+                    </div>
+                    <h5 className="mb-4">Be vocal. Share your thoughts and feelings freely on Postello.</h5>
+>>>>>>> 97539a9422906dc4dbb58915ece1642dacc74f44
                     <div className="form-floating mb-3">
                         <input
                             type="email"
@@ -101,7 +108,7 @@ const SignIn = () => {
                         <input
                             type="submit"
                             className="btn-lg btn-dark btn-outline-light"
-                            value="Login"
+                            value="Log In"
                         />
                     </div>
                     <div>

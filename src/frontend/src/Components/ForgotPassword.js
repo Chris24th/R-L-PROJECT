@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD
 import axios from "axios";
+=======
+import LogoName from '../Postello.png';
+>>>>>>> 97539a9422906dc4dbb58915ece1642dacc74f44
 
 const ForgotPassword = () => {
     const navigate = useNavigate();
@@ -50,13 +54,20 @@ const ForgotPassword = () => {
         <div className="container-md">
             <div className="row m-3 justify-content-center p-2">
                 <form
-                    className="col-md-8 bg-light shadow p-5 mt-5 border-form"
+                    className="col-md-6 bg-light shadow p-5 mt-5 border-form"
                     onSubmit={onSubmit}
                 >
+<<<<<<< HEAD
                     <h1 className="mb-5">
                         <strong>Postello Logo</strong>
                     </h1>
                     <h4 className="mb-4"> Password Reset </h4>
+=======
+                    <div className="mb-4 text-center">
+                        <img src={LogoName} width="250px" alt="postello logo"/>
+                    </div>
+                    <h5 className="mb-4"> Password Reset </h5>
+>>>>>>> 97539a9422906dc4dbb58915ece1642dacc74f44
                     <div className="form-floating mb-4">
                         <input
                             type="email"

@@ -59,10 +59,16 @@ const SignUp = () => {
                     className="col-md-6 shadow p-5 my-5 border-form bg-light"
                     onSubmit={onCreate}
                 >
+<<<<<<< HEAD
                     <h1 className="mb-5">
                         {/* <strong>Postello Logo</strong> */}
                         <img src={LogoName} width="300px" alt="postello logo" />
                     </h1>
+=======
+                    <div className="mb-4 text-center">
+                        <img src={LogoName} width="250px" alt="postello logo"/>
+                    </div>
+>>>>>>> 97539a9422906dc4dbb58915ece1642dacc74f44
                     <div className=" mb-3">
                         <label>Email address</label>
                         <input
