@@ -5,6 +5,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useNavigate } from "react-router-dom";
+import Logo from "../PostelloLogo.png";
 
 
 function NavScroll() {
@@ -19,7 +20,10 @@ function NavScroll() {
     return (
         <Navbar bg="dark" variant={"dark"} expand="sm">
             <Container fluid>
-                <Navbar.Brand href="#">Postello</Navbar.Brand>
+                <Navbar.Brand href="#">
+                    {/* Postello */}
+                    <img src={Logo} class ="rounded-circle" width="40px" height="40px" alt=""/>
+                </Navbar.Brand> 
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
@@ -27,19 +31,19 @@ function NavScroll() {
                         style={{ maxHeight: "100px" }}
                         navbarScroll
                     >
-                        <Nav.Link href="#action1">Home</Nav.Link>
+                        <Nav.Link href="#action1">Home &#xF797; </Nav.Link>
                         <NavDropdown
                             title={user && user.username}
                             id="navbarScrollingDropdown"
                         >
                             <NavDropdown.Item href="#action2">
-                                Account
+                                Your Profile
                             </NavDropdown.Item>
                             <NavDropdown.Item
                                 href="#action3"
                                 onClick={onSignOut}
                             >
-                                Logout
+                                Log Out
                             </NavDropdown.Item>
                         </NavDropdown>
                     </Nav>

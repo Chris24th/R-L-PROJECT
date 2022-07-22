@@ -9,4 +9,10 @@ body {
   border-radius: 8px;
 }
 
+.feed{
+  flex: 5.5
+}
 
+.feedWrapper{
+  padding: 20px
+}
