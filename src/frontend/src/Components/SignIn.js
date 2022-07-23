@@ -28,7 +28,7 @@ const SignIn = () => {
 
             let user = JSON.parse(localStorage.getItem("user-info"));
             if (user && user.error) {
-                alert("Invalid credentials. Try again.");
+                alert(user.error);
                 localStorage.clear();
             }
         } catch (e) {
@@ -59,9 +59,12 @@ const SignIn = () => {
                     onSubmit={onSignIn}
                 >
                     <div className=" mb-4 text-center">
-                        <img src={LogoName} width="250px" alt="postello logo"/>
+                        <img src={LogoName} width="250px" alt="postello logo" />
                     </div>
-                    <h5 className="mb-4">Be vocal. Share your thoughts and feelings freely on Postello.</h5>
+                    <h5 className="mb-4">
+                        Be vocal. Share your thoughts and feelings freely on
+                        Postello.
+                    </h5>
                     <div className="form-floating mb-3">
                         <input
                             type="email"
