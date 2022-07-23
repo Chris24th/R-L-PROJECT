@@ -66,6 +66,6 @@ class UserController extends Controller
         $user->password = Hash::make($req->input('password'));
         $user->save();
 
-        return $user;
+        return redirect('/signin')->with('status', 'Password updated!');
     }
 }

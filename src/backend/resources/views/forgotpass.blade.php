@@ -19,7 +19,7 @@
 
     <div class="container-md">
         <div class="row m-3 justify-content-center p-2">
-            <form class="col-md-6 bg-light shadow p-5 mt-5 border-form" onsubmit="onReset()">
+            <form class="col-md-6 bg-light shadow p-5 mt-5 border-form" onsubmit="window.location.href = 'signin'; onReset()">
                 <h1 class="mb-5">
                     <strong>Postello</strong>
                 </h1>
@@ -36,7 +36,7 @@
                     <input type="password" class="form-control" id="confirmPass" required />
                 </div>
                 <div class="d-grid mx-auto my-3 justify-content-end">
-                    <input type="submit" class="btn-lg btn-dark btn-outline-light px-5" value="Submit" action="/signin" />
+                    <input type="submit" class="btn-lg btn-dark btn-outline-light px-5" value="Submit" />
                 </div>
             </form>
         </div>
@@ -66,6 +66,7 @@
                     }).then((response) =
                         alert('Password changed successfully'),
                         localStorage.clear(),
+                        window.close()
                     );
                 } catch (e) {
                     alert(e);
