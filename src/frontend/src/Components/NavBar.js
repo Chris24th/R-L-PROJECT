@@ -7,7 +7,6 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { useNavigate } from "react-router-dom";
 import Logo from "../PostelloLogo.png";
 
-
 function NavScroll() {
     let user = JSON.parse(localStorage.getItem("user-info"));
     const navigate = useNavigate();
@@ -22,8 +21,14 @@ function NavScroll() {
             <Container fluid>
                 <Navbar.Brand href="#">
                     {/* Postello */}
-                    <img src={Logo} class ="rounded-circle" width="40px" height="40px" alt=""/>
-                </Navbar.Brand> 
+                    <img
+                        src={Logo}
+                        class="rounded-circle"
+                        width="40px"
+                        height="40px"
+                        alt=""
+                    />
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
@@ -31,17 +36,14 @@ function NavScroll() {
                         style={{ maxHeight: "100px" }}
                         navbarScroll
                     >
-<<<<<<< HEAD
                         <Nav.Link
+                            href="#action1"
                             onClick={() => {
                                 navigate("/");
                             }}
                         >
-                            Home
+                            Home &#xF797;{" "}
                         </Nav.Link>
-=======
-                        <Nav.Link href="#action1">Home &#xF797; </Nav.Link>
->>>>>>> 97539a9422906dc4dbb58915ece1642dacc74f44
                         <NavDropdown
                             title={user && user.username}
                             id="navbarScrollingDropdown"

@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Notifications\NewMessage;
+use Error;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 
@@ -13,7 +14,18 @@ class UserController extends Controller
 {
     function signup(Request $req)
     {
-        //
+        $checkEmail = User::where('email', $req->email)->first();
+        $checkUsername = User::where('username', $req->username)->first();
+
+        if ($checkEmail && $checkEmail->email == $req->email) {
+            if ($checkUsername && $checkUsername->username == $req->username) {
+                return ["error" => "Email and Username already exist"];
+            } else return
+                ["error" => "Email already exists"];
+        } else if ($checkUsername && $checkUsername->username == $req->username) {
+            return ["error" => "Username already exists"];
+        }
+
         $user = new User;
         $user->email = $req->input('email');
         $user->username = $req->input('username');
@@ -52,7 +64,6 @@ class UserController extends Controller
     {
         $user = User::where('email', $req->email)->first();
         $user->password = Hash::make($req->input('password'));
-        $user->username = $req->input('username'); //line to be deleted
         $user->save();
 
         return $user;

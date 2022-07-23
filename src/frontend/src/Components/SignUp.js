@@ -11,7 +11,8 @@ const SignUp = () => {
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
     const [sex, setSex] = useState("");
-    const [error, setError] = useState("");
+    const [passError, setPassError] = useState("");
+    const [userError, setUserError] = useState("");
 
     useEffect(() => {
         let user = JSON.parse(localStorage.getItem("user-info"));
@@ -23,44 +24,65 @@ const SignUp = () => {
     const onCreate = async (e) => {
         e.preventDefault();
         try {
-            let item = { email, username, password, fname, lname, sex };
-            console.warn(item);
-            let result = await fetch("http://localhost/api/v1/signup/", {
-                method: "POST",
-                body: JSON.stringify(item),
-                headers: {
-                    "Content-Type": "application/json",
-                    Accept: "application/json",
-                },
-            });
-            result = await result.json();
-            console.warn(result);
-            alert("Account Created Successfully.");
-            navigate("/signin");
+            if (password === confirmPass) {
+                let item = { email, username, password, fname, lname, sex };
+                let result = await fetch("http://localhost/api/v1/signup/", {
+                    method: "POST",
+                    body: JSON.stringify(item),
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json",
+                    },
+                });
+                result = await result.json();
+                localStorage.setItem("user-info", JSON.stringify(result));
+                let user = JSON.parse(localStorage.getItem("user-info"));
+                if (user && user.error) {
+                    alert(user.error);
+                    localStorage.clear();
+                } else {
+                    alert("Account Created Successfully.");
+                    localStorage.clear();
+                    navigate("/signin");
+                }
+            } else alert("Passwords don't match");
         } catch (e) {
-            alert("Email address is already registered.");
+            alert(e);
         }
     };
+
     const onSignIn = () => {
         navigate("/signin");
     };
+
+    const validateUser = (e) => {
+        let { name, value } = e.target;
+
+        // if (username && value !== user.username) {
+        //     setUserError("Username already taken");
+        // } else {
+        //     setUserError("");
+        // }
+    };
+
     const validateInput = (e) => {
         let { name, value } = e.target;
         if (confirmPass && value !== password) {
-            setError("Password and Confirm Password does not match.");
+            setPassError("Password and Confirm Password does not match.");
         } else {
-            setError("");
+            setPassError("");
         }
     };
+
     return (
         <div className="container-md">
-            <div className="row m-3 justify-content-center ">
+            <div className="row m-3 justify-content-center">
                 <form
                     className="col-md-6 shadow p-5 my-5 border-form bg-light"
                     onSubmit={onCreate}
                 >
                     <div className="mb-4 text-center">
-                        <img src={LogoName} width="250px" alt="postello logo"/>
+                        <img src={LogoName} width="250px" alt="postello logo" />
                     </div>
                     <div className=" mb-3">
                         <label>Email address</label>
@@ -77,11 +99,16 @@ const SignUp = () => {
                         <label>Username</label>
                         <input
                             type="text"
+                            name="username"
                             className="form-control"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
+                            // onBlur={validateUser}
                             required
                         />
+                        {/* {userError && (
+                            <span className="err text-danger">{userError}</span>
+                        )} */}
                     </div>
                     <div className="mb-3">
                         <label>Password</label>
@@ -101,11 +128,11 @@ const SignUp = () => {
                             className="form-control"
                             value={confirmPass}
                             onChange={(e) => setConfirmPass(e.target.value)}
-                            required
                             onBlur={validateInput}
+                            required
                         />
-                        {error && (
-                            <span className="err text-danger">{error}</span>
+                        {passError && (
+                            <span className="err text-danger">{passError}</span>
                         )}
                     </div>
                     <div className="mb-3">

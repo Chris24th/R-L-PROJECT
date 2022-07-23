@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-<<<<<<< HEAD
 import axios from "axios";
-=======
-import LogoName from '../Postello.png';
->>>>>>> 97539a9422906dc4dbb58915ece1642dacc74f44
+import LogoName from "../Postello.png";
 
 const ForgotPassword = () => {
     const navigate = useNavigate();
@@ -58,7 +55,7 @@ const ForgotPassword = () => {
                     onSubmit={onSubmit}
                 >
                     <div className="mb-4 text-center">
-                        <img src={LogoName} width="250px" alt="postello logo"/>
+                        <img src={LogoName} width="250px" alt="postello logo" />
                     </div>
                     <h5 className="mb-4"> Password Reset </h5>
                     <div className="form-floating mb-4">

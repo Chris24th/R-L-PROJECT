@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- poppins -->
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-
+    <!-- axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Postello</title>
 </head>
 
@@ -20,22 +21,22 @@
         <div class="row m-3 justify-content-center p-2">
             <form class="col-md-6 bg-light shadow p-5 mt-5 border-form" onsubmit="onReset()">
                 <h1 class="mb-5">
-                    <strong>Postello Logo</strong>
+                    <strong>Postello</strong>
                 </h1>
                 <h5 class="mb-5">
                     Change password for
                     <span id='email' class="font-weight-bold"></span>
                 </h5>
                 <div class="mb-4">
-                    <label>New password</label>
+                    <label for="password">New password</label>
                     <input type="password" class="form-control" id="password" required />
                 </div>
                 <div class="mb-5">
-                    <label>Confirm password</label>
+                    <label for="confirmPass">Confirm password</label>
                     <input type="password" class="form-control" id="confirmPass" required />
                 </div>
                 <div class="d-grid mx-auto my-3 justify-content-end">
-                    <input type="submit" class="btn-lg btn-dark btn-outline-light px-5" value="Submit" />
+                    <input type="submit" class="btn-lg btn-dark btn-outline-light px-5" value="Submit" action="/signin" />
                 </div>
             </form>
         </div>
@@ -53,18 +54,19 @@
                 password
             };
             if (password == confirmPass) {
+                console.warn(item);
                 try {
-                    let result = await fetch("http://localhost/api/v1/resetpassword/", {
-                        method: "POST",
-                        body: JSON.stringify(item),
-                        headers: {
-                            "Content-Type": "application/json",
-                            Accept: "application/json",
+                    axios({
+                        method: "post",
+                        url: "http://localhost/api/v1/resetpassword",
+                        data: {
+                            email,
+                            password
                         },
-                    });
-                    result = await result.json();
-                    console.warn(result);
-                    alert(password);
+                    }).then((response) =
+                        alert('Password changed successfully'),
+                        localStorage.clear(),
+                    );
                 } catch (e) {
                     alert(e);
                 }

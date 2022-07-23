@@ -23,6 +23,6 @@ Route::get('/resetpassword', function () {
     return view('forgotpass');
 });
 
-// Route::get('/resetpassword/{token}', function ($token) {
-//     return view('auth.reset-password', ['token' => $token]);
-// })->middleware('guest')->name('password.reset');
+Route::get('/messagePage', function () {
+    return view('messagePage');
+});
