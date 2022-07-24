@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewMessage extends Notification
+class ChangePass extends Notification
 {
     use Queueable;
 
@@ -43,7 +43,7 @@ class NewMessage extends Notification
         return (new MailMessage)
             ->greeting('Postello password reset')
             ->line('We heard that you lost your Postello password. Sorry about that! 
-                    But don’t worry! You can use the following button to reset your password:')
+                But don’t worry! You can use the following button to reset your password:')
             ->action('Reset your Password', url('/resetpassword'))
             ->line('Thank you for using our application!');
     }

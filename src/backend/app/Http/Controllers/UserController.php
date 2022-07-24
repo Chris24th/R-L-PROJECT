@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Error;
 use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use App\Notifications\NewMessage;
+use App\Notifications\ChangePass;
 use App\Notifications\VerifyEmail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
@@ -61,7 +59,7 @@ class UserController extends Controller
         if (!$user || $req->email != $user->email) {
             return ["error" => "Email not found"];
         }
-        Notification::send($user, new NewMessage());
+        Notification::send($user, new ChangePass());
         return $user->email;
     }
 
