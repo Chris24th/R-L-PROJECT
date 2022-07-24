@@ -64,7 +64,7 @@
                             password
                         },
                     }).then((response) =
-                        alert('Password changed successfully'),
+                        alert('Password changed successfully. You can now Sign in.'),
                         localStorage.clear(),
                         window.close()
                     );

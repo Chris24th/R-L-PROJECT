@@ -10,7 +10,6 @@ import {
     Link,
     renderMatches,
 } from "react-router-dom";
-import Protected from "./Components/Protected";
 
 function App() {
     const [apiDetails, setApiDetails] = useState(null);
@@ -25,7 +24,7 @@ function App() {
         <div>
             <Router>
                 <Routes>
-                    <Route exact path="/" element={<Protected Cmp={Home} />} />
+                    <Route exact path="/" element={<Home />} />
                     <Route path="/signin" element={<SignIn />} />
                     {/* <Route path="/about" element={<AboutUs />} /> */}
                     <Route path="/signup" element={<SignUp />} />

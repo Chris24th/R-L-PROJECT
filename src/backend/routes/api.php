@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -30,6 +31,7 @@ Route::get('/', function () {
 
 Route::post('signup', [UserController::class, 'signup']);
 Route::post('signin', [UserController::class, 'signin']);
+Route::post('verification', [UserController::class, 'verification']);
 Route::post('forgotpassword', [UserController::class, 'forgotpassword']);
 Route::post('resetpassword', [UserController::class, 'resetpassword']);
 

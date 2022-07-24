@@ -22,3 +22,7 @@ Route::get('/', function () {
 Route::get('/resetpassword', function () {
     return view('forgotpass');
 });
+
+Route::get('/verification', function () {
+    return view('verification');
+});

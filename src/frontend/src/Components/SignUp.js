@@ -41,6 +41,9 @@ const SignUp = () => {
                     alert(user.error);
                     localStorage.clear();
                 } else {
+                    localStorage.setItem("user-info", JSON.stringify(result));
+                    let user = JSON.parse(localStorage.getItem("user-info"));
+
                     alert("Account Created Successfully.");
                     localStorage.clear();
                     navigate("/signin");

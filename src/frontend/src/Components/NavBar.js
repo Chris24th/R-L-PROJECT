@@ -23,7 +23,7 @@ function NavScroll() {
                     {/* Postello */}
                     <img
                         src={Logo}
-                        class="rounded-circle"
+                        className="rounded-circle"
                         width="40px"
                         height="40px"
                         alt=""

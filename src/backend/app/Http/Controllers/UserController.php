@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Error;
+use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Notifications\NewMessage;
-use Error;
+use App\Notifications\VerifyEmail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 
@@ -35,16 +37,20 @@ class UserController extends Controller
         $user->sex = $req->input('sex');
         $user->save();
 
+        Notification::send($user, new VerifyEmail());
+
         return $user;
     }
 
     function signin(Request $req)
     {
-
         $user = User::where('email', $req->email)->first();
 
         if (!$user || !Hash::check($req->password, $user->password)) {
-            return ["error" => "Email or password is not matched"];
+            return ["error" => "Email or password is not matched."];
+        }
+        if (!$user->email_verified_at) {
+            return ["error" => "Email not verified. Please check your email inbox."];
         }
         return $user;
     }
@@ -55,17 +61,28 @@ class UserController extends Controller
         if (!$user || $req->email != $user->email) {
             return ["error" => "Email not found"];
         }
-        // $user->notify(new TestEnrollment($enrollmentData));
         Notification::send($user, new NewMessage());
         return $user->email;
     }
 
     function resetpassword(Request $req)
     {
+        $date = Carbon::now();
+
         $user = User::where('email', $req->email)->first();
         $user->password = Hash::make($req->input('password'));
+        $user->updated_at = $date;
+        $user->save();
+    }
+
+    function verification(Request $req)
+    {
+        $date = Carbon::now();
+
+        $user = User::where('email', $req->email)->first();
+        $user->email_verified_at = $date;
         $user->save();
 
-        return redirect('/signin')->with('status', 'Password updated!');
+        return $user;
     }
 }
