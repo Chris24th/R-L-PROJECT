@@ -17,8 +17,8 @@ function NavScroll() {
     };
 
     return (
-        <Navbar bg="dark" variant={"dark"} expand="md" className="px-5">
-            <Container fluid>
+        <Navbar variant={"dark"} expand="md" bg="dark">
+            <Container fluid className="my-2 px-5">
                 <Navbar.Brand href="#">
                     {/* Postello */}
                     <img
@@ -42,7 +42,7 @@ function NavScroll() {
                                 navigate("/");
                             }}
                         >
-                            Home &#xF797;{" "}
+                            Home <i className="bi bi-house"></i>{" "}
                         </Nav.Link>
                         <NavDropdown
                             title={user && user.username}

@@ -7,7 +7,7 @@ export default function Feed() {
     let user = JSON.parse(localStorage.getItem("user-info"));
     return (
         // Main Container
-        <div className="container">
+        <div className="container-fluid my-4">
             {/*Left Container  */}
             <div className="left">
                 <a className="profile">

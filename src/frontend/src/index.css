@@ -1,18 +1,22 @@
 body {
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #D3DEDC;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #d3dedc;
 }
-.border-form{
-  border: none;
-  border-radius: 8px;
-}
-
-.feed{
-  flex: 5.5
+.border-form {
+    border: none;
+    border-radius: 8px;
 }
 
-.feedWrapper{
-  padding: 20px
+.feed {
+    flex: 5.5;
+}
+
+.feedWrapper {
+    padding: 20px;
+}
+
+.navbar-custom {
+    background-color: #07281e;
 }

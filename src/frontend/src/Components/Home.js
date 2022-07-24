@@ -19,10 +19,15 @@ function Home() {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-xl-3 justify-content-center border">
+                        {/* left */}
                         <Feed />
                     </div>
-                    <div className="col-xl-6 justify-content-center border"></div>
-                    <div className="col-xl-3 justify-content-center border"></div>
+                    <div className="col-xl-6 justify-content-center border">
+                        {/* middle */}
+                    </div>
+                    <div className="col-xl-3 justify-content-center border">
+                        {/* right */}
+                    </div>
                 </div>
             </div>
         </div>
