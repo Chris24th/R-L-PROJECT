@@ -43,9 +43,15 @@ const SignUp = () => {
                 } else {
                     localStorage.setItem("user-info", JSON.stringify(result));
                     let user = JSON.parse(localStorage.getItem("user-info"));
-
-                    alert("Account Created Successfully.");
+                    let email = user.email;
+                    alert(
+                        "Account Created Successfully. Please check your inbox to verify email."
+                    );
                     localStorage.clear();
+                    localStorage.setItem(
+                        "user-info",
+                        JSON.stringify({ email })
+                    );
                     navigate("/signin");
                 }
             } else alert("Passwords don't match");
@@ -58,22 +64,18 @@ const SignUp = () => {
         navigate("/signin");
     };
 
-    const validateUser = (e) => {
-        let { name, value } = e.target;
-
-        // if (username && value !== user.username) {
-        //     setUserError("Username already taken");
-        // } else {
-        //     setUserError("");
-        // }
-    };
-
-    const validateInput = (e) => {
+    const validatePass = (e) => {
         let { name, value } = e.target;
         if (confirmPass && value !== password) {
-            setPassError("Password and Confirm Password does not match.");
+            return setPassError(
+                "Password and Confirm Password does not match."
+            );
         } else {
-            setPassError("");
+            if (confirmPass && value.length < 6) {
+                return setPassError("Passwords require 6 or more characters.");
+            } else {
+                return setPassError("");
+            }
         }
     };
 
@@ -106,12 +108,8 @@ const SignUp = () => {
                             className="form-control"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
-                            // onBlur={validateUser}
                             required
                         />
-                        {/* {userError && (
-                            <span className="err text-danger">{userError}</span>
-                        )} */}
                     </div>
                     <div className="mb-3">
                         <label>Password</label>
@@ -131,7 +129,7 @@ const SignUp = () => {
                             className="form-control"
                             value={confirmPass}
                             onChange={(e) => setConfirmPass(e.target.value)}
-                            onBlur={validateInput}
+                            onBlur={validatePass}
                             required
                         />
                         {passError && (

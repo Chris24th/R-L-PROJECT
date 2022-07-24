@@ -42,8 +42,7 @@ class VerifyEmail extends Notification
     {
         return (new MailMessage)
             ->greeting('Postello email verification')
-            ->line('Welcome to Postello! We value your account security and privacy. We will not share your email address to anyone. 
-        Please verify your email before you continue to sing in:')
+            ->line('Welcome to Postello! Please verify your email before you continue to sign in:')
             ->action('Verify your email', url('/verification'))
             ->line('Thank you for using our application!');
     }

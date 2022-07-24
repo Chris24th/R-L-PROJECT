@@ -32,9 +32,7 @@
             axios({
                 method: "post",
                 url: "http://localhost/api/v1/verification",
-                data: {
-                    item,
-                },
+                data: user,
             }).then((response) =
                 localStorage.clear(),
             );

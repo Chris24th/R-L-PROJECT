@@ -7,7 +7,6 @@ import Feed from "./Feed.js";
 function Home() {
     let user = JSON.parse(localStorage.getItem("user-info"));
     const navigate = useNavigate();
-    // console.warn(user);
     useEffect(() => {
         let user = JSON.parse(localStorage.getItem("user-info"));
         if (!user || !user.email || !user.username) {
@@ -17,9 +16,13 @@ function Home() {
     return (
         <div>
             <NavBar />
-            <div className="container-md">
-                <div className="row m-3 justify-content-center ">
-                    <Feed />
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-xl-3 justify-content-center border">
+                        <Feed />
+                    </div>
+                    <div className="col-xl-6 justify-content-center border"></div>
+                    <div className="col-xl-3 justify-content-center border"></div>
                 </div>
             </div>
         </div>

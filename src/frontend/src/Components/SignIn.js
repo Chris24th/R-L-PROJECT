@@ -12,7 +12,6 @@ const SignIn = () => {
         e.preventDefault();
         try {
             let item = { email, password };
-            console.warn(item);
             let result = await fetch("http://localhost/api/v1/signin", {
                 method: "POST",
                 body: JSON.stringify(item),
@@ -22,7 +21,6 @@ const SignIn = () => {
                 },
             });
             result = await result.json();
-            console.warn(result);
             localStorage.setItem("user-info", JSON.stringify(result));
             window.location.reload();
 

@@ -11,7 +11,6 @@ const ForgotPassword = () => {
         e.preventDefault();
         try {
             let item = { email };
-            console.warn(item);
             axios({
                 method: "post",
                 url: "http://localhost/api/v1/forgotpassword",
@@ -19,7 +18,6 @@ const ForgotPassword = () => {
             }).then((response) => {
                 localStorage.setItem("user-info", JSON.stringify(response));
                 let user = JSON.parse(localStorage.getItem("user-info"));
-                console.log(user.data);
                 if (user.data && user.data.error) {
                     alert("Email does not exists.");
                     localStorage.clear();
