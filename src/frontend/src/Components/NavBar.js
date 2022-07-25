@@ -42,7 +42,7 @@ function NavScroll() {
                                 navigate("/");
                             }}
                         >
-                            Home <i className="bi bi-house"></i>{" "}
+                            Home <i className="bi bi-house"></i>{" "} 
                         </Nav.Link>
                         <NavDropdown
                             title={user && user.username}

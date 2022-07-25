@@ -79,7 +79,7 @@ const ForgotPassword = () => {
                         className="text-decoration-underline text-center"
                         onClick={onBack}
                     >
-                        Back >
+                        Back
                     </label>
                 </form>
             </div>

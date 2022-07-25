@@ -50,7 +50,7 @@ const SignUp = () => {
                     localStorage.clear();
                     localStorage.setItem(
                         "user-info",
-                        JSON.stringify({ email })
+                        JSON.stringify( email )
                     );
                     navigate("/signin");
                 }
