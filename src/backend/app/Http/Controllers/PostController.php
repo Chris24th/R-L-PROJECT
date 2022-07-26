@@ -14,8 +14,9 @@ class PostController extends Controller
         $post->textContent = $req->input('textContent');
         $post->imageContent = $req->input('imageContent');
         $post->reacts = $req->input('reacts');
+        $post->save();
 
-        if (!$post || !$post->username || (!$post->textContent && !$post->imageContent)) {
+        if (!$post || (!$post->textContent && !$post->imageContent)) {
             return ["error" => "Please write a content."];
         }
         return $post;

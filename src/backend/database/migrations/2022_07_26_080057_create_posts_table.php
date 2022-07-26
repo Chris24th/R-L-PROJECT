@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('publicposts', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string("username");
-            $table->string('textContent');
+            $table->longText('textContent');
             $table->binary('imageContent')->nullable();
             $table->binary('reacts')->nullable();
             $table->timestamps();
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('publicposts');
+        Schema::dropIfExists('posts');
     }
 };

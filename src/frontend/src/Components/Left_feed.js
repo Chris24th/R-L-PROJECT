@@ -5,6 +5,7 @@ import Logo from "../PostelloLogo.png";
 
 export default function Feed() {
     let user = JSON.parse(localStorage.getItem("user-info"));
+
     return (
         <div className="container-fluid my-4">
             <div className="d-flex justify-content-center row m-8">
@@ -15,14 +16,21 @@ export default function Feed() {
                             <div className="left">
                                 <a className="profile">
                                     <div className="profile-photo">
-                                        <img src={Logo} width="50 px" height="50 px" />
+                                        <img
+                                            src={Logo}
+                                            width="50 px"
+                                            height="50 px"
+                                        />
                                     </div>
                                     <div className="handle">
                                         <h4>
-                                        {user ? user.fname : ""} {user ? user.lname : ""}
+                                            {user ? user.fname : ""}{" "}
+                                            {user ? user.lname : ""}
                                         </h4>
                                     </div>
-                                    <p className="text-muted">{user ? user.username : ""}</p>
+                                    <p className="text-muted">
+                                        {user ? user.username : ""}
+                                    </p>
                                 </a>
                             </div>
                             {/* SIDE BAR -------------- wa pani nahuman hihi */}
