@@ -12,7 +12,6 @@ const SignUp = () => {
     const [lname, setLname] = useState("");
     const [sex, setSex] = useState("");
     const [passError, setPassError] = useState("");
-    const [userError, setUserError] = useState("");
 
     useEffect(() => {
         let user = JSON.parse(localStorage.getItem("user-info"));
@@ -50,7 +49,7 @@ const SignUp = () => {
                     localStorage.clear();
                     localStorage.setItem(
                         "user-info",
-                        JSON.stringify( email )
+                        JSON.stringify( {email} )//kani wala lagi ni naapil 
                     );
                     navigate("/signin");
                 }

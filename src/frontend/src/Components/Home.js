@@ -2,7 +2,9 @@ import React, { useStatem, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import NavBar from "./NavBar.js";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Feed from "./Feed.js";
+import Left_feed from "./Left_feed.js";
+import PublicPost from "./PublicPost.js";
+import Logo from "../PostelloLogo.png";
 
 function Home() {
     let user = JSON.parse(localStorage.getItem("user-info"));
@@ -20,10 +22,11 @@ function Home() {
                 <div className="row">
                     <div className="col-xl-3 justify-content-center border">
                         {/* left */}
-                        <Feed />
+                        <Left_feed />
                     </div>
                     <div className="col-xl-6 justify-content-center border">
                         {/* middle */}
+                        <PublicPost/>
                     </div>
                     <div className="col-xl-3 justify-content-center border">
                         {/* right */}
