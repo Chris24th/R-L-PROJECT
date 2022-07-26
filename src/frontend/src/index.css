@@ -21,3 +21,7 @@ body {
     height: 80px;
     background-color: #07281e;
 }
+
+.dropdown-toggle::after {
+    content: none;
+}
