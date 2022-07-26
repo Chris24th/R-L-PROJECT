@@ -19,6 +19,12 @@ class PostController extends Controller
         if (!$post || (!$post->textContent && !$post->imageContent)) {
             return ["error" => "Please write a content."];
         }
+    }
+
+    function displaypost(Request $req)
+    {
+        $post = Post::whereRaw('id = (select max(`id`) from posts)')->get();
+
         return $post;
     }
 }

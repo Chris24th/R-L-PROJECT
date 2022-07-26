@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Logo from "../PostelloLogo.png";
+import axios from "axios";
 
 export default function PublicPost() {
     const [textContent, setTextContent] = useState();
+    const [postData, setPostData] = useState([]);
 
     const onPost = async (e) => {
         e.preventDefault();
@@ -25,6 +27,16 @@ export default function PublicPost() {
         } catch (e) {
             console.log(e);
         }
+    };
+
+    useEffect(() => {});
+
+    const displayPost = () => {
+        axios.get("http://localhost/api/v1/displaypost/").then((res) => {
+            const datares = res.data;
+            // setPostData({ datares });
+            console.log({ datares });
+        });
     };
 
     return (
@@ -85,8 +97,11 @@ export default function PublicPost() {
                                 </div>
                             </div>
                         </form>
+                        <button onClick={displayPost}>show</button>
                         <script>
-                            
+                            Get the latest post, then decrement Loop, latest
+                            post until - 0? Search on how to show limited data
+                            only(not all data to be shown)
                         </script>
                         <div className="feed-post mt-2 border">
                             <div className="p-2 bg-white rounded m-1">
@@ -104,12 +119,8 @@ export default function PublicPost() {
                                     <i className="fa fa-ellipsis-h text-black-50 mt-2"></i>
                                 </div>
                                 <div className="feed-content p-2 m-1">
-                                    <span>
-                                        Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna
-                                        aliqua. Ut enim ad minim veniam.
-                                    </span>
+                                    {/* postdata */}
+                                    <p> {postData} </p>
                                 </div>
                                 <div className="profile-engagements"></div>
                             </div>
