@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Password;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\PostController;
 use Illuminate\Auth\Events\PasswordReset;
 
 /*
@@ -34,6 +35,8 @@ Route::post('signin', [UserController::class, 'signin']);
 Route::post('verification', [UserController::class, 'verification']);
 Route::post('forgotpassword', [UserController::class, 'forgotpassword']);
 Route::post('resetpassword', [UserController::class, 'resetpassword']);
+Route::post('createpost', [PostController::class, 'createpost']);
+Route::get('displaypost', [PostController::class, 'displaypost']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
