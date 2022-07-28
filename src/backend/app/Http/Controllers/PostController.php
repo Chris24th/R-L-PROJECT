@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Faker\Provider\Lorem;
 
 class PostController extends Controller
 {
@@ -11,6 +12,8 @@ class PostController extends Controller
     {
         $post = new Post;
         $post->username = $req->username;
+        $post->fname = $req->fname;
+        $post->lname = $req->lname;
         $post->textContent = $req->input('textContent');
         $post->imageContent = $req->input('imageContent');
         $post->reacts = $req->input('reacts');
@@ -21,10 +24,10 @@ class PostController extends Controller
         }
     }
 
-    function displaypost(Request $req)
+    function displaypost()
     {
-        $post = Post::whereRaw('id = (select max(`id`) from posts)')->get();
-
+        $maxID = Post::max('id');
+        $post = Post::where('id', $maxID)->first();
         return $post;
     }
 }

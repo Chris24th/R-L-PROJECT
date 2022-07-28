@@ -13,8 +13,10 @@ export default function PublicPost() {
         try {
             let user = JSON.parse(localStorage.getItem("user-info"));
             let username = user.username;
-            let item = { username, textContent };
-            let result = await fetch("http://localhost/api/v1/createpost/", {
+            let fname = user.fname;
+            let lname = user.lname;
+            let item = { username, fname, lname, textContent };
+            await fetch("http://localhost/api/v1/createpost/", {
                 method: "POST",
                 body: JSON.stringify(item),
                 headers: {
@@ -22,20 +24,17 @@ export default function PublicPost() {
                     Accept: "application/json",
                 },
             });
-            result = await result.json();
-            window.location.reload();
         } catch (e) {
             console.log(e);
         }
     };
-
-    useEffect(() => {});
+    //Enim fugiat aute laborum ullamco laborum nostrud id. Commodo esse laboris incididunt voluptate voluptate nisi laboris aliquip dolore cupidatat quis sunt. Quis eu consectetur dolore sit mollit laboris nostrud. Occaecat dolor duis proident consectetur nostrud reprehenderit cillum eu cupidatat aliqua officia do. Velit ullamco Lorem aliqua sunt duis reprehenderit ipsum id fugiat nostrud velit deserunt elit nulla. Sunt ex deserunt incididunt fugiat reprehenderit fugiat consectetur dolor ullamco elit proident nostrud. Aliquip non deserunt tempor elit.
 
     const displayPost = () => {
         axios.get("http://localhost/api/v1/displaypost/").then((res) => {
             const datares = res.data;
-            // setPostData({ datares });
-            console.log({ datares });
+            setPostData(datares);
+            console.log(datares);
         });
     };
 
@@ -113,14 +112,17 @@ export default function PublicPost() {
                                             width="40"
                                         />
                                         <div className="d-flex flex-column ml-2 m-2 p-2 justify-content-between">
-                                            <h6>user.fname user.lname</h6>
+                                            <h6>
+                                                {postData.fname}{" "}
+                                                {postData.lname}
+                                            </h6>
                                         </div>
                                     </div>
                                     <i className="fa fa-ellipsis-h text-black-50 mt-2"></i>
                                 </div>
                                 <div className="feed-content p-2 m-1">
                                     {/* postdata */}
-                                    <p> {postData} </p>
+                                    <p> {postData.textContent} </p>
                                 </div>
                                 <div className="profile-engagements"></div>
                             </div>

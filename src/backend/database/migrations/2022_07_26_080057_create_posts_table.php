@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string("username");
+            $table->string("fname");
+            $table->string("lname");
             $table->longText('textContent');
             $table->binary('imageContent')->nullable();
             $table->binary('reacts')->nullable();
