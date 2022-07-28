@@ -27,7 +27,13 @@ class PostController extends Controller
     function displaypost()
     {
         $maxID = Post::max('id');
-        $post = Post::where('id', $maxID)->first();
-        return $post;
+        for ($i = 0; $i < $maxID; $i++) {
+            $data = Post::where('id', $maxID)->first();
+            if ($data) {
+                $postArr[$i] = $data;
+            }
+            $maxID--;
+        }
+        return $postArr;
     }
 }
