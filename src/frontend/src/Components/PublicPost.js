@@ -20,7 +20,6 @@ export default function PublicPost() {
     const handleShow = () => setShow(true);
 
     const onPost = async (e) => {
-        e.preventDefault();
         try {
             let user = JSON.parse(localStorage.getItem("user-info"));
             let username = user.username;
@@ -35,6 +34,7 @@ export default function PublicPost() {
                     Accept: "application/json",
                 },
             });
+            window.location.reload();
         } catch (e) {
             console.log(e);
         }
@@ -124,7 +124,6 @@ export default function PublicPost() {
                                             Photo
                                         </button>
                                         <Button
-                                            type="submit"
                                             className="btn btn-dark btn-rounded"
                                             onClick={onPost}
                                         >
@@ -139,6 +138,7 @@ export default function PublicPost() {
                                         <button
                                             type="button"
                                             className="btn btn-light"
+                                            onClick={handleShow}
                                         >
                                             {/* ICON FOR PHOTO */}
                                             <svg
@@ -155,11 +155,9 @@ export default function PublicPost() {
                                         </button>
                                     </div>
                                 </div>
-                                {/* <div className="align-items-center border-right p-1 share">
-                                <button type="button" className="btn btn-dark btn-rounded">Publish</button>
-                            </div> */}
                             </div>
                         </form>
+                        <button onClick={displayPost}>show posts</button>
                         <div className="feed-post mt-2 border">
                             <div className="p-2 bg-white rounded m-1">
                                 <div className="d-flex flex-row justify-content-between align-items-start profile p-2">
@@ -171,10 +169,9 @@ export default function PublicPost() {
                                         />
                                         <div className="d-flex flex-column ml-2 m-2 p-2 justify-content-between">
                                             <h6>
-                                                {user ? user.fname : ""}{" "}
-                                                {user ? user.lname : ""}
+                                                {postData.fname}{" "}
+                                                {postData.lname}
                                             </h6>
-                                            <span>{user && user.username}</span>
                                         </div>
                                         {/* Dropdown menu */}
                                     </div>
@@ -207,12 +204,7 @@ export default function PublicPost() {
                                     </Dropdown>
                                 </div>
                                 <div className="feed-content p-2 m-1">
-                                    <span>
-                                        Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna
-                                        aliqua. Ut enim ad minim veniam.
-                                    </span>
+                                    <span>{postData.textContent}</span>
                                 </div>
                                 <div className="profile-engagements"></div>
                             </div>
