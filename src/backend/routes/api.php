@@ -37,6 +37,8 @@ Route::post('forgotpassword', [UserController::class, 'forgotpassword']);
 Route::post('resetpassword', [UserController::class, 'resetpassword']);
 Route::post('createpost', [PostController::class, 'createpost']);
 Route::get('displaypost', [PostController::class, 'displaypost']);
+Route::post('createcomment', [PostController::class, 'createcomment']);
+Route::get('displaycomment', [PostController::class, 'displaycomment']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

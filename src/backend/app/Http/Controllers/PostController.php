@@ -36,4 +36,11 @@ class PostController extends Controller
         }
         return $postArr;
     }
+
+    function createcomment(Request $req)
+    {
+        // $comment = Comment::where('id', $req->id);
+
+        return $comment;
+    }
 }
