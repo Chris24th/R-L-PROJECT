@@ -10,17 +10,14 @@ import axios from "axios";
 
 export default function PublicPost() {
     let user = JSON.parse(localStorage.getItem("user-info"));
-    const navigate = useNavigate();
     const [textContent, setTextContent] = useState();
     const [postData, setPostData] = useState([{}]);
-    const [display, setDisplay] = useState(false);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     const onPost = async (e) => {
         try {
-            let user = JSON.parse(localStorage.getItem("user-info"));
             let username = user.username;
             let fname = user.fname;
             let lname = user.lname;
