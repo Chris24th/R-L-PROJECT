@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Logo from "../PostelloLogo.png";
+import Feed from "./Feed";
 import axios from "axios";
 
 export default function PublicPost() {
@@ -39,15 +40,18 @@ export default function PublicPost() {
             console.log(e);
         }
     };
-    //Enim fugiat aute laborum ullamco laborum nostrud id. Commodo esse laboris incididunt voluptate voluptate nisi laboris aliquip dolore cupidatat quis sunt. Quis eu consectetur dolore sit mollit laboris nostrud. Occaecat dolor duis proident consectetur nostrud reprehenderit cillum eu cupidatat aliqua officia do. Velit ullamco Lorem aliqua sunt duis reprehenderit ipsum id fugiat nostrud velit deserunt elit nulla. Sunt ex deserunt incididunt fugiat reprehenderit fugiat consectetur dolor ullamco elit proident nostrud. Aliquip non deserunt tempor elit.
 
-    const displayPost = () => {
-        axios.get("http://localhost/api/v1/displaypost/").then((res) => {
-            const datares = res.data;
-            setPostData(datares);
-            console.log(datares);
-        });
-    };
+    useEffect(() => {
+        try {
+            axios
+                .get("http://localhost/api/v1/displaypost/")
+                .then(async (res) => {
+                    setPostData(res.data);
+                });
+        } catch (e) {
+            console.log(e);
+        }
+    });
 
     return (
         <div className="container-fluid my-4">
@@ -55,7 +59,7 @@ export default function PublicPost() {
                 <div className="col-md-15">
                     <div className="feed">
                         <div
-                            className="share border bg-white rounded m-1"
+                            className="share border bg-white rounded m-5 mb-2 mt-0"
                             onSubmit={onPost}
                         >
                             <div className="d-flex flex-row inputs p-2 py-4">
