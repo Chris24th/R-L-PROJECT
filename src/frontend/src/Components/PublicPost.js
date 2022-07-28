@@ -14,12 +14,9 @@ export default function PublicPost() {
     const [textContent, setTextContent] = useState();
     const [postData, setPostData] = useState([{}]);
     const [display, setDisplay] = useState(false);
-
-    // MODAL FOR CREATE POST
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    let data = [];
 
     const onPost = async (e) => {
         try {
@@ -41,22 +38,18 @@ export default function PublicPost() {
             console.log(e);
         }
     };
-    //Enim fugiat aute laborum ullamco laborum nostrud id. Commodo esse laboris incididunt voluptate voluptate nisi laboris aliquip dolore cupidatat quis sunt. Quis eu consectetur dolore sit mollit laboris nostrud. Occaecat dolor duis proident consectetur nostrud reprehenderit cillum eu cupidatat aliqua officia do. Velit ullamco Lorem aliqua sunt duis reprehenderit ipsum id fugiat nostrud velit deserunt elit nulla. Sunt ex deserunt incididunt fugiat reprehenderit fugiat consectetur dolor ullamco elit proident nostrud. Aliquip non deserunt tempor elit.
 
-    const displayPost = async () => {
+    useEffect(() => {
         try {
-            await axios
+            axios
                 .get("http://localhost/api/v1/displaypost/")
                 .then(async (res) => {
-                    data = res.data;
-                    setDisplay(true);
-                    console.log(data);
+                    setPostData(res.data);
                 });
         } catch (e) {
             console.log(e);
         }
-    };
-
+    });
     return (
         <div className="container-fluid my-4">
             <div className="d-flex justify-content-center row m-8">
@@ -69,7 +62,6 @@ export default function PublicPost() {
                                     src={Logo}
                                     width="40"
                                 />
-                                {/*---------- MODAL FOR CREATE POST----------*/}
                                 <input
                                     type="form"
                                     className="border-2 form-control share-input m-1 p-1"
@@ -161,10 +153,7 @@ export default function PublicPost() {
                                 </div>
                             </div>
                         </div>
-                        <button onClick={displayPost}>show posts</button>
-                        {/* start of post */}
-                        {display && <Feed data={data} />}
-                        {/* end of post */}
+                        <Feed postDetails={postData} />
                     </div>
                 </div>
             </div>
