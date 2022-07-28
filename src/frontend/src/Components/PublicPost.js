@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Dropdown from "react-bootstrap/Dropdown";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Logo from "../PostelloLogo.png";
+import Feed from "./Feed";
 import axios from "axios";
 
 export default function PublicPost() {
     let user = JSON.parse(localStorage.getItem("user-info"));
     const navigate = useNavigate();
     const [textContent, setTextContent] = useState();
-    const [postData, setPostData] = useState([]);
+    const [postData, setPostData] = useState([{}]);
 
     // MODAL FOR CREATE POST
     const [show, setShow] = useState(false);
@@ -43,9 +43,8 @@ export default function PublicPost() {
 
     const displayPost = () => {
         axios.get("http://localhost/api/v1/displaypost/").then((res) => {
-            const datares = res.data;
-            setPostData(datares);
-            console.log(datares);
+            setPostData(res.data);
+            console.log(postData);
         });
     };
 
@@ -54,10 +53,7 @@ export default function PublicPost() {
             <div className="d-flex justify-content-center row m-8">
                 <div className="col-md-15">
                     <div className="feed">
-                        <form
-                            className="share border bg-white rounded m-1"
-                            onSubmit={onPost}
-                        >
+                        <div className="share border bg-white rounded m-1">
                             <div className="d-flex flex-row inputs p-2 py-4">
                                 <img
                                     className="rounded-circle p-2"
@@ -65,7 +61,6 @@ export default function PublicPost() {
                                     width="40"
                                 />
                                 {/*---------- MODAL FOR CREATE POST----------*/}
-
                                 <input
                                     type="form"
                                     className="border-2 form-control share-input m-1 p-1"
@@ -156,120 +151,11 @@ export default function PublicPost() {
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                         <button onClick={displayPost}>show posts</button>
-                        <div className="feed-post mt-2 border">
-                            <div className="p-2 bg-white rounded m-1">
-                                <div className="d-flex flex-row justify-content-between align-items-start profile p-2">
-                                    <div className="d-flex align-items-center">
-                                        <img
-                                            className="rounded-circle img-responsive p-2"
-                                            src={Logo}
-                                            width="40"
-                                        />
-                                        <div className="d-flex flex-column ml-2 m-2 p-2 justify-content-between">
-                                            <h6>
-                                                {postData.fname}{" "}
-                                                {postData.lname}
-                                            </h6>
-                                        </div>
-                                        {/* Dropdown menu */}
-                                    </div>
-                                    <Dropdown>
-                                        <Dropdown.Toggle
-                                            className="btn btn-light"
-                                            variant="light"
-                                            id="dropdown-basic"
-                                            bsPrefix="p-0"
-                                        >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="20"
-                                                height="20"
-                                                className="bi bi-three-dots"
-                                                viewBox="0 0 16 16"
-                                            >
-                                                <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
-                                            </svg>
-                                        </Dropdown.Toggle>
-
-                                        <Dropdown.Menu>
-                                            <Dropdown.Item href="#/action-1">
-                                                Edit
-                                            </Dropdown.Item>
-                                            <Dropdown.Item href="#/action-2">
-                                                Delete
-                                            </Dropdown.Item>
-                                        </Dropdown.Menu>
-                                    </Dropdown>
-                                </div>
-                                <div className="feed-content p-2 m-1">
-                                    <span>{postData.textContent}</span>
-                                </div>
-                                <div className="profile-engagements"></div>
-                            </div>
-                        </div>
-                        <div className="feed-post mt-2 border">
-                            <div className="p-2 bg-white rounded m-1">
-                                <div className="d-flex flex-row justify-content-between align-items-start profile p-2 mb-12">
-                                    <div className="d-flex align-items-center">
-                                        <img
-                                            className="rounded-circle img-responsive p-2"
-                                            src={Logo}
-                                            width="40"
-                                        />
-                                        <div className="d-flex flex-column ml-2 m-2 p-2 justify-content-between">
-                                            <h6>
-                                                {user ? user.fname : ""}{" "}
-                                                {user ? user.lname : ""}
-                                            </h6>
-                                            <span>{user && user.username}</span>
-                                        </div>
-                                        {/* Dropdown menu */}
-                                    </div>
-                                    <Dropdown>
-                                        <Dropdown.Toggle
-                                            className="btn btn-light "
-                                            variant="light"
-                                            id="dropdown-basic"
-                                            bsPrefix="p-0"
-                                        >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="20"
-                                                height="20"
-                                                className="bi bi-three-dots"
-                                                viewBox="0 0 16 16"
-                                            >
-                                                <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
-                                            </svg>
-                                        </Dropdown.Toggle>
-                                        <Dropdown.Menu>
-                                            <Dropdown.Item href="#/action-1">
-                                                Edit
-                                            </Dropdown.Item>
-                                            <Dropdown.Item href="#/action-2">
-                                                Delete
-                                            </Dropdown.Item>
-                                        </Dropdown.Menu>
-                                    </Dropdown>
-                                </div>
-                                <div className="feed content p-2 m-1">
-                                    <span>
-                                        We selected the best tech projects to
-                                        find you the ideal jobs. we offers
-                                        salaries from $70K -100K so what you are
-                                        waiting for just apply now with your
-                                        latest resume.
-                                    </span>
-                                    <img
-                                        className="img-fluid img-responsive mt-2"
-                                        src="https://i.imgur.com/C1U3zy4.jpg"
-                                    />
-                                </div>
-                            </div>
-                            <div className="profile-engagements"></div>
-                        </div>
+                        {/* start of post */}
+                        {/* <Feed postData={postData} /> */}
+                        {/* end of post */}
                     </div>
                 </div>
             </div>

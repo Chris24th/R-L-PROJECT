@@ -43,15 +43,12 @@ const SignUp = () => {
                     localStorage.setItem("user-info", JSON.stringify(result));
                     let user = JSON.parse(localStorage.getItem("user-info"));
                     let email = user.email;
-                    alert(
-                        "Account Created Successfully. Please check your inbox to verify email."
-                    );
                     localStorage.clear();
                     localStorage.setItem(
                         "user-info",
-                        JSON.stringify( {email} )//kani wala lagi ni naapil 
+                        JSON.stringify({ email }) //kani wala lagi ni naapil
                     );
-                    navigate("/signin");
+                    navigate("/successpage");
                 }
             } else alert("Passwords don't match");
         } catch (e) {
