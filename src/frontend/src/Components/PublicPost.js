@@ -163,7 +163,7 @@ export default function PublicPost() {
                         </div>
                         <button onClick={displayPost}>show posts</button>
                         {/* start of post */}
-                        {display && <Feed data />}
+                        {display && <Feed data={data} />}
                         {/* end of post */}
                     </div>
                 </div>
