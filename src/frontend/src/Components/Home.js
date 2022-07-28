@@ -2,7 +2,7 @@ import React, { useStatem, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import NavBar from "./NavBar.js";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Left_feed from "./Left_feed.js";
+import Profile from "./Profile.js";
 import PublicPost from "./PublicPost.js";
 import Logo from "../PostelloLogo.png";
 
@@ -22,7 +22,7 @@ function Home() {
                 <div className="row">
                     <div className="col-xl-3 justify-content-center border">
                         {/* left */}
-                        <Left_feed />
+                        <Profile />
                     </div>
                     <div className="col-xl-6 justify-content-center border">
                         {/* middle */}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import PublicPost from "./PublicPost";
+// import { useNavigate } from "react-router-dom";
+// import PublicPost from "./PublicPost";
 import Logo from "../PostelloLogo.png";
 
 export default function Feed() {
