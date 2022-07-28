@@ -13,11 +13,13 @@ export default function PublicPost() {
     const navigate = useNavigate();
     const [textContent, setTextContent] = useState();
     const [postData, setPostData] = useState([{}]);
+    const [display, setDisplay] = useState(false);
 
     // MODAL FOR CREATE POST
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    let data = [];
 
     const onPost = async (e) => {
         try {
@@ -41,11 +43,18 @@ export default function PublicPost() {
     };
     //Enim fugiat aute laborum ullamco laborum nostrud id. Commodo esse laboris incididunt voluptate voluptate nisi laboris aliquip dolore cupidatat quis sunt. Quis eu consectetur dolore sit mollit laboris nostrud. Occaecat dolor duis proident consectetur nostrud reprehenderit cillum eu cupidatat aliqua officia do. Velit ullamco Lorem aliqua sunt duis reprehenderit ipsum id fugiat nostrud velit deserunt elit nulla. Sunt ex deserunt incididunt fugiat reprehenderit fugiat consectetur dolor ullamco elit proident nostrud. Aliquip non deserunt tempor elit.
 
-    const displayPost = () => {
-        axios.get("http://localhost/api/v1/displaypost/").then((res) => {
-            setPostData(res.data);
-            console.log(postData);
-        });
+    const displayPost = async () => {
+        try {
+            await axios
+                .get("http://localhost/api/v1/displaypost/")
+                .then(async (res) => {
+                    data = res.data;
+                    setDisplay(true);
+                    console.log(data);
+                });
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     return (
@@ -154,7 +163,7 @@ export default function PublicPost() {
                         </div>
                         <button onClick={displayPost}>show posts</button>
                         {/* start of post */}
-                        {/* <Feed postData={postData} /> */}
+                        {display && <Feed data />}
                         {/* end of post */}
                     </div>
                 </div>

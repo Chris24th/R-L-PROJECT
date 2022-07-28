@@ -7,6 +7,7 @@ const SignIn = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
     const onSignIn = async (e) => {
         e.preventDefault();
@@ -22,15 +23,14 @@ const SignIn = () => {
             });
             result = await result.json();
             localStorage.setItem("user-info", JSON.stringify(result));
-            window.location.reload();
 
             let user = JSON.parse(localStorage.getItem("user-info"));
             if (user && user.error) {
-                alert(user.error);
+                setError(user.error);
                 localStorage.clear();
-            }
+            } else window.location.reload();
         } catch (e) {
-            alert(e);
+            console.log(e);
         }
     };
 
@@ -63,6 +63,7 @@ const SignIn = () => {
                         Be vocal. Share your thoughts and feelings freely on
                         Postello.
                     </h5>
+                    <p className="text-danger mb-3">{error && error}</p>
                     <div className="form-floating mb-3">
                         <input
                             type="email"

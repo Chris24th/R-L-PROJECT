@@ -6,9 +6,12 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Logo from "../PostelloLogo.png";
 
-const Feed = (postData) => {
+const Feed = (postDetails) => {
     return (
-        <div>{postData[0].id}</div>
+        <div>
+            test
+            <div>{console.log(postDetails)}</div>
+        </div>
         // <div className="feed-post mt-2 border">
         //     <div className="p-2 bg-white rounded m-1">
         //         <div className="d-flex flex-row justify-content-between align-items-start profile p-2">

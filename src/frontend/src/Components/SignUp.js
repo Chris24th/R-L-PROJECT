@@ -12,6 +12,7 @@ const SignUp = () => {
     const [lname, setLname] = useState("");
     const [sex, setSex] = useState("");
     const [passError, setPassError] = useState("");
+    const [error, setError] = useState("");
 
     useEffect(() => {
         let user = JSON.parse(localStorage.getItem("user-info"));
@@ -37,7 +38,7 @@ const SignUp = () => {
                 localStorage.setItem("user-info", JSON.stringify(result));
                 let user = JSON.parse(localStorage.getItem("user-info"));
                 if (user && user.error) {
-                    alert(user.error);
+                    setError(user.error);
                     localStorage.clear();
                 } else {
                     localStorage.setItem("user-info", JSON.stringify(result));
@@ -46,13 +47,13 @@ const SignUp = () => {
                     localStorage.clear();
                     localStorage.setItem(
                         "user-info",
-                        JSON.stringify({ email }) //kani wala lagi ni naapil
+                        JSON.stringify({ email })
                     );
                     navigate("/successpage");
                 }
-            } else alert("Passwords don't match");
+            } else setError("Passwords don't match");
         } catch (e) {
-            alert(e);
+            console.log(e);
         }
     };
 
@@ -85,6 +86,7 @@ const SignUp = () => {
                     <div className="mb-4 text-center">
                         <img src={LogoName} width="250px" alt="postello logo" />
                     </div>
+                    <p className="text-danger mb-3">{error && error}</p>
                     <div className=" mb-3">
                         <label>Email address</label>
                         <input

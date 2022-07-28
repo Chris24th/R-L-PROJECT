@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-const SuccessPage = () => {
+const FPSuccessPage = () => {
     const navigate = useNavigate();
 
     const onSignIn = () => {
@@ -11,8 +11,9 @@ const SuccessPage = () => {
             <div className="row m-3 justify-content-center">
                 <div className="col-md-6 shadow p-5 my-5 border-form bg-light">
                     <h5 className="mb-5 text-center">
-                        Account Created Successfully. Please check your email
-                        inbox to verify your email. Thank you.
+                        Reset Password has been sent your email successfully.
+                        Please check your email inbox to verify your email.
+                        Thank you.
                     </h5>
                     <div className="d-grid mx-auto">
                         <button className="btn-lg btn-dark" onClick={onSignIn}>
@@ -25,4 +26,4 @@ const SuccessPage = () => {
     );
 };
 
-export default SuccessPage;
+export default FPSuccessPage;
