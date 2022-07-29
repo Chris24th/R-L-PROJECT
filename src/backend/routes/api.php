@@ -39,6 +39,8 @@ Route::post('createpost', [PostController::class, 'createpost']);
 Route::get('displaypost', [PostController::class, 'displaypost']);
 Route::post('createcomment', [PostController::class, 'createcomment']);
 Route::get('displaycomment', [PostController::class, 'displaycomment']);
+Route::post('deletepost', [PostController::class, 'deletepost']);
+Route::post('editpost', [PostController::class, 'editpost']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

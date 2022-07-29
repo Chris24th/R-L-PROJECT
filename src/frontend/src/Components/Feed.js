@@ -30,7 +30,6 @@ const Feed = ({ postDetails }) => {
     });
 
     const onSend = async (postID) => {
-        console.log("this comment is for " + postID);
         let username = user.username;
         let fname = user.fname;
         let lname = user.lname;
@@ -65,7 +64,9 @@ const Feed = ({ postDetails }) => {
                             </h6>
                         </div>
                     </div>
-                    <Edit_DeleteModal />
+                    {post.username === user.username ? (
+                        <Edit_DeleteModal postData={post} />
+                    ) : null}
                 </div>
                 <div className="feed-content p-2 m-1">
                     <span>{post.textContent}</span>

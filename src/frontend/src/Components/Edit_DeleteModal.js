@@ -11,17 +11,38 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-export default function Edit_DeleteModal() {
-    // FOR EDIT
+export default function Edit_DeleteModal({ postData }) {
     const [show_Edit, setShow1] = useState(false);
     const handleClose_edit = () => setShow1(false);
     const Edit = () => setShow1(true);
-
-    // FOR DELETE
     const [show_Delete, setShow2] = useState(false);
     const handleClose_del = () => setShow2(false);
     const Delete = () => setShow2(true);
+    const [textContent, setTextContent] = useState(postData.textContent);
 
+    const onDelete = async () => {
+        let item = postData;
+        await axios({
+            method: "post",
+            url: "http://localhost/api/v1/deletepost/",
+            data: item,
+        }).then((res) => {
+            window.location.reload();
+        });
+    };
+
+    const onUpdate = async () => {
+        if (textContent) {
+            let id = postData.id;
+            await axios({
+                method: "post",
+                url: "http://localhost/api/v1/editpost/",
+                data: { id, textContent },
+            }).then(() => {
+                window.location.reload();
+            });
+        }
+    };
     return (
         <div>
             <Dropdown>
@@ -65,11 +86,11 @@ export default function Edit_DeleteModal() {
                             controlId="exampleForm.ControlTextarea"
                         >
                             <Form.Control
-                                placeholder="Share your thoughts"
                                 as="textarea"
                                 rows={10}
-                                // onChange={(e) => setTextContent(e.target.value)}
-                                // required
+                                value={textContent}
+                                onChange={(e) => setTextContent(e.target.value)}
+                                required
                             />
                         </Form.Group>
                     </Form>
@@ -77,7 +98,7 @@ export default function Edit_DeleteModal() {
                 <Modal.Footer>
                     <Button
                         className="btn btn-dark btn-rounded"
-                        // onClick={onPost}
+                        onClick={onUpdate}
                     >
                         Update
                     </Button>
@@ -103,6 +124,7 @@ export default function Edit_DeleteModal() {
                     <Button
                         variant="danger"
                         // onClick={() => confirmModal(type, id)} ---
+                        onClick={onDelete}
                     >
                         Delete
                     </Button>

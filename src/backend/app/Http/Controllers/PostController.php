@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Post;
 use App\Models\Comment;
 use Illuminate\Http\Request;
@@ -66,5 +67,23 @@ class PostController extends Controller
         }
         if ($commentArr)
             return $commentArr;
+    }
+
+    function deletepost(Request $req)
+    {
+        $post = Post::where('id', $req->id)->first();
+        $post->delete();
+    }
+
+    function editpost(Request $req)
+    {
+        $date = Carbon::now();
+
+        $post = Post::where('id', $req->id)->first();
+        $post->textContent = $req->textContent;
+        $post->updated_at = $date;
+        $post->save();
+
+        return $post->textContent;
     }
 }
