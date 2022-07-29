@@ -15,6 +15,9 @@ const Feed = ({ postDetails }) => {
     const [loading, setLoading] = useState(true);
     const [comments, setComments] = useState([]);
     const [show, setShow] = useState();
+    const [textContent, setTextContent] = useState();
+    // const [postID, setPostID] = useState();
+    let user = JSON.parse(localStorage.getItem("user-info"));
 
     useEffect(() => {
         setTimeout(() => setLoading(false), 500);
@@ -29,8 +32,27 @@ const Feed = ({ postDetails }) => {
         });
     });
 
-    // const displayComment = async () => {
-    // };
+    const onSend = async (postID) => {
+        console.log("this comment is for " + postID);
+        let username = user.username;
+        let fname = user.fname;
+        let lname = user.lname;
+        let item = { postID, username, fname, lname, textContent };
+        console.log(item);
+        let result = await axios({
+            method: "post",
+            url: "http://localhost/api/v1/createcomment/",
+            data: item,
+        })
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+
+        window.location.reload();
+    };
 
     const dataList = postDetails.map((post) => (
         <div className="feed-post mt-2 border">
@@ -120,7 +142,7 @@ const Feed = ({ postDetails }) => {
                     </Container>
                 </div>
                 {/* COMMENT SECTION */}
-                <div className="d-flex flex-row justify-content-between border-top p-1">
+                <div className="col">
                     {loading === false && comments
                         ? comments.map((comment) =>
                               comment.postID === post.id ? (
@@ -128,7 +150,25 @@ const Feed = ({ postDetails }) => {
                               ) : null
                           )
                         : null}
-                    <Comment />
+                    {/* <Comment /> */}
+                    <form style={{ width: "100%" }}>
+                        <input
+                            className="form-control p-1"
+                            type="text"
+                            placeholder="Write a comment..."
+                            onChange={(e) => {
+                                setTextContent(e.target.value);
+                            }}
+                        ></input>
+                        <input
+                            type="button"
+                            className="btn btn-dark"
+                            value="Send"
+                            onClick={() => {
+                                onSend(post.id);
+                            }}
+                        />
+                    </form>
                 </div>
                 <div className="profile-engagements"></div>
             </div>
