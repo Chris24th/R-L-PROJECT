@@ -6,17 +6,13 @@ import Logo from "../PostelloLogo.png";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Comment from "./Comment.js";
-import CommentDisplay from "./CommentDisplay.js";
 import axios from "axios";
 
 const Feed = ({ postDetails }) => {
-    // const [postDetails, setPostDetails] = useState();
     const [loading, setLoading] = useState(true);
     const [comments, setComments] = useState([]);
     const [show, setShow] = useState();
     const [textContent, setTextContent] = useState();
-    // const [postID, setPostID] = useState();
     let user = JSON.parse(localStorage.getItem("user-info"));
 
     useEffect(() => {
@@ -146,6 +142,7 @@ const Feed = ({ postDetails }) => {
                     {loading === false && comments
                         ? comments.map((comment) =>
                               comment.postID === post.id ? (
+                                  //display comment
                                   <div>{comment.textContent}</div>
                               ) : null
                           )
