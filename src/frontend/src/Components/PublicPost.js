@@ -135,7 +135,7 @@ export default function PublicPost() {
                                     <div className="align-items-center border-right p-1 share">
                                         <button
                                             type="button"
-                                            className="btn btn-light"
+                                            className="btn btn-lights"
                                             onClick={handleShow}
                                         >
                                             {/* ICON FOR PHOTO */}

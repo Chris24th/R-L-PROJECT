@@ -6,7 +6,12 @@ import Logo from "../PostelloLogo.png";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+<<<<<<< HEAD
 import axios from "axios";
+=======
+import Comment from "./Comment.js";
+import Edit_DeleteModal from "./Edit_DeleteModal.js";
+>>>>>>> 2c9f55b726bfd5b0734b71bf69dedf9f81cbdb20
 
 const Feed = ({ postDetails }) => {
     const [loading, setLoading] = useState(true);
@@ -64,32 +69,7 @@ const Feed = ({ postDetails }) => {
                             </h6>
                         </div>
                     </div>
-                    <Dropdown>
-                        <Dropdown.Toggle
-                            className="btn btn-light"
-                            variant="light"
-                            id="dropdown-basic"
-                            bsPrefix="p-0"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="20"
-                                height="20"
-                                className="bi bi-three-dots"
-                                viewBox="0 0 16 16"
-                            >
-                                <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
-                            </svg>
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            <Dropdown.Item href="#/action-1">
-                                Edit
-                            </Dropdown.Item>
-                            <Dropdown.Item href="#/action-2">
-                                Delete
-                            </Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
+                    <Edit_DeleteModal />
                 </div>
                 <div className="feed-content p-2 m-1">
                     <span>{post.textContent}</span>
@@ -170,7 +150,6 @@ const Feed = ({ postDetails }) => {
                         />
                     </form>
                 </div>
-                <div className="profile-engagements"></div>
             </div>
         </div>
     ));
