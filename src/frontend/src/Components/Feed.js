@@ -34,20 +34,18 @@ const Feed = ({ postDetails }) => {
         let fname = user.fname;
         let lname = user.lname;
         let item = { postID, username, fname, lname, textContent };
-        console.log(item);
-        let result = await axios({
+        await axios({
             method: "post",
             url: "http://localhost/api/v1/createcomment/",
             data: item,
         })
             .then((response) => {
                 console.log(response.data);
+                // window.location.reload();
             })
             .catch((error) => {
                 console.error(error);
             });
-
-        window.location.reload();
     };
 
     const dataList = postDetails.map((post) => (
@@ -143,7 +141,12 @@ const Feed = ({ postDetails }) => {
                         ? comments.map((comment) =>
                               comment.postID === post.id ? (
                                   //display comment
-                                  <div>{comment.textContent}</div>
+                                  <div className="row">
+                                      <div className="col">
+                                          {comment.fname} {comment.lname}
+                                          <div>{comment.textContent}</div>
+                                      </div>
+                                  </div>
                               ) : null
                           )
                         : null}
