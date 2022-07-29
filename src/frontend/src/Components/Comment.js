@@ -12,11 +12,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 export default function Comment() {
-    // MODAL FOR CREATE POST
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
     return (
         <div className="p-1 container text-center">
             <div className="d-flex flex-row inputs">

@@ -4,7 +4,7 @@ import NavBar from "./NavBar.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Profile from "./Profile.js";
 import PublicPost from "./PublicPost.js";
-import Logo from "../PostelloLogo.png";
+import RightBar from "./RightBar";
 
 function Home() {
     let user = JSON.parse(localStorage.getItem("user-info"));
@@ -23,13 +23,15 @@ function Home() {
                     <div className="col-xl-3 justify-content-center border">
                         {/* left */}
                         <Profile />
+                        {/* <SideProfile /> */}
                     </div>
                     <div className="col-xl-6 justify-content-center border">
                         {/* middle */}
-                        <PublicPost/>
+                        <PublicPost />
                     </div>
                     <div className="col-xl-3 justify-content-center border">
                         {/* right */}
+                        <RightBar />
                     </div>
                 </div>
             </div>
