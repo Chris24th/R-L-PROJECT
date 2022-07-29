@@ -56,12 +56,15 @@ class PostController extends Controller
     function displaycomment()
     {
         $maxID = Comment::max('id');
+        $commentArr = array();
+
         for ($i = $maxID; $i > 0; $i--) {
             $data = Comment::where('id', $i)->first();
             if ($data) {
-                $commentArr[$i] = $data;
+                array_push($commentArr, $data);
             }
         }
-        return $commentArr;
+        if ($commentArr)
+            return $commentArr;
     }
 }

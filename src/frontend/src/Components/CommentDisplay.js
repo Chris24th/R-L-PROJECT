@@ -2,23 +2,32 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const CommentDisplay = (postID) => {
-    const [comment, setComment] = useState([]);
+    const [comments, setComments] = useState([]);
 
     useEffect(() => {
         try {
-            axios
-                .get("http://localhost/api/v1/displaycomment/")
-                .then(async (res) => {
-                    setComment(res.data);
-                });
+            axios({
+                method: "post",
+                url: "http://localhost/api/v1/displaycomment/",
+                data: postID,
+            }).then((response) => {
+                setComments(response.data);
+            });
         } catch (e) {
-            console.log(e);
+            console.error(e);
         }
     });
 
-    const commentList = postID.map((data) => <div>xxxxxx</div>);
+    // const commentList = comments.map((comment) => (
+    //     <div>{comment.textContent}</div>
+    // ));
 
-    return <div>{commentList}</div>;
+    return (
+        <div>
+            {/* {commentList} */}
+            <button onClick={() => console.log(postID)}>test</button>
+        </div>
+    );
 };
 
 export default CommentDisplay;

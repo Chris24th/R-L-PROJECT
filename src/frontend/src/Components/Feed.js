@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
@@ -7,12 +7,32 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Comment from "./Comment.js";
+import CommentDisplay from "./CommentDisplay.js";
+import axios from "axios";
 
-const Feed = (postDetails) => {
+const Feed = ({ postDetails }) => {
     // const [postDetails, setPostDetails] = useState();
-    let postData = postDetails.postDetails;
+    const [loading, setLoading] = useState(true);
+    const [comments, setComments] = useState([]);
+    const [show, setShow] = useState();
 
-    const dataList = postData.map((post) => {
+    useEffect(() => {
+        setTimeout(() => setLoading(false), 500);
+    }, []);
+
+    useEffect(() => {
+        axios({
+            method: "get",
+            url: "http://localhost/api/v1/displaycomment/",
+        }).then((response) => {
+            setComments(response.data);
+        });
+    });
+
+    // const displayComment = async () => {
+    // };
+
+    const dataList = postDetails.map((post) => (
         <div className="feed-post mt-2 border">
             <div className="p-2 bg-white rounded m-1">
                 <div className="d-flex flex-row justify-content-between align-items-start profile p-2">
@@ -81,7 +101,11 @@ const Feed = (postDetails) => {
                             </Col>
                             <Col className="p-1">
                                 <div className="d-grid gap-2">
-                                    <Button variant="Light p-1" size="lg">
+                                    <Button
+                                        variant="Light p-1"
+                                        size="lg"
+                                        // onClick={displayComment}
+                                    >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="20"
@@ -101,14 +125,19 @@ const Feed = (postDetails) => {
                 </div>
                 {/* COMMENT SECTION */}
                 <div className="d-flex flex-row justify-content-between border-top p-1">
-                    {/* <CommentDisplay postID={data.id} /> */}
-                    <br />
+                    {loading === false && comments
+                        ? comments.map((comment) =>
+                              comment.postID === post.id ? (
+                                  <div>{comment.textContent}</div>
+                              ) : null
+                          )
+                        : null}
                     <Comment />
                 </div>
                 <div className="profile-engagements"></div>
             </div>
-        </div>;
-    });
+        </div>
+    ));
 
     return <div>{dataList}</div>;
 };

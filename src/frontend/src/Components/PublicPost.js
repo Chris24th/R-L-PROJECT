@@ -25,7 +25,7 @@ export default function PublicPost() {
             if (response) {
                 setPostData(response.data);
             }
-            setTimeout(() => setLoading(false), 1000);
+            setTimeout(() => setLoading(false), 500);
         }
         fetchAPI();
     }, []);
@@ -151,7 +151,7 @@ export default function PublicPost() {
                                 <Feed postDetails={postData} />
                             </div>
                         ) : (
-                            <div>no posts to show</div>
+                                <div>loading...</div>
                         )}
                     </div>
                 </div>
