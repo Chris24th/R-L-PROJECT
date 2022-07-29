@@ -34,7 +34,7 @@ const Feed = ({ postDetails }) => {
 
     const dataList = postDetails.map((post) => (
         <div className="feed-post mt-2 border">
-            <div className="p-2 bg-white rounded m-1">
+            <div className="p-2 bg-white rounded m-5 mb-2 mt-2">
                 <div className="d-flex flex-row justify-content-between align-items-start profile p-2">
                     <div className="d-flex align-items-center">
                         <img
@@ -84,7 +84,7 @@ const Feed = ({ postDetails }) => {
                         <Row>
                             <Col className="p-1">
                                 <div className="d-grid gap-2">
-                                    <Button variant="Light p-1" size="lg">
+                                    <Button variant="Light p-1" size="md">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="20"
@@ -101,11 +101,7 @@ const Feed = ({ postDetails }) => {
                             </Col>
                             <Col className="p-1">
                                 <div className="d-grid gap-2">
-                                    <Button
-                                        variant="Light p-1"
-                                        size="lg"
-                                        // onClick={displayComment}
-                                    >
+                                    <Button variant="Light p-1" size="md">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="20"

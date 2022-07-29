@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Dropdown from "react-bootstrap/Dropdown";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -10,8 +11,11 @@ import axios from "axios";
 
 export default function PublicPost() {
     let user = JSON.parse(localStorage.getItem("user-info"));
+    const navigate = useNavigate();
     const [textContent, setTextContent] = useState();
-    const [postData, setPostData] = useState([{}]);
+    const [postData, setPostData] = useState([]);
+
+    // MODAL FOR CREATE POST
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -32,6 +36,7 @@ export default function PublicPost() {
 
     const onPost = async (e) => {
         try {
+            let user = JSON.parse(localStorage.getItem("user-info"));
             let username = user.username;
             let fname = user.fname;
             let lname = user.lname;
@@ -55,13 +60,17 @@ export default function PublicPost() {
             <div className="d-flex justify-content-center row m-8">
                 <div className="col-md-15">
                     <div className="feed">
-                        <div className="share border bg-white rounded m-1">
+                        <div
+                            className="share border bg-white rounded m-5 mb-2 mt-0"
+                            onSubmit={onPost}
+                        >
                             <div className="d-flex flex-row inputs p-2 py-4">
                                 <img
                                     className="rounded-circle p-2"
                                     src={Logo}
                                     width="40"
                                 />
+                                {/*---------- MODAL FOR CREATE POST----------*/}
                                 <input
                                     type="form"
                                     className="border-2 form-control share-input m-1 p-1"
@@ -151,7 +160,7 @@ export default function PublicPost() {
                                 <Feed postDetails={postData} />
                             </div>
                         ) : (
-                                <div>loading...</div>
+                            <div>loading...</div>
                         )}
                     </div>
                 </div>
