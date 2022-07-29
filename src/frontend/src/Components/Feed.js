@@ -9,7 +9,10 @@ import Col from "react-bootstrap/Col";
 import Comment from "./Comment.js";
 
 const Feed = (postDetails) => {
-    const dataList = postDetails.postDetails.map((data) => (
+    // const [postDetails, setPostDetails] = useState();
+    let postData = postDetails.postDetails;
+
+    const dataList = postData.map((post) => {
         <div className="feed-post mt-2 border">
             <div className="p-2 bg-white rounded m-1">
                 <div className="d-flex flex-row justify-content-between align-items-start profile p-2">
@@ -21,7 +24,7 @@ const Feed = (postDetails) => {
                         />
                         <div className="d-flex flex-column ml-2 m-2 p-2 justify-content-between">
                             <h6>
-                                {data.fname} {data.lname}
+                                {post.fname} {post.lname}
                             </h6>
                         </div>
                     </div>
@@ -53,7 +56,7 @@ const Feed = (postDetails) => {
                     </Dropdown>
                 </div>
                 <div className="feed-content p-2 m-1">
-                    <span>{data.textContent}</span>
+                    <span>{post.textContent}</span>
                 </div>
                 {/* LIKE AND COMMENT BUTTON */}
                 <div className="d-flex flex-row justify-content-between border-top p-1">
@@ -98,12 +101,15 @@ const Feed = (postDetails) => {
                 </div>
                 {/* COMMENT SECTION */}
                 <div className="d-flex flex-row justify-content-between border-top p-1">
+                    {/* <CommentDisplay postID={data.id} /> */}
+                    <br />
                     <Comment />
                 </div>
                 <div className="profile-engagements"></div>
             </div>
-        </div>
-    ));
+        </div>;
+    });
+
     return <div>{dataList}</div>;
 };
 

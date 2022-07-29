@@ -15,6 +15,20 @@ export default function PublicPost() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        async function fetchAPI() {
+            const response = await axios
+                .get("http://localhost/api/v1/displaypost/")
+                .catch((e) => console.error(e));
+            if (response) {
+                setPostData(response.data);
+            }
+            setTimeout(() => setLoading(false), 1000);
+        }
+        fetchAPI();
+    }, []);
 
     const onPost = async (e) => {
         try {
@@ -36,17 +50,6 @@ export default function PublicPost() {
         }
     };
 
-    useEffect(() => {
-        try {
-            axios
-                .get("http://localhost/api/v1/displaypost/")
-                .then(async (res) => {
-                    setPostData(res.data);
-                });
-        } catch (e) {
-            console.log(e);
-        }
-    });
     return (
         <div className="container-fluid my-4">
             <div className="d-flex justify-content-center row m-8">
@@ -143,7 +146,13 @@ export default function PublicPost() {
                                 </div>
                             </div>
                         </div>
-                        <Feed postDetails={postData} />
+                        {loading === false ? (
+                            <div>
+                                <Feed postDetails={postData} />
+                            </div>
+                        ) : (
+                            <div>no posts to show</div>
+                        )}
                     </div>
                 </div>
             </div>
