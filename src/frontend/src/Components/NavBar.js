@@ -45,7 +45,7 @@ function NavScroll() {
                         >
                             Home
                         </Nav.Link>
-                        
+
                         <NavDropdown
                             title={user && user.username}
                             id="navbarScrollingDropdown"
@@ -61,7 +61,7 @@ function NavScroll() {
                             </NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
-                    <Form className="d-flex"> 
+                    <Form className="d-flex">
                         <Form.Control
                             type="search"
                             placeholder="Search"

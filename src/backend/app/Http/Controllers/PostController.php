@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Post;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -11,6 +13,8 @@ class PostController extends Controller
     {
         $post = new Post;
         $post->username = $req->username;
+        $post->fname = $req->fname;
+        $post->lname = $req->lname;
         $post->textContent = $req->input('textContent');
         $post->imageContent = $req->input('imageContent');
         $post->reacts = $req->input('reacts');
@@ -21,10 +25,65 @@ class PostController extends Controller
         }
     }
 
-    function displaypost(Request $req)
+    function displaypost()
     {
-        $post = Post::whereRaw('id = (select max(`id`) from posts)')->get();
+        $maxID = Post::max('id');
+        $postArr = array();
+        for ($i = $maxID; $i > 0; $i--) {
+            $data = Post::where('id', $i)->first();
+            if ($data) {
+                array_push($postArr, $data);
+            }
+        }
+        return $postArr;
+    }
 
-        return $post;
+    function createcomment(Request $req)
+    {
+        // $comment = Comment::where('id', $req->id);
+        $comment = new Comment;
+        $comment->postID = $req->postID;
+        $comment->username = $req->username;
+        $comment->fname = $req->fname;
+        $comment->lname = $req->lname;
+        $comment->textContent = $req->input('textContent');
+        $comment->imageContent = $req->input('imageContent');
+        $comment->reacts = $req->input('reacts');
+        $comment->save();
+
+        return $comment;
+    }
+
+    function displaycomment()
+    {
+        $maxID = Comment::max('id');
+        $commentArr = array();
+
+        for ($i = $maxID; $i > 0; $i--) {
+            $data = Comment::where('id', $i)->first();
+            if ($data) {
+                array_push($commentArr, $data);
+            }
+        }
+        if ($commentArr)
+            return $commentArr;
+    }
+
+    function deletepost(Request $req)
+    {
+        $post = Post::where('id', $req->id)->first();
+        $post->delete();
+    }
+
+    function editpost(Request $req)
+    {
+        $date = Carbon::now();
+
+        $post = Post::where('id', $req->id)->first();
+        $post->textContent = $req->textContent;
+        $post->updated_at = $date;
+        $post->save();
+
+        return $post->textContent;
     }
 }

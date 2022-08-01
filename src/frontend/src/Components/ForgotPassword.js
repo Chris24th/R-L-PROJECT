@@ -6,11 +6,11 @@ import LogoName from "../Postello.png";
 const ForgotPassword = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
+    const [error, setError] = useState("");
 
     const onSubmit = async (e) => {
         e.preventDefault();
         try {
-            let item = { email };
             axios({
                 method: "post",
                 url: "http://localhost/api/v1/forgotpassword",
@@ -19,13 +19,10 @@ const ForgotPassword = () => {
                 localStorage.setItem("user-info", JSON.stringify(response));
                 let user = JSON.parse(localStorage.getItem("user-info"));
                 if (user.data && user.data.error) {
-                    alert("Email does not exists.");
+                    setError("Email does not exists.");
                     localStorage.clear();
                 } else {
-                    alert(
-                        "Password reset link successfully sent to your email."
-                    );
-                    navigate("/signin");
+                    navigate("/fpsuccesspage");
                     window.location.reload(false);
                 }
             });
@@ -56,6 +53,7 @@ const ForgotPassword = () => {
                         <img src={LogoName} width="250px" alt="postello logo" />
                     </div>
                     <h5 className="mb-4"> Password Reset </h5>
+                    <p className="text-danger mb-3">{error && error}</p>
                     <div className="form-floating mb-4">
                         <input
                             type="email"

@@ -3,6 +3,8 @@ import SignIn from "./Components/SignIn";
 import SignUp from "./Components/SignUp";
 import ForgotPassword from "./Components/ForgotPassword";
 import Home from "./Components/Home";
+import SuccessPage from "./Components/SuccessPage";
+import FPSuccessPage from "./Components/FPSuccessPage";
 import {
     BrowserRouter as Router,
     Routes,
@@ -32,6 +34,8 @@ function App() {
                         path="/forgotpassword"
                         element={<ForgotPassword />}
                     />
+                    <Route path="/successpage" element={<SuccessPage />} />
+                    <Route path="/fpsuccesspage" element={<FPSuccessPage />} />
                 </Routes>
             </Router>
         </div>
