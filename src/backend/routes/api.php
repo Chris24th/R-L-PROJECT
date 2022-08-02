@@ -1,14 +1,15 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Password;
 use App\Http\Controllers\EmailController;
-use App\Http\Controllers\PostController;
 use Illuminate\Auth\Events\PasswordReset;
 
 /*
@@ -22,26 +23,48 @@ use Illuminate\Auth\Events\PasswordReset;
 |
 */
 
-
-Route::get('/', function () {
-    return response()->json([
-        'description' => 'Sprobe OJT Laravel API',
-        'version' => 1,
-    ]);
+Route::get('test', function () {
+    dd(Auth::user());
 });
 
+Route::get('/profile', function (Request $request) {
+    return response()->json($request->user());
+})->middleware('auth:sanctum');
+
 Route::post('signup', [UserController::class, 'signup']);
-Route::post('signin', [UserController::class, 'signin']);
+Route::post('signin', [UserController::class, 'signin'])->name('login');
 Route::post('verification', [UserController::class, 'verification']);
 Route::post('forgotpassword', [UserController::class, 'forgotpassword']);
 Route::post('resetpassword', [UserController::class, 'resetpassword']);
 Route::post('createpost', [PostController::class, 'createpost']);
-Route::get('displaypost', [PostController::class, 'displaypost']);
-Route::post('createcomment', [PostController::class, 'createcomment']);
-Route::get('displaycomment', [PostController::class, 'displaycomment']);
-Route::post('deletepost', [PostController::class, 'deletepost']);
-Route::post('editpost', [PostController::class, 'editpost']);
+Route::get('displaypost', [PostController::class, 'displaypost'])->middleware('auth:sanctum');
+Route::post('createcomment', [PostController::class, 'createcomment'])->middleware('auth:sanctum');
+Route::get('displaycomment', [PostController::class, 'displaycomment'])->middleware('auth:sanctum');
+Route::post('deletepost', [PostController::class, 'deletepost'])->middleware('auth:sanctum');
+Route::post('editpost', [PostController::class, 'editpost'])->middleware('auth:sanctum');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    return response()->json($request->user());
+});
+
+Route::post('login', function (Request $request) {
+    $user = User::where('email', $request->email)->first();
+
+    $credentials = $request->validate([
+        'email' => ['required', 'email'],
+        'password' => ['required'],
+    ]);
+
+    if (Auth::attempt($credentials, true)) {
+        return response()->json([
+            'email' => $request->email,
+        ]);
+    } else {
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            return ["error" => "Email or password is not matched."];
+        }
+        if (!$user->email_verified_at) {
+            return ["error" => "Email not verified. Please check your email inbox."];
+        }
+    }
 });

@@ -16,7 +16,6 @@ class PostController extends Controller
         $post->fname = $req->fname;
         $post->lname = $req->lname;
         $post->textContent = $req->input('textContent');
-        $post->imageContent = $req->input('imageContent');
         $post->reacts = $req->input('reacts');
         $post->save();
 
@@ -47,7 +46,6 @@ class PostController extends Controller
         $comment->fname = $req->fname;
         $comment->lname = $req->lname;
         $comment->textContent = $req->input('textContent');
-        $comment->imageContent = $req->input('imageContent');
         $comment->reacts = $req->input('reacts');
         $comment->save();
 

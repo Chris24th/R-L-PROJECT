@@ -5,6 +5,8 @@ import ForgotPassword from "./Components/ForgotPassword";
 import Home from "./Components/Home";
 import SuccessPage from "./Components/SuccessPage";
 import FPSuccessPage from "./Components/FPSuccessPage";
+import Sample from "./Components/Sample";
+import SProfile from "./Components/SProfile";
 import {
     BrowserRouter as Router,
     Routes,
@@ -14,14 +16,6 @@ import {
 } from "react-router-dom";
 
 function App() {
-    const [apiDetails, setApiDetails] = useState(null);
-
-    useEffect(() => {
-        fetch(process.env.REACT_APP_API_URL)
-            .then((r) => r.json())
-            .then((response) => setApiDetails(response));
-    }, []);
-
     return (
         <div>
             <Router>
@@ -36,6 +30,8 @@ function App() {
                     />
                     <Route path="/successpage" element={<SuccessPage />} />
                     <Route path="/fpsuccesspage" element={<FPSuccessPage />} />
+                    <Route path="/sample" element={<Sample />} />
+                    <Route path="/profile" element={<SProfile />} />
                 </Routes>
             </Router>
         </div>

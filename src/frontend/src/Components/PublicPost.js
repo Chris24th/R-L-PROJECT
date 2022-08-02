@@ -41,15 +41,21 @@ export default function PublicPost() {
             let fname = user.fname;
             let lname = user.lname;
             let item = { username, fname, lname, textContent };
-            await fetch("http://localhost/api/v1/createpost/", {
-                method: "POST",
-                body: JSON.stringify(item),
-                headers: {
-                    "Content-Type": "application/json",
-                    Accept: "application/json",
-                },
+            // await fetch("http://localhost/api/v1/createpost/", {
+            //     method: "POST",
+            //     body: JSON.stringify(item),
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //         Accept: "application/json",
+            //     },
+            // });
+            axios({
+                method: "post",
+                url: "http://localhost/api/v1/createpost",
+                data: item,
+            }).then(() => {
+                window.location.reload();
             });
-            window.location.reload();
         } catch (e) {
             console.log(e);
         }

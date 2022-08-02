@@ -1,34 +1,49 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-// import bootstrap from "bootstrap";
 import LogoName from "../Postello.png";
+import axios from "axios";
 
 const SignIn = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    // const [validate, setValidate] = useState(false);
+    const [data, setData] = useState();
+
+    const api = axios.create();
+    api.defaults.withCredentials = true;
 
     const onSignIn = async (e) => {
         e.preventDefault();
         try {
-            let item = { email, password };
-            let result = await fetch("http://localhost/api/v1/signin", {
-                method: "POST",
-                body: JSON.stringify(item),
-                headers: {
-                    "Content-Type": "application/json",
-                    Accept: "application/json",
-                },
+            api.get("/api/sanctum/csrf-cookie").then(() => {
+                api.post("api/v1/login", {
+                    email: email,
+                    password: password,
+                }).then((response) => {
+                    if (response.data && response.data.error) {
+                        setError(response.data.error);
+                    } else {
+                        setData(response.data);
+                        let item = { email, password };
+                        axios({
+                            method: "post",
+                            url: "http://localhost/api/v1/signin",
+                            data: item,
+                        }).then((response) => {
+                            localStorage.setItem(
+                                "user-info",
+                                JSON.stringify(response.data)
+                            );
+                            let user = JSON.parse(
+                                localStorage.getItem("user-info")
+                            );
+                            navigate("/");
+                        });
+                    }
+                });
             });
-            result = await result.json();
-            localStorage.setItem("user-info", JSON.stringify(result));
-
-            let user = JSON.parse(localStorage.getItem("user-info"));
-            if (user && user.error) {
-                setError(user.error);
-                localStorage.clear();
-            } else window.location.reload();
         } catch (e) {
             console.log(e);
         }
@@ -42,12 +57,12 @@ const SignIn = () => {
         navigate("/forgotpassword");
     };
 
-    useEffect(() => {
-        let user = JSON.parse(localStorage.getItem("user-info"));
-        if (user && user.email && user.username) {
-            navigate("/");
-        }
-    }, []);
+    // useEffect(() => {
+    //     let user = JSON.parse(localStorage.getItem("user-info"));
+    //     if (user && user.email && user.username) {
+    //         navigate("/");
+    //     }
+    // }, []);
 
     return (
         <div className="container-md">
