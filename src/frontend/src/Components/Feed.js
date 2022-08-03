@@ -118,131 +118,124 @@ const Feed = ({ postDetails }) => {
                         ? comments.map((comment) =>
                               comment.postID === post.id ? (
                                   //display comment
-                                  <div className="row">
-                                      <div className="col">
-                                          {comment.fname} {comment.lname}
-                                          <div>{comment.textContent}</div>
+                                  //   <div className="row">
+                                  //       <div className="col">
+                                  //
+                                  //           <div></div>
+                                  //       </div>
+                                  //   </div>
+
+                                  <div className="card">
+                                      <div className="card-body p-2">
+                                          <div className="row">
+                                              <div className="col">
+                                                  <div className="d-flex flex-start">
+                                                      <img
+                                                          className="rounded-circle shadow-1-strong p-2"
+                                                          src={Logo}
+                                                          alt="avatar"
+                                                          width="40"
+                                                          height="40"
+                                                      />
+                                                      <div className="flex-grow-1 flex-shrink-1">
+                                                          <div>
+                                                              <div className="d-flex justify-content-between align-items-center">
+                                                                  <p className="mb-1">
+                                                                      Name of
+                                                                      User{" "}
+                                                                      <span className="small">
+                                                                          - 2
+                                                                          hours
+                                                                          ago
+                                                                      </span>
+                                                                  </p>
+                                                                  <a href="#!">
+                                                                      <i className="fas fa-reply fa-xs"></i>
+                                                                      <span className="small">
+                                                                          {" "}
+                                                                          reply
+                                                                      </span>
+                                                                  </a>
+                                                              </div>
+                                                              <p className="small mb-0">
+                                                                  {
+                                                                      comment.textContent
+                                                                  }
+                                                              </p>
+                                                          </div>
+
+                                                          <div className="d-flex flex-start mt-4">
+                                                              <a
+                                                                  className="me-3"
+                                                                  href="#"
+                                                              >
+                                                                  <img
+                                                                      className="rounded-circle shadow-1-strong p-2"
+                                                                      src={Logo}
+                                                                      alt="avatar"
+                                                                      width="40"
+                                                                      height="40"
+                                                                  />
+                                                              </a>
+                                                              <div className="flex-grow-1 flex-shrink-1">
+                                                                  <div>
+                                                                      <div className="d-flex justify-content-between align-items-center">
+                                                                          <p className="mb-1">
+                                                                              {
+                                                                                  comment.fname
+                                                                              }{" "}
+                                                                              {
+                                                                                  comment.lname
+                                                                              }
+                                                                              <span className="small">
+                                                                                  -
+                                                                                  3
+                                                                                  hours
+                                                                                  ago
+                                                                              </span>
+                                                                          </p>
+                                                                      </div>
+                                                                      <p className="small mb-0">
+                                                                          {
+                                                                              comment.textContent
+                                                                          }
+                                                                      </p>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
                                       </div>
                                   </div>
                               ) : null
                           )
                         : null}
                     {/* <Comment /> */}
-                    <div className="card">
-                        <div className="card-body p-2">
-                            <div className="row">
-                                <div className="col">
-                                    <div className="d-flex flex-start">
-                                        <img
-                                            className="rounded-circle shadow-1-strong p-2"
-                                            src={Logo}
-                                            alt="avatar"
-                                            width="40"
-                                            height="40"
-                                        />
-                                        <div className="flex-grow-1 flex-shrink-1">
-                                            <div>
-                                                <div className="d-flex justify-content-between align-items-center">
-                                                    <p className="mb-1">
-                                                        Name of User{" "}
-                                                        <span className="small">
-                                                            - 2 hours ago
-                                                        </span>
-                                                    </p>
-                                                    <a href="#!">
-                                                        <i className="fas fa-reply fa-xs"></i>
-                                                        <span className="small">
-                                                            {" "}
-                                                            reply
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                                <p className="small mb-0">
-                                                    Lorem ipsum dolor sit amet,
-                                                    consectetur adipiscing elit,
-                                                    sed do eiusmod tempor
-                                                    incididunt ut labore et
-                                                    dolore magna aliqua. Ut enim
-                                                    ad minim veniam
-                                                </p>
-                                            </div>
-
-                                            <div className="d-flex flex-start mt-4">
-                                                <a className="me-3" href="#">
-                                                    <img
-                                                        className="rounded-circle shadow-1-strong p-2"
-                                                        src={Logo}
-                                                        alt="avatar"
-                                                        width="40"
-                                                        height="40"
-                                                    />
-                                                </a>
-                                                <div className="flex-grow-1 flex-shrink-1">
-                                                    <div>
-                                                        <div className="d-flex justify-content-between align-items-center">
-                                                            <p className="mb-1">
-                                                                Name of User{" "}
-                                                                <span className="small">
-                                                                    - 3 hours
-                                                                    ago
-                                                                </span>
-                                                            </p>
-                                                        </div>
-                                                        <p className="small mb-0">
-                                                            Tellus in hac
-                                                            habitasse platea
-                                                            dictumst vestibulum.
-                                                            Lectus nulla at
-                                                            volutpat diam ut
-                                                            venenatis tellus.
-                                                            Aliquam etiam erat
-                                                            velit scelerisque in
-                                                            dictum non
-                                                            consectetur.
-                                                            Sagittis nisl
-                                                            rhoncus mattis
-                                                            rhoncus urna neque
-                                                            viverra justo nec.
-                                                            Tellus cras
-                                                            adipiscing enim eu
-                                                            turpis egestas
-                                                            pretium aenean
-                                                            pharetra. Aliquam
-                                                            faucibus purus in
-                                                            massa.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <div className="card-body">
-                            <form style={{ width: "100%" }}>
-                                <input
-                                    className="form-control p-1"
-                                    type="text"
-                                    placeholder="Write a comment..."
-                                    onChange={(e) => {
-                                        setTextContent(e.target.value);
-                                    }}
-                                ></input>
-                                <input
-                                    type="button"
-                                    className="btn btn-dark"
-                                    value="Send"
-                                    onClick={() => {
-                                        onSend(post.id);
-                                    }}
-                                />
-                            </form>
-                        </div>
-                    </div>
+                    {/* <div className="card">
+                        <div className="card-body"> */}
+                    <form style={{ width: "100%" }} className="my-3">
+                        <input
+                            className="form-control p-1 my-3"
+                            type="text"
+                            placeholder="Write a comment..."
+                            onChange={(e) => {
+                                setTextContent(e.target.value);
+                            }}
+                        ></input>
+                        <input
+                            type="button"
+                            className="btn btn-dark my-3"
+                            value="Send"
+                            onClick={() => {
+                                onSend(post.id);
+                            }}
+                        />
+                    </form>
                 </div>
+                {/* </div>
+                </div> */}
             </div>
         </div>
     ));
