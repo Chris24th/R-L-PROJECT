@@ -2,9 +2,17 @@ import React, { useState, useEffect } from "react";
 // import { useNavigate } from "react-router-dom";
 // import PublicPost from "./PublicPost";
 import Logo from "../PostelloLogo.png";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
 
 export default function Profile() {
     let user = JSON.parse(localStorage.getItem("user-info"));
+    // MODAL FOR EDIT PROFILE
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     return (
         <div className="container-fluid my-4">
@@ -31,14 +39,67 @@ export default function Profile() {
                                     Address
                                 </p>
                                 <span className="p-2">
-                                    <button className="btn btn-dark ">
-                                        Edit Profile
-                                    </button>
-                                </span>
-                                <span className="p-2">
-                                    <button className="btn btn-outline-dark">
-                                        Messages
-                                    </button>
+                                    <input
+                                        type="button"
+                                        className="btn btn-dark "
+                                        onClick={handleShow}
+                                        value="Edit Profile"
+                                    />
+                                    <Modal show={show} onHide={handleClose}>
+                                        <Modal.Header closeButton>
+                                            <Modal.Title>
+                                                <strong>Edit Profile</strong>
+                                            </Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>
+                                            <Form>
+                                                <Form.Group
+                                                    className="mb-3"
+                                                    controlId="exampleForm.ControlTextarea1"
+                                                >
+                                                    <Form.Label>Bio</Form.Label>
+                                                    <Form.Control
+                                                        placeholder="Add Bio..."
+                                                        as="textarea"
+                                                        rows={1}
+                                                        // onChange={(e) =>
+                                                        //     setTextContent(
+                                                        //         e.target.value
+                                                        //     )
+                                                        // }
+                                                        // required
+                                                    />
+                                                </Form.Group>
+                                                <Form.Group
+                                                    className="mb-3"
+                                                    controlId="exampleForm.ControlTextarea1"
+                                                >
+                                                    <Form.Label>
+                                                        Address
+                                                    </Form.Label>
+                                                    <Form.Control
+                                                        placeholder="Modify Address..."
+                                                        as="textarea"
+                                                        rows={1}
+                                                        // onChange={(e) =>
+                                                        //     setTextContent(
+                                                        //         e.target.value
+                                                        //     )
+                                                        // }
+                                                        // required
+                                                    />
+                                                </Form.Group>
+                                            </Form>
+                                        </Modal.Body>
+                                        <Modal.Footer>
+                                            <Button
+                                                className="btn btn-dark btn-rounded"
+                                                // onClick={onPost}
+                                            >
+                                                Save Changes
+                                            </Button>
+                                        </Modal.Footer>
+                                    </Modal>
                                 </span>
                             </div>
                         </div>

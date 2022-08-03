@@ -18,20 +18,6 @@ export default function PublicPost() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        async function fetchAPI() {
-            const response = await axios
-                .get("http://localhost/api/v1/displaypost/")
-                .catch((e) => console.error(e));
-            if (response) {
-                setPostData(response.data);
-            }
-            setTimeout(() => setLoading(false), 500);
-        }
-        fetchAPI();
-    }, []);
 
     const onPost = async (e) => {
         try {
@@ -40,14 +26,6 @@ export default function PublicPost() {
             let fname = user.fname;
             let lname = user.lname;
             let item = { username, fname, lname, textContent };
-            // await fetch("http://localhost/api/v1/createpost/", {
-            //     method: "POST",
-            //     body: JSON.stringify(item),
-            //     headers: {
-            //         "Content-Type": "application/json",
-            //         Accept: "application/json",
-            //     },
-            // });
             axios({
                 method: "post",
                 url: "http://localhost/api/v1/createpost",
@@ -59,6 +37,18 @@ export default function PublicPost() {
             console.log(e);
         }
     };
+
+    useEffect(() => {
+        try {
+            axios
+                .get("http://localhost/api/v1/displaypost/")
+                .then(async (res) => {
+                    setPostData(res.data);
+                });
+        } catch (e) {
+            console.log(e);
+        }
+    });
 
     return (
         <div className="container-fluid my-4">
@@ -97,7 +87,7 @@ export default function PublicPost() {
                                                 <Form.Control
                                                     placeholder="Share your thoughts"
                                                     as="textarea"
-                                                    rows={10}
+                                                    rows={5}
                                                     onChange={(e) =>
                                                         setTextContent(
                                                             e.target.value
@@ -160,15 +150,7 @@ export default function PublicPost() {
                                 </div>
                             </div>
                         </div>
-                        {loading === false ? (
-                            <div>
-                                <Feed postDetails={postData} />
-                            </div>
-                        ) : (
-                            <div>
-                                <Loading />
-                            </div>
-                        )}
+                        <Feed postDetails={postData} />
                     </div>
                 </div>
             </div>
