@@ -215,9 +215,9 @@ const Feed = ({ postDetails }) => {
                     {/* <Comment /> */}
                     {/* <div className="card">
                         <div className="card-body"> */}
-                    <form style={{ width: "100%" }} className="my-3">
+                    <form style={{ width: "100%" }}>
                         <input
-                            className="form-control p-1 my-3"
+                            className="form-control p-1"
                             type="text"
                             placeholder="Write a comment..."
                             onChange={(e) => {
@@ -226,7 +226,7 @@ const Feed = ({ postDetails }) => {
                         ></input>
                         <input
                             type="button"
-                            className="btn btn-dark my-3"
+                            className="btn btn-dark"
                             value="Send"
                             onClick={() => {
                                 onSend(post.id);
