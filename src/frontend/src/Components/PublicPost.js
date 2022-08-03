@@ -8,14 +8,13 @@ import Modal from "react-bootstrap/Modal";
 import Logo from "../PostelloLogo.png";
 import Feed from "./Feed";
 import axios from "axios";
+import Loading from "./Loading";
 
 export default function PublicPost() {
     let user = JSON.parse(localStorage.getItem("user-info"));
     const navigate = useNavigate();
     const [textContent, setTextContent] = useState();
     const [postData, setPostData] = useState([]);
-
-    // MODAL FOR CREATE POST
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -166,7 +165,9 @@ export default function PublicPost() {
                                 <Feed postDetails={postData} />
                             </div>
                         ) : (
-                            <div>loading...</div>
+                            <div>
+                                <Loading />
+                            </div>
                         )}
                     </div>
                 </div>

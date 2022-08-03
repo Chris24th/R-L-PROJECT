@@ -22,8 +22,7 @@
 
     <div class="container-md">
         <div class="row m-3 justify-content-center p-2">
-            <form class="col-md-6 bg-light shadow p-5 mt-5 border-form"
-                onsubmit="window.location.href = 'signin'; onReset()">
+            <form class="col-md-5 bg-light shadow p-5 mt-5 border-form" onclick=onReset()>
                 <h1 class="mb-5">
                     <strong>Postello</strong>
                 </h1>
@@ -48,8 +47,8 @@
 
 
     <script>
-        let user = JSON.parse(localStorage.getItem("user-info"));
-        var email = document.getElementById('email').innerHTML = user.data;
+        let user = JSON.parse(localStorage.getItem("reset-email"));
+        var email = document.getElementById('email').innerHTML = user.data.email;
         async function onReset() {
             var password = document.getElementById("password").value;
             var confirmPass = document.getElementById("confirmPass").value;
@@ -57,6 +56,7 @@
                 email,
                 password
             };
+
             if (password == confirmPass) {
                 console.warn(item);
                 try {
@@ -70,7 +70,7 @@
                     }).then((response) =
                         alert('Password changed successfully. You can now Sign in.'),
                         localStorage.clear(),
-                        window.close()
+                        window.location.href = "successpage";
                     );
                 } catch (e) {
                     alert(e);

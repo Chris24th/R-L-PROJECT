@@ -21,8 +21,8 @@
 <body style="background-color:#D3DEDC; font-family:'Poppins';">
     <div class="container-fluid">
         <div class="row mt-5 justify-content-center">
-            <div class="col-5-md justify-content-center bg-light p-5 shadow">
-                <h2><strong>Your Email is Verified!</strong></h2><br />
+            <div class="col-5-md bg-light p-5 shadow">
+                <h2><strong>Your Password is Changed!</strong></h2><br />
                 <p> You can now go back to sign in page.<br />Thank you for choosing our application!</p>
                 <button onclick=onSignIn() class="btn-lg btn-dark btn-outline-light px-5 mt-3">
                     Sign In
@@ -30,22 +30,7 @@
             </div>
         </div>
     </div>
-
     <script>
-        let user = JSON.parse(localStorage.getItem("signup-email"));
-        let item = user.email;
-        try {
-            axios({
-                method: "post",
-                url: "http://localhost/api/v1/verification",
-                data: user,
-            }).then((response) =
-                localStorage.clear(),
-            );
-        } catch (e) {
-            alert(e);
-        }
-
         function onSignIn() {
             window.location.href = "http://localhost/signin";
         }

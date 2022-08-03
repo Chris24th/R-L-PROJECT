@@ -60,13 +60,13 @@ class UserController extends Controller
             return ["error" => "Email not found"];
         }
         Notification::send($user, new ChangePass());
+
         return $user->email;
     }
 
     function resetpassword(Request $req)
     {
         $date = Carbon::now();
-
         $user = User::where('email', $req->email)->first();
         $user->password = Hash::make($req->input('password'));
         $user->updated_at = $date;
@@ -76,7 +76,6 @@ class UserController extends Controller
     function verification(Request $req)
     {
         $date = Carbon::now();
-
         $user = User::where('email', $req->email)->first();
         $user->email_verified_at = $date;
         $user->save();

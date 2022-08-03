@@ -37,11 +37,11 @@ Route::post('verification', [UserController::class, 'verification']);
 Route::post('forgotpassword', [UserController::class, 'forgotpassword']);
 Route::post('resetpassword', [UserController::class, 'resetpassword']);
 Route::post('createpost', [PostController::class, 'createpost']);
-Route::get('displaypost', [PostController::class, 'displaypost'])->middleware('auth:sanctum');
-Route::post('createcomment', [PostController::class, 'createcomment'])->middleware('auth:sanctum');
-Route::get('displaycomment', [PostController::class, 'displaycomment'])->middleware('auth:sanctum');
-Route::post('deletepost', [PostController::class, 'deletepost'])->middleware('auth:sanctum');
-Route::post('editpost', [PostController::class, 'editpost'])->middleware('auth:sanctum');
+Route::get('displaypost', [PostController::class, 'displaypost']);
+Route::post('createcomment', [PostController::class, 'createcomment']);
+Route::get('displaycomment', [PostController::class, 'displaycomment']);
+Route::post('deletepost', [PostController::class, 'deletepost']);
+Route::post('editpost', [PostController::class, 'editpost']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return response()->json($request->user());

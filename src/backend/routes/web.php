@@ -19,10 +19,14 @@ use Illuminate\Support\Facades\Route;
 //     return 'hello world';
 // });
 
-// Route::get('/resetpassword', function () {
-//     return view('forgotpass');
-// });
+Route::get('/resetpassword', function () {
+    return view('forgotpass');
+});
 
-// Route::get('/verification', function () {
-//     return view('verification');
-// });
+Route::get('/verification', function () {
+    return view('verification');
+});
+
+Route::get('/successpage', function () {
+    return view('successpage');
+});

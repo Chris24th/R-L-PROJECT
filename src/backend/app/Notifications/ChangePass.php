@@ -16,9 +16,9 @@ class ChangePass extends Notification
      *
      * @return void
      */
+    protected $email;
     public function __construct()
     {
-        //
     }
 
     /**
