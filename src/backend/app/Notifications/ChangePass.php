@@ -42,8 +42,8 @@ class ChangePass extends Notification
     {
         return (new MailMessage)
             ->greeting('Postello password reset')
-            ->line('We heard that you lost your Postello password. Sorry about that! 
-                But don’t worry! You can use the following button to reset your password:')
+            ->line("We heard that you lost your Postello password. Sorry about that! 
+                But it's all good! You can use this link to reset your password:")
             ->action('Reset your Password', url('/resetpassword'))
             ->line('Thank you for using our application!');
     }
