@@ -7,11 +7,57 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Edit_DeleteModal_Post from "./Edit_DeleteModal_Post.js";
 import Comments from "./Comments";
+import axios from "axios";
 
 const Feed = ({ postDetails }) => {
     const [show, setShow] = useState();
     const [openComment, setOpenComment] = useState(false);
     let user = JSON.parse(localStorage.getItem("user-info"));
+
+    const [textContent, setTextContent] = useState();
+    const [comments, setComments] = useState([]);
+    const [loading, setLoading] = useState(true);
+    //
+    const onSend = async (postID) => {
+        setLoading(true);
+        if (textContent) {
+            let username = user.username;
+            let fname = user.fname;
+            let lname = user.lname;
+            let item = { postID, username, fname, lname, textContent };
+            await axios({
+                method: "post",
+                url: "http://localhost/api/v1/createcomment/",
+                data: item,
+            }).then(() => {
+                setTimeout(() => setLoading(false), 3000);
+            });
+        } else {
+            setTimeout(() => setLoading(false), 500);
+        }
+        setTextContent("");
+    };
+
+    const onLike = () => {
+        
+    };
+    useEffect(() => {
+        setTimeout(() => setLoading(false), 500);
+    }, []);
+
+    const api = async () => {
+        await axios({
+            method: "get",
+            url: "http://localhost/api/v1/displaycomment/",
+        }).then((response) => {
+            setComments(response.data);
+        });
+    };
+
+    useEffect(() => {
+        api();
+    });
+    //
 
     const dataList = postDetails.map((post) => (
         <div className="feed-post mt-2 border">
@@ -42,7 +88,11 @@ const Feed = ({ postDetails }) => {
                         <Row>
                             <Col className="p-1">
                                 <div className="d-grid gap-2">
-                                    <Button variant="Light p-1" size="md">
+                                    <Button
+                                        variant="Light p-1"
+                                        size="md"
+                                        onClick={onLike}
+                                    >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="20"

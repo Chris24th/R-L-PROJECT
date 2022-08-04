@@ -57,6 +57,7 @@ export default function PublicPost() {
                 console.log(e);
             }
         }
+        setTimeout(() => setLoading(false), 500);
         api();
     }, []);
 

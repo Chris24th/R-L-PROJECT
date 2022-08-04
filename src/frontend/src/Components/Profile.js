@@ -15,6 +15,9 @@ export default function Profile() {
     const handleShow = () => setShow(true);
     const [bio, setBio] = useState("");
     const [address, setAddress] = useState("");
+    const [fname, setFname] = useState("");
+    const [lname, setLname] = useState("");
+    const [sex, setSex] = useState("");
 
     const onSave = () => {};
     return (
@@ -92,6 +95,84 @@ export default function Profile() {
                                                         required
                                                     />
                                                 </Form.Group>
+                                                <Form.Group
+                                                    className="mb-3"
+                                                    controlId="exampleForm.ControlTextarea1"
+                                                >
+                                                    <Form.Label>
+                                                        First Name
+                                                    </Form.Label>
+                                                    <Form.Control
+                                                        placeholder="Modify Address..."
+                                                        as="textarea"
+                                                        rows={1}
+                                                        onChange={(e) =>
+                                                            setFname(
+                                                                e.target.value
+                                                            )
+                                                        }
+                                                        required
+                                                    />
+                                                </Form.Group>
+                                                <Form.Group
+                                                    className="mb-3"
+                                                    controlId="exampleForm.ControlTextarea1"
+                                                >
+                                                    <Form.Label>
+                                                        Last Name
+                                                    </Form.Label>
+                                                    <Form.Control
+                                                        placeholder="Modify Address..."
+                                                        as="textarea"
+                                                        rows={1}
+                                                        onChange={(e) =>
+                                                            setLname(
+                                                                e.target.value
+                                                            )
+                                                        }
+                                                        required
+                                                    />
+                                                </Form.Group>
+                                                <Form.Label>Sex</Form.Label>
+                                                <br />
+                                                <div className="form-check form-check-inline">
+                                                    <input
+                                                        className="form-check-input"
+                                                        type="radio"
+                                                        name="radios"
+                                                        id="radio1"
+                                                        value="Male"
+                                                        onClick={() =>
+                                                            setSex("Male")
+                                                        }
+                                                        required
+                                                    />
+                                                    <label
+                                                        className="form-check-label"
+                                                        htmlFor="radio1"
+                                                    >
+                                                        Male
+                                                    </label>
+                                                </div>
+                                                <div className="form-check form-check-inline mb-4">
+                                                    <input
+                                                        className="form-check-input"
+                                                        type="radio"
+                                                        name="radios"
+                                                        id="radio2"
+                                                        value="Female"
+                                                        onClick={() =>
+                                                            setSex("Female")
+                                                        }
+                                                        required
+                                                    />
+                                                    <label
+                                                        className="form-check-label"
+                                                        htmlFor="radio2"
+                                                    >
+                                                        Female
+                                                    </label>
+                                                </div>
                                             </Form>
                                         </Modal.Body>
                                         <Modal.Footer>

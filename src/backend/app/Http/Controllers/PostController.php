@@ -84,4 +84,10 @@ class PostController extends Controller
 
         return $post->textContent;
     }
+
+    function reaction(Request $req)
+    {
+        $post = Post::where('id', $req->id)->first();
+
+    }
 }
