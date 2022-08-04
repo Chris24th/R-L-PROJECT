@@ -13,7 +13,10 @@ export default function Profile() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const [bio, setBio] = useState("");
+    const [address, setAddress] = useState("");
 
+    const onSave = () => {};
     return (
         <div className="container-fluid my-4">
             <div className="d-flex justify-content-center row m-8 ">
@@ -62,12 +65,12 @@ export default function Profile() {
                                                         placeholder="Add Bio..."
                                                         as="textarea"
                                                         rows={1}
-                                                        // onChange={(e) =>
-                                                        //     setTextContent(
-                                                        //         e.target.value
-                                                        //     )
-                                                        // }
-                                                        // required
+                                                        onChange={(e) =>
+                                                            setBio(
+                                                                e.target.value
+                                                            )
+                                                        }
+                                                        required
                                                     />
                                                 </Form.Group>
                                                 <Form.Group
@@ -81,12 +84,12 @@ export default function Profile() {
                                                         placeholder="Modify Address..."
                                                         as="textarea"
                                                         rows={1}
-                                                        // onChange={(e) =>
-                                                        //     setTextContent(
-                                                        //         e.target.value
-                                                        //     )
-                                                        // }
-                                                        // required
+                                                        onChange={(e) =>
+                                                            setAddress(
+                                                                e.target.value
+                                                            )
+                                                        }
+                                                        required
                                                     />
                                                 </Form.Group>
                                             </Form>
@@ -94,7 +97,7 @@ export default function Profile() {
                                         <Modal.Footer>
                                             <Button
                                                 className="btn btn-dark btn-rounded"
-                                                // onClick={onPost}
+                                                onClick={onSave}
                                             >
                                                 Save Changes
                                             </Button>
