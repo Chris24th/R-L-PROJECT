@@ -64,10 +64,10 @@ export default function Edit_DeleteModal({ postData }) {
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                     <Dropdown.Item href="#/action-1" onClick={Edit}>
-                        Edit
+                        Edit Post
                     </Dropdown.Item>
                     <Dropdown.Item href="#/action-2" onClick={Delete}>
-                        Delete
+                        Delete Post
                     </Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
@@ -87,7 +87,7 @@ export default function Edit_DeleteModal({ postData }) {
                         >
                             <Form.Control
                                 as="textarea"
-                                rows={10}
+                                rows={5}
                                 value={textContent}
                                 onChange={(e) => setTextContent(e.target.value)}
                                 required
