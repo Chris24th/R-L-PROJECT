@@ -34,19 +34,10 @@ function NavScroll() {
                         style={{ maxHeight: "100px" }}
                         navbarScroll
                     >
-                        <Nav.Link
-                            href="#action1"
-                            onClick={() => {
-                                navigate("/");
-                            }}
-                        >
-                            {user && user.username}
-                        </Nav.Link>
+                        <Nav.Link>{user && user.username}</Nav.Link>
                     </Nav>
                     <Nav>
-                        <Nav.Link href="#action2" onClick={onSignOut}>
-                            Log Out
-                        </Nav.Link>
+                        <Nav.Link onClick={onSignOut}>Log Out</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

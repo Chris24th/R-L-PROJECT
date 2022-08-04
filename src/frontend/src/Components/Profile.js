@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
+import axios from "axios";
 
 export default function Profile() {
     let user = JSON.parse(localStorage.getItem("user-info"));
@@ -13,13 +14,25 @@ export default function Profile() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const [bio, setBio] = useState("");
     const [address, setAddress] = useState("");
+    const [bio, setBio] = useState("");
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
     const [sex, setSex] = useState("");
+    let id = user.id;
 
-    const onSave = () => {};
+    const onSave = async () => {
+        setShow(false);
+        let item = { id, address, bio, fname, lname, sex };
+        await axios({
+            method: "post",
+            url: "http://localhost/api/v1/editprofile/",
+            data: item,
+        }).then((response) => {
+            localStorage.setItem("user-info", JSON.stringify(response.data));
+            window.location.reload();
+        });
+    };
     return (
         <div className="container-fluid my-4">
             <div className="d-flex justify-content-center row m-8 ">
@@ -74,7 +87,6 @@ export default function Profile() {
                                                                 e.target.value
                                                             )
                                                         }
-                                                        required
                                                     />
                                                 </Form.Group>
                                                 <Form.Group
@@ -92,7 +104,6 @@ export default function Profile() {
                                                                 e.target.value
                                                             )
                                                         }
-                                                        required
                                                     />
                                                 </Form.Group>
                                                 <Form.Group
@@ -108,7 +119,6 @@ export default function Profile() {
                                                                 e.target.value
                                                             )
                                                         }
-                                                        required
                                                     />
                                                 </Form.Group>
                                                 <Form.Group
@@ -124,7 +134,6 @@ export default function Profile() {
                                                                 e.target.value
                                                             )
                                                         }
-                                                        required
                                                     />
                                                 </Form.Group>
                                                 <Form.Label>Sex</Form.Label>
@@ -139,7 +148,6 @@ export default function Profile() {
                                                         onClick={() =>
                                                             setSex("Male")
                                                         }
-                                                        required
                                                     />
                                                     <label
                                                         className="form-check-label"
@@ -158,7 +166,6 @@ export default function Profile() {
                                                         onClick={() =>
                                                             setSex("Female")
                                                         }
-                                                        required
                                                     />
                                                     <label
                                                         className="form-check-label"

@@ -36,6 +36,8 @@ Route::post('signin', [UserController::class, 'signin'])->name('login');
 Route::post('verification', [UserController::class, 'verification']);
 Route::post('forgotpassword', [UserController::class, 'forgotpassword']);
 Route::post('resetpassword', [UserController::class, 'resetpassword']);
+Route::post('editprofile', [UserController::class, 'editprofile']);
+
 Route::post('createpost', [PostController::class, 'createpost']);
 Route::get('displaypost', [PostController::class, 'displaypost']);
 Route::post('createcomment', [PostController::class, 'createcomment']);

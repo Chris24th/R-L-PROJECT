@@ -82,4 +82,17 @@ class UserController extends Controller
 
         return $user;
     }
+
+    function editprofile(Request $req)
+    {
+        $user = User::where('id', $req->id)->first();
+        $user->address = $req->address;
+        $user->bio = $req->bio;
+        $user->fname = $req->fname;
+        $user->lname = $req->lname;
+        $user->sex = $req->sex;
+        $user->save();
+
+        return $user;
+    }
 }
