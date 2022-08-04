@@ -13,36 +13,29 @@ const Feed = ({ postDetails }) => {
     const [show, setShow] = useState();
     const [openComment, setOpenComment] = useState(false);
     let user = JSON.parse(localStorage.getItem("user-info"));
-
+    let id_user = user.id;
+    let username = user.username;
+    let fname = user.fname;
+    let lname = user.lname;
     const [textContent, setTextContent] = useState();
     const [comments, setComments] = useState([]);
     const [loading, setLoading] = useState(true);
-    //
-    const onSend = async (postID) => {
-        setLoading(true);
-        if (textContent) {
-            let username = user.username;
-            let fname = user.fname;
-            let lname = user.lname;
-            let item = { postID, username, fname, lname, textContent };
-            await axios({
-                method: "post",
-                url: "http://localhost/api/v1/createcomment/",
-                data: item,
-            }).then(() => {
-                setTimeout(() => setLoading(false), 3000);
-            });
-        } else {
-            setTimeout(() => setLoading(false), 500);
-        }
-        setTextContent("");
+
+    const onLike = async (postID) => {
+        let item = { id_user, postID };
+        await axios({
+            method: "post",
+            url: "http://localhost/api/v1/reaction/",
+            data: item,
+        }).then((response) => {
+            console.log(response.data);
+            // setTimeout(() => setLoading(false), 3000);
+        });
     };
 
-    const onLike = () => {
-        
-    };
     useEffect(() => {
         setTimeout(() => setLoading(false), 500);
+        api();
     }, []);
 
     const api = async () => {
@@ -54,10 +47,7 @@ const Feed = ({ postDetails }) => {
         });
     };
 
-    useEffect(() => {
-        api();
-    });
-    //
+    // useEffect(() => {});
 
     const dataList = postDetails.map((post) => (
         <div className="feed-post mt-2 border">
@@ -91,7 +81,7 @@ const Feed = ({ postDetails }) => {
                                     <Button
                                         variant="Light p-1"
                                         size="md"
-                                        onClick={onLike}
+                                        onClick={onLike(post.id)}
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"

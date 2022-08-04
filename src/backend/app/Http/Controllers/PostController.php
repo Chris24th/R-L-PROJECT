@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Post;
 use App\Models\Comment;
+use App\Models\Postreaction;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -87,7 +88,30 @@ class PostController extends Controller
 
     function reaction(Request $req)
     {
-        $post = Post::where('id', $req->id)->first();
+        $react = new Postreaction();
+        $react->id_post = $req->id_post;
+        $react->id_user = $req->id_user;
+        $react->save();
+        
+        $response = [
+            'id_post' => $react->id_post,
+            'id_user' => $react->id_user,
+        ];
+        return $response;
+    }
 
+    function displayreacts(Request $req)
+    {
+        $maxID = Postreaction::max('id');
+        $reactArr = array();
+
+        for ($i = $maxID; $i > 0; $i--) {
+            $data = Postreaction::where('id', $i)->first();
+            if ($data) {
+                array_push($reactArr, $data);
+            }
+        }
+        if ($reactArr)
+            return $reactArr;
     }
 }

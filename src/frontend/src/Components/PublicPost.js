@@ -11,7 +11,6 @@ import axios from "axios";
 import Loading from "./Loading";
 
 export default function PublicPost() {
-    let user = JSON.parse(localStorage.getItem("user-info"));
     const navigate = useNavigate();
     const [textContent, setTextContent] = useState();
     const [postData, setPostData] = useState([]);

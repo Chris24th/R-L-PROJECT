@@ -67,7 +67,6 @@ export default function Profile() {
                                                     <Form.Control
                                                         placeholder="Add Bio..."
                                                         as="textarea"
-                                                        rows={1}
                                                         onChange={(e) =>
                                                             setBio(
                                                                 e.target.value
@@ -86,7 +85,6 @@ export default function Profile() {
                                                     <Form.Control
                                                         placeholder="Modify Address..."
                                                         as="textarea"
-                                                        rows={1}
                                                         onChange={(e) =>
                                                             setAddress(
                                                                 e.target.value
@@ -103,9 +101,6 @@ export default function Profile() {
                                                         First Name
                                                     </Form.Label>
                                                     <Form.Control
-                                                        placeholder="Modify Address..."
-                                                        as="textarea"
-                                                        rows={1}
                                                         onChange={(e) =>
                                                             setFname(
                                                                 e.target.value
@@ -122,9 +117,6 @@ export default function Profile() {
                                                         Last Name
                                                     </Form.Label>
                                                     <Form.Control
-                                                        placeholder="Modify Address..."
-                                                        as="textarea"
-                                                        rows={1}
                                                         onChange={(e) =>
                                                             setLname(
                                                                 e.target.value
