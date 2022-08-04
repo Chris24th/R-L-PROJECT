@@ -48,7 +48,10 @@ const Comments = ({ comment }) => {
                                 <div>
                                     <div className="d-flex justify-content-between align-items-center">
                                         <p className="mb-1">
-                                            {comment.fname} {comment.lname}
+                                            <strong>
+                                                {comment.fname} {comment.lname}
+                                            </strong>
+
                                             {/* <span className="small">
                                             -
                                             3
@@ -90,7 +93,7 @@ const Comments = ({ comment }) => {
                                                     width="16"
                                                     height="16"
                                                     fill="currentColor"
-                                                    class="bi bi-three-dots"
+                                                    className="bi bi-three-dots"
                                                     viewBox="0 0 16 16"
                                                 >
                                                     <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
@@ -117,8 +120,11 @@ const Comments = ({ comment }) => {
                                         <div>
                                             <div className="d-flex justify-content-between align-items-center">
                                                 <p className="mb-1">
-                                                    {comment.fname}{" "}
-                                                    {comment.lname}
+                                                    <strong>
+                                                        {comment.fname}{" "}
+                                                        {comment.lname}
+                                                    </strong>
+
                                                     {/* <span className="small">
                                                     -
                                                     3
@@ -169,7 +175,7 @@ const Comments = ({ comment }) => {
                                                             width="16"
                                                             height="16"
                                                             fill="currentColor"
-                                                            class="bi bi-three-dots"
+                                                            className="bi bi-three-dots"
                                                             viewBox="0 0 16 16"
                                                         >
                                                             <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
