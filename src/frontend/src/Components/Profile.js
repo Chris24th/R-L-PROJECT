@@ -34,8 +34,10 @@ export default function Profile() {
                             />
                             <div className="mt-3">
                                 <h4>
-                                    {user ? user.fname : ""}{" "}
-                                    {user ? user.lname : ""}
+                                    <strong>
+                                        {user ? user.fname : ""}{" "}
+                                        {user ? user.lname : ""}
+                                    </strong>
                                 </h4>
                                 <p className="text-muted">
                                     {user ? user.username : ""}

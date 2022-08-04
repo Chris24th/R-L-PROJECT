@@ -67,7 +67,9 @@ const Feed = ({ postDetails }) => {
                         />
                         <div className="d-flex flex-column ml-2 m-2 p-2 justify-content-between">
                             <h6>
-                                {post.fname} {post.lname}
+                                <strong>
+                                    {post.fname} {post.lname}
+                                </strong>
                             </h6>
                         </div>
                     </div>

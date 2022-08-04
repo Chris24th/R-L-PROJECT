@@ -1,9 +1,6 @@
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import { useNavigate } from "react-router-dom";
 import React from "react-router-dom";
 import Logo from "../PostelloLogo.png";
@@ -18,15 +15,15 @@ function NavScroll() {
     };
 
     return (
-        <Navbar variant={"dark"} expand="md" bg="dark">
+        <Navbar variant={"dark"} bg="dark">
             <Container fluid className="my-2 px-5">
                 <Navbar.Brand href="#">
                     {/* Postello */}
                     <img
                         src={Logo}
                         className="rounded-circle"
-                        width="40px"
-                        height="40px"
+                        width="25px"
+                        height="25px"
                         alt=""
                     />
                 </Navbar.Brand>
@@ -43,33 +40,14 @@ function NavScroll() {
                                 navigate("/");
                             }}
                         >
-                            Home
+                            {user && user.username}
                         </Nav.Link>
-
-                        <NavDropdown
-                            title={user && user.username}
-                            id="navbarScrollingDropdown"
-                        >
-                            <NavDropdown.Item href="#action2">
-                                Your Profile
-                            </NavDropdown.Item>
-                            <NavDropdown.Item
-                                href="#action3"
-                                onClick={onSignOut}
-                            >
-                                Log Out
-                            </NavDropdown.Item>
-                        </NavDropdown>
                     </Nav>
-                    <Form className="d-flex">
-                        <Form.Control
-                            type="search"
-                            placeholder="Search"
-                            className="me-2"
-                            aria-label="Search"
-                        />
-                        <Button variant="outline-light">Search</Button>
-                    </Form>
+                    <Nav>
+                        <Nav.Link href="#action2" onClick={onSignOut}>
+                            Log Out
+                        </Nav.Link>
+                    </Nav>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
