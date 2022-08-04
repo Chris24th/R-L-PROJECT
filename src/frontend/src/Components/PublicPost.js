@@ -18,37 +18,47 @@ export default function PublicPost() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const [loading, setLoading] = useState(true);
 
     const onPost = async (e) => {
-        try {
-            let user = JSON.parse(localStorage.getItem("user-info"));
-            let username = user.username;
-            let fname = user.fname;
-            let lname = user.lname;
-            let item = { username, fname, lname, textContent };
-            axios({
-                method: "post",
-                url: "http://localhost/api/v1/createpost",
-                data: item,
-            }).then(() => {
-                window.location.reload();
-            });
-        } catch (e) {
-            console.log(e);
-        }
+        if (textContent) {
+            setShow(!show);
+            try {
+                let user = JSON.parse(localStorage.getItem("user-info"));
+                let username = user.username;
+                let fname = user.fname;
+                let lname = user.lname;
+                let item = { username, fname, lname, textContent };
+                axios({
+                    method: "post",
+                    url: "http://localhost/api/v1/createpost",
+                    data: item,
+                }).then(() => {
+                    window.location.reload();
+                });
+            } catch (e) {
+                console.log(e);
+            }
+        } else return setShow(!show);
     };
 
+    // useEffect(() => {
+    // });
     useEffect(() => {
-        try {
-            axios
-                .get("http://localhost/api/v1/displaypost/")
-                .then(async (res) => {
-                    setPostData(res.data);
-                });
-        } catch (e) {
-            console.log(e);
+        async function api() {
+            try {
+                await axios
+                    .get("http://localhost/api/v1/displaypost/")
+                    .then(async (res) => {
+                        setPostData(res.data);
+                        setTimeout(() => setLoading(false), 500);
+                    });
+            } catch (e) {
+                console.log(e);
+            }
         }
-    });
+        api();
+    }, []);
 
     return (
         <div className="container-fluid my-4">
@@ -67,9 +77,9 @@ export default function PublicPost() {
                                 />
                                 {/*---------- MODAL FOR CREATE POST----------*/}
                                 <input
-                                    type="form"
+                                    type="text"
                                     className="border-2 form-control share-input m-1 p-1"
-                                    defaultValue="Share your thoughts"
+                                    placeholder="Share your thoughts"
                                     onClick={handleShow}
                                 />
                                 <Modal show={show} onHide={handleClose}>
@@ -108,32 +118,12 @@ export default function PublicPost() {
                                     </Modal.Footer>
                                 </Modal>
                             </div>
-                            {/* <div className="d-flex flex-row justify-content-between border-top p-1">
-                                <div className="d-flex flex-row publish-options">
-                                    <div className="align-items-center border-right p-1 share">
-                                        <button
-                                            type="button"
-                                            className="btn btn-lights"
-                                            onClick={handleShow}
-                                        >
-                                            ICON FOR PHOTO
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="16"
-                                                height="16"
-                                                className="bi bi-images"
-                                                viewBox="0 0 16 16"
-                                            >
-                                                <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
-                                                <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2zM14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1zM2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1h-10z" />
-                                            </svg>{" "}
-                                            Photo
-                                        </button>
-                                    </div>
-                                </div>
-                            </div> */}
                         </div>
-                        <Feed postDetails={postData} />
+                        {loading ? (
+                            <Loading />
+                        ) : (
+                            <Feed postDetails={postData} />
+                        )}
                     </div>
                 </div>
             </div>

@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
 import Logo from "../PostelloLogo.png";
 import Container from "react-bootstrap/Container";
@@ -8,50 +7,11 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Edit_DeleteModal_Post from "./Edit_DeleteModal_Post.js";
 import Comments from "./Comments";
-import axios from "axios";
-import Collapse from "react-bootstrap/Collapse";
 
 const Feed = ({ postDetails }) => {
-    const [loading, setLoading] = useState(true);
-    const [comments, setComments] = useState([]);
     const [show, setShow] = useState();
-    const [textContent, setTextContent] = useState();
     const [openComment, setOpenComment] = useState(false);
     let user = JSON.parse(localStorage.getItem("user-info"));
-
-    // EDIT DELETE MODAL FOR COMMENT
-
-    useEffect(() => {
-        setTimeout(() => setLoading(false), 500);
-    }, []);
-
-    useEffect(() => {
-        axios({
-            method: "get",
-            url: "http://localhost/api/v1/displaycomment/",
-        }).then((response) => {
-            setComments(response.data);
-        });
-    });
-
-    const onSend = async (postID) => {
-        let username = user.username;
-        let fname = user.fname;
-        let lname = user.lname;
-        let item = { postID, username, fname, lname, textContent };
-        await axios({
-            method: "post",
-            url: "http://localhost/api/v1/createcomment/",
-            data: item,
-        })
-            .then((response) => {
-                console.log(response.data);
-                // window.location.reload();
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-    };
 
     const dataList = postDetails.map((post) => (
         <div className="feed-post mt-2 border">
@@ -126,42 +86,7 @@ const Feed = ({ postDetails }) => {
                     </Container>
                 </div>
                 {/* COMMENT SECTION */}
-                <Collapse in={openComment}>
-                    <div className="col">
-                        {loading === false && comments
-                            ? comments.map((comment) =>
-                                  comment.postID === post.id ? (
-                                      <div>
-                                          <Comments comment={comment} />
-                                      </div>
-                                  ) : null
-                              )
-                            : null}
-                        {/* <Comment /> */}
-                        {/* <div className="card">
-                        <div className="card-body"> */}
-                        <div className="col">
-                            <form style={{ width: "100%" }}>
-                                <input
-                                    className="form-control p-1"
-                                    type="text"
-                                    placeholder="Write a comment..."
-                                    onChange={(e) => {
-                                        setTextContent(e.target.value);
-                                    }}
-                                ></input>
-                                <input
-                                    type="button"
-                                    className="btn btn-dark"
-                                    value="Send"
-                                    onClick={() => {
-                                        onSend(post.id);
-                                    }}
-                                />
-                            </form>
-                        </div>
-                    </div>
-                </Collapse>
+                <Comments postID={post.id} openComment={openComment} />
             </div>
         </div>
     ));
