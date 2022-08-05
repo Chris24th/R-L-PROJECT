@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Post;
 use App\Models\Comment;
+use App\Models\Commentrep;
 use App\Models\Postreaction;
 use Illuminate\Http\Request;
 
@@ -40,7 +41,6 @@ class PostController extends Controller
 
     function createcomment(Request $req)
     {
-        // $comment = Comment::where('id', $req->id);
         $comment = new Comment;
         $comment->postID = $req->postID;
         $comment->username = $req->username;
@@ -91,15 +91,22 @@ class PostController extends Controller
         $react = new Postreaction();
         $react->id_post = $req->id_post;
         $react->id_user = $req->id_user;
+
+        $post = Post::where('id', $req->id_post)->first();
+
         $check = Postreaction::where('id_post', $req->id_post)->first();
         if (!$check || $check->id_post != $req->id_post && $check->id_user != $req->id_user) {
             $react->save();
+            $post->reacts++;
+            $post->save();
             $response = [
                 'id_post' => $react->id_post,
                 'id_user' => $react->id_user,
             ];
             return $response;
         } else {
+            $post->reacts--;
+            $post->save();
             $check->delete();
             return  ["error" => "Already liked."];
         }
@@ -118,5 +125,34 @@ class PostController extends Controller
         }
         if ($reactArr)
             return $reactArr;
+    }
+
+    function createcommentrep(Request $req)
+    {
+
+        $commentrep = new Commentrep;
+        $commentrep->commentID = $req->commentID;
+        $commentrep->username = $req->username;
+        $commentrep->fname = $req->fname;
+        $commentrep->lname = $req->lname;
+        $commentrep->textContent = $req->input('textContent');
+        $commentrep->reacts = $req->input('reacts');
+        $commentrep->save();
+
+        return $commentrep;
+    }
+    function displaycommentrep()
+    {
+        $maxID = Commentrep::max('id');
+        $commentrepArr = array();
+
+        for ($i = $maxID; $i > 0; $i--) {
+            $data = Commentrep::where('id', $i)->first();
+            if ($data) {
+                array_push($commentrepArr, $data);
+            }
+        }
+        if ($commentrepArr)
+            return $commentrepArr;
     }
 }

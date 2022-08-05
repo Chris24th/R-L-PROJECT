@@ -1,11 +1,14 @@
 import Button from "react-bootstrap/Button";
-// import Dropdown from "react-bootstrap/Dropdown";
 import Logo from "../PostelloLogo.png";
 import Collapse from "react-bootstrap/Collapse";
 import axios from "axios";
 import Loading from "./Loading";
 import { useState, useEffect } from "react";
+<<<<<<< HEAD
 import EditDelete_ModalComment from "./EditDelete_ModalComment.js";
+=======
+import CommentReply from "./CommentReply";
+>>>>>>> 2d592a7844572760b5542cd8ca1e1d0eecd260eb
 
 const Comments = ({ postID, openComment }) => {
     let user = JSON.parse(localStorage.getItem("user-info"));
@@ -32,9 +35,6 @@ const Comments = ({ postID, openComment }) => {
         }
         setTextContent("");
     };
-    useEffect(() => {
-        setTimeout(() => setLoading(false), 500);
-    }, []);
 
     const api = async () => {
         await axios({
@@ -48,25 +48,9 @@ const Comments = ({ postID, openComment }) => {
     useEffect(() => {
         api();
     });
-
-    const onReply = async () => {
-        // let username = user.username;
-        // let fname = user.fname;
-        // let lname = user.lname;
-        // let item = { postID, username, fname, lname, textContent };
-        // await axios({
-        //     method: "post",
-        //     url: "http://localhost/api/v1/createcomment/",
-        //     data: item,
-        // })
-        //     .then((response) => {
-        //         console.log(response.data);
-        //         // window.location.reload();
-        //     })
-        //     .catch((error) => {
-        //         console.error(error);
-        //     });
-    };
+    useEffect(() => {
+        setTimeout(() => setLoading(false), 500);
+    }, []);
 
     return (
         <div>
@@ -157,6 +141,7 @@ const Comments = ({ postID, openComment }) => {
                                                                 </p>
                                                             </div>
                                                             {/* REPLY COMMENT SECTION */}
+<<<<<<< HEAD
                                                             <div className="d-flex flex-start mt-4">
                                                                 <a
                                                                     className="me-3"
@@ -276,6 +261,13 @@ const Comments = ({ postID, openComment }) => {
                                                                     </div>
                                                                 </div>
                                                             </div>
+=======
+                                                            <CommentReply
+                                                                commentID={
+                                                                    comment.id
+                                                                }
+                                                            />
+>>>>>>> 2d592a7844572760b5542cd8ca1e1d0eecd260eb
                                                         </div>
                                                     </div>
                                                 </div>
