@@ -143,10 +143,11 @@ class PostController extends Controller
     }
     function displaycommentrep()
     {
+        $minID = Commentrep::min('id');
         $maxID = Commentrep::max('id');
         $commentrepArr = array();
 
-        for ($i = $maxID; $i > 0; $i--) {
+        for ($i = $minID; $i <= $maxID; $i++) {
             $data = Commentrep::where('id', $i)->first();
             if ($data) {
                 array_push($commentrepArr, $data);
@@ -154,5 +155,22 @@ class PostController extends Controller
         }
         if ($commentrepArr)
             return $commentrepArr;
+    }
+    function deletecomment(Request $req)
+    {
+        $comment = Comment::where('id', $req->id)->first();
+        $comment->delete();
+    }
+
+    function editcomment(Request $req)
+    {
+        $date = Carbon::now();
+
+        $comment = Comment::where('id', $req->id)->first();
+        $comment->textContent = $req->textContent;
+        $comment->updated_at = $date;
+        $comment->save();
+
+        return $comment->textContent;
     }
 }

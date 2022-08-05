@@ -8,19 +8,20 @@ const CommentReply = ({ commentID }) => {
     let user = JSON.parse(localStorage.getItem("user-info"));
     const [commentreps, setCommentreps] = useState();
     const [textContent, setTextContent] = useState();
+
     const onReply = async () => {
         let username = user.username;
         let fname = user.fname;
         let lname = user.lname;
-        let item = { commentID, username, fname, lname, textContent };
+        let id_comment = commentID;
+        let item = { id_comment, username, fname, lname, textContent };
         await axios({
             method: "post",
             url: "http://localhost/api/v1/createcommentrep/",
             data: item,
         })
-            .then((response) => {
-                console.log(response.data);
-                // window.location.reload();
+            .then(() => {
+                window.location.reload();
             })
             .catch((error) => {
                 console.error(error);
@@ -67,11 +68,11 @@ const CommentReply = ({ commentID }) => {
                                                 {commentrep.fname}{" "}
                                                 {commentrep.lname}
                                                 {/* <span className="small">
-                                    -
-                                    3
-                                    hours
-                                    ago
-                                </span> */}
+                                                    -
+                                                    3
+                                                    hours
+                                                    ago
+                                                </span> */}
                                             </p>
                                             <a>
                                                 {/* LIKE BUTTON COMMENT SECTION*/}
@@ -127,36 +128,35 @@ const CommentReply = ({ commentID }) => {
                                         <p className="small mb-0">
                                             {commentrep.textContent}
                                         </p>
-                                        <form
-                                            style={{
-                                                width: "100%",
-                                            }}
-                                        >
-                                            <input
-                                                className="form-control p-1"
-                                                type="text"
-                                                placeholder="Reply to a comment..."
-                                                onChange={(e) => {
-                                                    setTextContent(
-                                                        e.target.value
-                                                    );
-                                                }}
-                                            ></input>
-                                            <input
-                                                type="button"
-                                                className="btn btn-dark"
-                                                value="Send"
-                                                onClick={() => {
-                                                    onReply();
-                                                }}
-                                            />
-                                        </form>
                                     </div>
                                 </div>
                             </div>
                         ) : null;
                     }
                 })}
+            <form
+                style={{
+                    width: "100%",
+                }}
+                className="col d-flex flex-row add-comment-section mt-3"
+            >
+                <input
+                    className="form-control p-1"
+                    type="text"
+                    placeholder="Reply to a comment..."
+                    onChange={(e) => {
+                        setTextContent(e.target.value);
+                    }}
+                ></input>
+                <input
+                    type="button"
+                    className="btn btn-dark btn-sm mx-2"
+                    value="Send"
+                    onClick={() => {
+                        onReply();
+                    }}
+                />
+            </form>
         </div>
     );
 };

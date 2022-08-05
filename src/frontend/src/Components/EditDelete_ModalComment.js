@@ -24,7 +24,7 @@ export default function EditDelete_ModalComment({ commentData }) {
         let item = commentData;
         await axios({
             method: "post",
-            url: "http://localhost/api/v1/deletepost/",
+            url: "http://localhost/api/v1/deletecomment/",
             data: item,
         }).then((res) => {
             window.location.reload();
@@ -36,7 +36,7 @@ export default function EditDelete_ModalComment({ commentData }) {
             let id = commentData.id;
             await axios({
                 method: "post",
-                url: "http://localhost/api/v1/editpost/",
+                url: "http://localhost/api/v1/editcomment/",
                 data: { id, textContent },
             }).then(() => {
                 window.location.reload();

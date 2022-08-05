@@ -48,6 +48,8 @@ Route::post('reaction', [PostController::class, 'reaction']);
 Route::get('displayreacts', [PostController::class, 'displayreacts']);
 Route::post('createcommentrep', [PostController::class, 'createcommentrep']);
 Route::get('displaycommentrep', [PostController::class, 'displaycommentrep']);
+Route::post('deletecomment', [PostController::class, 'deletecomment']);
+Route::post('editcomment', [PostController::class, 'editcomment']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return response()->json($request->user());

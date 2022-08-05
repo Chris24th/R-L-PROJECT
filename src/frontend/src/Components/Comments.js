@@ -58,10 +58,32 @@ const Comments = ({ postID, openComment }) => {
 
     const datalist = (
         <div className="col">
+            <form
+                style={{ width: "100%" }}
+                className="col d-flex flex-row add-comment-section my-2"
+            >
+                <input
+                    className="form-control"
+                    type="text"
+                    placeholder="Write a comment..."
+                    value={textContent}
+                    onChange={(e) => {
+                        setTextContent(e.target.value);
+                    }}
+                ></input>
+                <input
+                    type="button"
+                    className="btn btn-dark mx-2"
+                    value="Send"
+                    onClick={() => {
+                        onSend(postID);
+                    }}
+                />
+            </form>
             {comments &&
                 comments.map((comment) =>
                     comment.postID === postID ? (
-                        <div className="card">
+                        <div className="card m-3">
                             <div className="card-body p-2">
                                 <div className="row">
                                     <div className="col">
@@ -79,12 +101,6 @@ const Comments = ({ postID, openComment }) => {
                                                         <p className="mb-1">
                                                             {comment.fname}{" "}
                                                             {comment.lname}
-                                                            {/* <span className="small">
-                                            -
-                                            3
-                                            hours
-                                            ago
-                                        </span> */}
                                                         </p>
                                                         <a>
                                                             {/* LIKE BUTTON COMMENT SECTION*/}
@@ -128,22 +144,6 @@ const Comments = ({ postID, openComment }) => {
                                                                     }
                                                                 />
                                                             </ButtonGroup>
-                                                            {/* EDIT AND DELETE BUTTON */}
-                                                            <Button
-                                                                variant="Light"
-                                                                size="sm"
-                                                            >
-                                                                <svg
-                                                                    xmlns="http://www.w3.org/2000/svg"
-                                                                    width="16"
-                                                                    height="16"
-                                                                    fill="currentColor"
-                                                                    className="bi bi-three-dots"
-                                                                    viewBox="0 0 16 16"
-                                                                >
-                                                                    <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
-                                                                </svg>
-                                                            </Button>
                                                         </a>
                                                     </div>
                                                     <p className="small mb-0">
@@ -162,30 +162,6 @@ const Comments = ({ postID, openComment }) => {
                         </div>
                     ) : null
                 )}
-            {/* <Comment /> */}
-            {/* <div className="card">
-    <div className="card-body"> */}
-            <div className="col">
-                <form style={{ width: "100%" }}>
-                    <input
-                        className="form-control p-1"
-                        type="text"
-                        placeholder="Write a comment..."
-                        value={textContent}
-                        onChange={(e) => {
-                            setTextContent(e.target.value);
-                        }}
-                    ></input>
-                    <input
-                        type="button"
-                        className="btn btn-dark"
-                        value="Send"
-                        onClick={() => {
-                            onSend(postID);
-                        }}
-                    />
-                </form>
-            </div>
         </div>
     );
     return (
