@@ -31,9 +31,6 @@ const Comments = ({ postID, openComment }) => {
         }
         setTextContent("");
     };
-    useEffect(() => {
-        setTimeout(() => setLoading(false), 500);
-    }, []);
 
     const api = async () => {
         await axios({
@@ -47,6 +44,9 @@ const Comments = ({ postID, openComment }) => {
     useEffect(() => {
         api();
     });
+    useEffect(() => {
+        setTimeout(() => setLoading(false), 500);
+    }, []);
 
     const onReply = async () => {
         // let username = user.username;

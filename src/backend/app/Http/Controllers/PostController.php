@@ -91,15 +91,22 @@ class PostController extends Controller
         $react = new Postreaction();
         $react->id_post = $req->id_post;
         $react->id_user = $req->id_user;
+
+        $post = Post::where('id', $req->id_post)->first();
+
         $check = Postreaction::where('id_post', $req->id_post)->first();
         if (!$check || $check->id_post != $req->id_post && $check->id_user != $req->id_user) {
             $react->save();
+            $post->reacts++;
+            $post->save();
             $response = [
                 'id_post' => $react->id_post,
                 'id_user' => $react->id_user,
             ];
             return $response;
         } else {
+            $post->reacts--;
+            $post->save();
             $check->delete();
             return  ["error" => "Already liked."];
         }

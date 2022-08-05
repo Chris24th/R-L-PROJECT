@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string("fname");
             $table->string("lname");
             $table->longText('textContent');
-            $table->binary('reacts')->nullable();
+            $table->integer('reacts')->nullable();
             $table->timestamps();
         });
     }
