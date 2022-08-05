@@ -14,24 +14,30 @@ export default function Profile() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const [address, setAddress] = useState("");
-    const [bio, setBio] = useState("");
-    const [fname, setFname] = useState("");
-    const [lname, setLname] = useState("");
+    const [address, setAddress] = useState(user.address);
+    const [bio, setBio] = useState(user.bio);
+    const [fname, setFname] = useState(user.fname);
+    const [lname, setLname] = useState(user.lname);
     const [sex, setSex] = useState("");
+    const [error, setError] = useState("");
     let id = user.id;
 
     const onSave = async () => {
-        setShow(false);
-        let item = { id, address, bio, fname, lname, sex };
-        await axios({
-            method: "post",
-            url: "http://localhost/api/v1/editprofile/",
-            data: item,
-        }).then((response) => {
-            localStorage.setItem("user-info", JSON.stringify(response.data));
-            window.location.reload();
-        });
+        if (sex) {
+            setShow(false);
+            let item = { id, address, bio, fname, lname, sex };
+            await axios({
+                method: "post",
+                url: "http://localhost/api/v1/editprofile/",
+                data: item,
+            }).then((response) => {
+                localStorage.setItem(
+                    "user-info",
+                    JSON.stringify(response.data)
+                );
+                window.location.reload();
+            });
+        } else setError("Please select your sex.");
     };
     return (
         <div className="container-fluid my-4">
@@ -55,12 +61,22 @@ export default function Profile() {
                                 <p className="text-muted">
                                     {user ? user.username : ""}
                                 </p>
-                                <p className="text-secondary mb-1">Bio</p>
-                                <p className="text-muted font-size-sm">
-                                    Address
+                                <p className="text-secondary mb-3">
+                                    {user.bio ? (
+                                        <div>Bio: {user.bio}</div>
+                                    ) : (
+                                        "Add your bio here"
+                                    )}
                                 </p>
                                 <p className="text-muted font-size-sm">
-                                    Gender
+                                    {user.address ? (
+                                        <div>Address: {user.address}</div>
+                                    ) : (
+                                        "Add your address here"
+                                    )}
+                                </p>
+                                <p className="text-muted font-size-sm">
+                                    {user.sex}
                                 </p>
                                 <span className="p-2">
                                     <input
@@ -85,6 +101,7 @@ export default function Profile() {
                                                     <Form.Control
                                                         placeholder="Add Bio..."
                                                         as="textarea"
+                                                        value={bio}
                                                         onChange={(e) =>
                                                             setBio(
                                                                 e.target.value
@@ -102,6 +119,7 @@ export default function Profile() {
                                                     <Form.Control
                                                         placeholder="Modify Address..."
                                                         as="textarea"
+                                                        value={address}
                                                         onChange={(e) =>
                                                             setAddress(
                                                                 e.target.value
@@ -117,6 +135,7 @@ export default function Profile() {
                                                         First Name
                                                     </Form.Label>
                                                     <Form.Control
+                                                        value={fname}
                                                         onChange={(e) =>
                                                             setFname(
                                                                 e.target.value
@@ -132,6 +151,7 @@ export default function Profile() {
                                                         Last Name
                                                     </Form.Label>
                                                     <Form.Control
+                                                        value={lname}
                                                         onChange={(e) =>
                                                             setLname(
                                                                 e.target.value
@@ -147,7 +167,6 @@ export default function Profile() {
                                                         type="radio"
                                                         name="radios"
                                                         id="radio1"
-                                                        value="Male"
                                                         onClick={() =>
                                                             setSex("Male")
                                                         }
@@ -165,7 +184,6 @@ export default function Profile() {
                                                         type="radio"
                                                         name="radios"
                                                         id="radio2"
-                                                        value="Female"
                                                         onClick={() =>
                                                             setSex("Female")
                                                         }
@@ -177,6 +195,9 @@ export default function Profile() {
                                                         Female
                                                     </label>
                                                 </div>
+                                                <p className="text-danger">
+                                                    {error && error}
+                                                </p>
                                             </Form>
                                         </Modal.Body>
                                         <Modal.Footer>
