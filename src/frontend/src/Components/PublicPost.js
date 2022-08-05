@@ -44,7 +44,7 @@ export default function PublicPost() {
     // useEffect(() => {
     // });
     useEffect(() => {
-        async function api() {
+        const api = async () => {
             try {
                 await axios
                     .get("http://localhost/api/v1/displaypost/")
@@ -55,7 +55,7 @@ export default function PublicPost() {
             } catch (e) {
                 console.log(e);
             }
-        }
+        };
         setTimeout(() => setLoading(false), 500);
         api();
     }, []);

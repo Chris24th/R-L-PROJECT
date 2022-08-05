@@ -131,7 +131,7 @@ class PostController extends Controller
     {
 
         $commentrep = new Commentrep;
-        $commentrep->commentID = $req->commentID;
+        $commentrep->id_comment = $req->id_comment;
         $commentrep->username = $req->username;
         $commentrep->fname = $req->fname;
         $commentrep->lname = $req->lname;

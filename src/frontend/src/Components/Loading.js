@@ -5,7 +5,7 @@ const Loading = () => {
         <div className="row justify-content-center">
             <div className="col">
                 <div
-                    class="spinner-border ms-auto"
+                    className="spinner-border ms-auto"
                     role="status"
                     aria-hidden="true"
                 ></div>

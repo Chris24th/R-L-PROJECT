@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('commentreps', function (Blueprint $table) {
             $table->id();
-            $table->integer('commentID');
+            $table->integer('id_comment');
             $table->string("username");
             $table->string("fname");
             $table->string("lname");
