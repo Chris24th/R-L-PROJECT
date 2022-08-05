@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Logo from "../PostelloLogo.png";
 import Shopee from "../Shopee.png";
 import Lazada from "../Lazada.png";
+import Zalora from "../Zalora.png";
 
 export default function Profile() {
     let user = JSON.parse(localStorage.getItem("user-info"));
@@ -112,12 +113,7 @@ export default function Profile() {
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                             <h6 className="mb-0">
-                                <img
-                                    src={Shopee}
-                                    alt="Shopee"
-                                    // className="rounded-circle"
-                                    width="150"
-                                />{" "}
+                                <img src={Shopee} alt="Shopee" width="150" />{" "}
                                 {"  "}
                                 <strong>Shopee</strong>
                             </h6>
@@ -133,18 +129,29 @@ export default function Profile() {
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                             <h6 className="mb-0">
-                                <img
-                                    src={Lazada}
-                                    alt="Shopee"
-                                    // className="rounded-circle"
-                                    width="150"
-                                />{" "}
+                                <img src={Lazada} alt="Lazada" width="150" />{" "}
                                 {"  "}
                                 <strong>Lazada</strong>
                             </h6>
                             <span className="text-secondary">
                                 <a href="https://www.lazada.com.ph/">
                                     One Stop Online Shop
+                                </a>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <div className="card mt-3">
+                    <ul className="list-group list-group-flush">
+                        <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 className="mb-0">
+                                <img src={Zalora} alt="Zalora" width="150" />{" "}
+                                {"  "}
+                                <strong>Zalora</strong>
+                            </h6>
+                            <span className="text-secondary">
+                                <a href="https://www.zalora.com.ph/">
+                                    Fashion and Lifestyle
                                 </a>
                             </span>
                         </li>
