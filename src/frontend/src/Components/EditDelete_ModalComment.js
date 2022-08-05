@@ -47,11 +47,11 @@ export default function EditDelete_ModalComment({ commentData }) {
         <div>
             <Dropdown>
                 <Dropdown.Toggle
-                    className="btn btn-light"
-                    variant="light"
+                    className="btn"
+                    variant="Light"
                     id="dropdown-basic"
                     bsPrefix="p-0"
-                    size="sm"
+                    size="lg"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -65,10 +65,10 @@ export default function EditDelete_ModalComment({ commentData }) {
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                     <Dropdown.Item href="#/action-1" onClick={Edit}>
-                        Edit Post
+                        Edit Comment
                     </Dropdown.Item>
                     <Dropdown.Item href="#/action-2" onClick={Delete}>
-                        Delete Post
+                        Delete Comment
                     </Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
