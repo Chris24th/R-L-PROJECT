@@ -5,6 +5,7 @@ import Collapse from "react-bootstrap/Collapse";
 import axios from "axios";
 import Loading from "./Loading";
 import { useState, useEffect } from "react";
+import EditDelete_ModalComment from "./EditDelete_ModalComment.js";
 
 const Comments = ({ postID, openComment }) => {
     let user = JSON.parse(localStorage.getItem("user-info"));
@@ -140,21 +141,13 @@ const Comments = ({ postID, openComment }) => {
                                                                             </svg>
                                                                         </Button>
                                                                         {/* EDIT AND DELETE BUTTON */}
-                                                                        <Button
-                                                                            variant="Light"
-                                                                            size="sm"
-                                                                        >
-                                                                            <svg
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                width="16"
-                                                                                height="16"
-                                                                                fill="currentColor"
-                                                                                class="bi bi-three-dots"
-                                                                                viewBox="0 0 16 16"
-                                                                            >
-                                                                                <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
-                                                                            </svg>
-                                                                        </Button>
+                                                                        <span>
+                                                                            <EditDelete_ModalComment
+                                                                                commentData={
+                                                                                    comment
+                                                                                }
+                                                                            />
+                                                                        </span>
                                                                     </a>
                                                                 </div>
                                                                 <p className="small mb-0">
@@ -230,7 +223,7 @@ const Comments = ({ postID, openComment }) => {
                                                                                     </svg>
                                                                                 </Button>
                                                                                 {/* EDIT AND DELETE BUTTON */}
-                                                                                <Button
+                                                                                {/* <Button
                                                                                     variant="Light"
                                                                                     size="sm"
                                                                                 >
@@ -239,12 +232,12 @@ const Comments = ({ postID, openComment }) => {
                                                                                         width="16"
                                                                                         height="16"
                                                                                         fill="currentColor"
-                                                                                        class="bi bi-three-dots"
+                                                                                        className="bi bi-three-dots"
                                                                                         viewBox="0 0 16 16"
                                                                                     >
                                                                                         <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
                                                                                     </svg>
-                                                                                </Button>
+                                                                                </Button> */}
                                                                             </a>
                                                                         </div>
                                                                         <p className="small mb-0">

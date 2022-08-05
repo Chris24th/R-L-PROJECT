@@ -87,7 +87,7 @@ const Feed = ({ postDetails }) => {
                             width="16"
                             height="16"
                             fill="currentColor"
-                            class="bi bi-hand-thumbs-up-fill"
+                            className="bi bi-hand-thumbs-up-fill"
                             viewBox="0 0 16 16"
                         >
                             {" "}
@@ -124,7 +124,7 @@ const Feed = ({ postDetails }) => {
                                                 width="20"
                                                 height="20"
                                                 fill="currentColor"
-                                                class="bi bi-hand-thumbs-up-fill"
+                                                className="bi bi-hand-thumbs-up-fill"
                                                 viewBox="0 0 16 16"
                                             >
                                                 {" "}

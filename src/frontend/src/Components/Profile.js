@@ -59,6 +59,9 @@ export default function Profile() {
                                 <p className="text-muted font-size-sm">
                                     Address
                                 </p>
+                                <p className="text-muted font-size-sm">
+                                    Gender
+                                </p>
                                 <span className="p-2">
                                     <input
                                         type="button"
